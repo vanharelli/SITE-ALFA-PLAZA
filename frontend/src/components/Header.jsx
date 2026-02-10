@@ -45,8 +45,8 @@ const Header = () => {
             <button onClick={() => scrollToSection('amenities')} className="text-gray-300 hover:text-alpha-gold transition-colors tracking-wide text-sm">
               COMODIDADES
             </button>
-            <button onClick={() => scrollToSection('location')} className="text-gray-300 hover:text-alpha-gold transition-colors tracking-wide text-sm">
-              LOCALIZAÇÃO
+            <button onClick={() => scrollToSection('protocol')} className="text-gray-300 hover:text-alpha-gold transition-colors tracking-wide text-sm">
+              PROTOCOLO DIGITAL
             </button>
             <button 
               onClick={() => scrollToSection('contact')}
@@ -74,8 +74,8 @@ const Header = () => {
             <button onClick={() => scrollToSection('amenities')} className="block w-full text-left text-gray-300 hover:text-alpha-gold transition-colors tracking-wide text-sm py-2">
               COMODIDADES
             </button>
-            <button onClick={() => scrollToSection('location')} className="block w-full text-left text-gray-300 hover:text-alpha-gold transition-colors tracking-wide text-sm py-2">
-              LOCALIZAÇÃO
+            <button onClick={() => scrollToSection('protocol')} className="block w-full text-left text-gray-300 hover:text-alpha-gold transition-colors tracking-wide text-sm py-2">
+              PROTOCOLO DIGITAL
             </button>
             <button 
               onClick={() => scrollToSection('contact')}

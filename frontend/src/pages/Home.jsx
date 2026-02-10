@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import Hero from '../components/Hero';
 import RoomsGallery from '../components/RoomsGallery';
 import Amenities from '../components/Amenities';
+import DigitalProtocol from '../components/DigitalProtocol';
 import Location from '../components/Location';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
@@ -34,6 +35,7 @@ const Home = () => {
       <Hero />
       <RoomsGallery />
       <Amenities />
+      <DigitalProtocol />
       <Location />
       <Footer />
     </div>
