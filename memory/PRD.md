@@ -38,10 +38,11 @@ Create a luxury landing page for "Alpha Plaza Hotel" with:
 
 ### Pages & Components
 - ✅ `/pages/Home.jsx` - Main landing page with scroll animations
-- ✅ `/components/Header.jsx` - Sticky header with navigation
+- ✅ `/components/Header.jsx` - Sticky header with navigation (updated with Protocol link)
 - ✅ `/components/Hero.jsx` - Full-screen hero with dual CTAs
 - ✅ `/components/RoomsGallery.jsx` - Three luxury suite showcases
 - ✅ `/components/Amenities.jsx` - Eight amenity cards with icons
+- ✅ `/components/DigitalProtocol.jsx` - **NEW** Corporate check-in form with high-level vocabulary
 - ✅ `/components/Location.jsx` - Contact info and location details
 - ✅ `/components/Footer.jsx` - Professional footer with Marketelli signature
 
@@ -62,6 +63,15 @@ Create a luxury landing page for "Alpha Plaza Hotel" with:
 - ✅ Professional copywriting in Portuguese
 - ✅ Strategic pricing display
 - ✅ Points of interest with distances
+- ✅ **Digital Protocol Interface** with corporate vocabulary:
+  - "Protocolo de Identificação Digital" (Digital Identification Protocol)
+  - "Nome Completo do Titular" (Full Name of Holder)
+  - "Localização de Residência / Origem" (Residence Location / Origin)
+  - "Logística de Estacionamento Privativo" (Private Parking Logistics)
+  - "Validar Protocolo de Acesso" (Validate Access Protocol)
+  - Conditional parking section with vehicle information
+  - Success validation message
+  - LGPD privacy compliance note
 
 ## Prioritized Backlog
 
