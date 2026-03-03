@@ -26,7 +26,7 @@ const Footer = () => {
               </div>
             </div>
             <p className="text-gray-400 text-sm tracking-wide leading-relaxed">
-              A nova era da hospitalidade estratégica em Brasília, onde o luxo encontra a excelência.
+              Referência em hospitalidade no Distrito Federal, oferecendo conforto, localização estratégica e padrão elevado de atendimento para quem busca a escolha certa em Brasília.
             </p>
           </div>
 
@@ -69,20 +69,19 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-alpha-gold/20">
           <div className="flex flex-col items-center justify-center space-y-4 text-center">
-            <div className="flex items-center space-x-6 mb-2">
-              <a href="#" className="text-gray-500 hover:text-alpha-gold text-xs tracking-wide transition-colors">
-                Termos de Uso
-              </a>
-              <a href="#" className="text-gray-500 hover:text-alpha-gold text-xs tracking-wide transition-colors">
-                Política de Privacidade
-              </a>
+            <div className="mb-2">
+              <span className="text-alpha-gold text-xs tracking-wide">
+                Termos de Uso | Política de Privacidade
+              </span>
             </div>
             <p className="text-gray-500 text-sm tracking-wide">
               © {currentYear} Alfa Plaza Hotel. Todos os direitos reservados.
             </p>
-            <div className="flex items-center space-x-2">
-              <span className="text-gray-500 text-sm tracking-wide">Powered by</span>
-              <span className="text-alpha-gold font-semibold text-sm tracking-wider">Marketelli Intelligence</span>
+            <div className="flex items-center space-x-1">
+              <span className="text-gray-500 text-sm tracking-wide">Desenvolvido por</span>
+              <a href="https://www.marketelli.com" target="_blank" rel="noopener noreferrer" className="text-alpha-gold font-semibold text-sm tracking-wider hover:text-white transition-colors">
+                www.marketelli.com
+              </a>
             </div>
           </div>
         </div>

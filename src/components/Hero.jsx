@@ -12,33 +12,37 @@ const Hero = () => {
 
   return (
     <section className="relative h-screen w-full overflow-hidden">
-      {/* Background Image with Overlay */}
+      {/* Background Video */}
       <div className="absolute inset-0 z-0">
-        <img 
-          src="https://images.unsplash.com/photo-1677129667171-92abd8740fa3?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMzl8MHwxfHNlYXJjaHw0fHxsdXh1cnklMjBob3RlbCUyMGxvYmJ5fGVufDB8fHx8MTc3MDY0Mjk3Mnww&ixlib=rb-4.1.0&q=85"
-          alt="Luxury Hotel Lobby"
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
           className="w-full h-full object-cover"
-        />
+        >
+          <source src="/background video.mp4" type="video/mp4" />
+          Seu navegador não suporta a tag de vídeo.
+        </video>
+        <div className="absolute inset-0 bg-obsidian/40 backdrop-blur-[10px]"></div>
       </div>
-
-      <div className="absolute inset-0 glass-overlay z-10"></div>
 
       {/* Content */}
       <div className="relative z-20 h-full flex items-center justify-center">
         <div className="max-w-6xl mx-auto px-6 text-center">
           {/* Main Headline */}
           <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-1000 p-12">
-            <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl tracking-widest leading-tight mb-6">
-              <span className="text-white">ALFA </span>
-              <span className="text-alpha-gold">PLAZA</span>
-              <span className="text-white"> HOTEL</span>
-            </h1>
-            
-            <div className="h-px w-32 bg-alpha-gold mx-auto mb-8"></div>
-            
-            <p className="text-xl md:text-2xl text-gray-300 font-light tracking-wide max-w-3xl mx-auto leading-relaxed">
-              Sofisticação e qualidade ao seu dispor.
-            </p>
+          <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl tracking-widest leading-tight mb-4">
+            <span className="text-white">ALFA </span>
+            <span className="text-alpha-gold">PLAZA</span>
+            <span className="text-white"> HOTEL</span>
+          </h1>
+          
+          <div className="h-px w-32 bg-alpha-gold mx-auto mb-4"></div>
+          
+          <p className="text-xl md:text-2xl text-gray-300 font-light tracking-wide max-w-3xl mx-auto leading-relaxed">
+            Sofisticação e qualidade ao seu dispor.
+          </p>
 
             {/* CTA Button */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8">

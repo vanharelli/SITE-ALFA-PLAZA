@@ -87,13 +87,13 @@ const Location = () => {
                 Acesso Privilegiado
               </h3>
               <p className="text-gray-400 text-lg leading-relaxed tracking-wide font-light mb-8 max-w-3xl mx-auto">
-                Estrategicamente localizado em Taguatinga, nosso hotel oferece fácil acesso aos principais pontos de Brasília, combinando conveniência urbana com tranquilidade.
+                Localizado no Núcleo Bandeirante, conhecido como a cidade pioneira de Brasília por ter sido palco das primeiras estruturas que deram origem à capital, nosso hotel combina acesso estratégico às principais regiões do Distrito Federal com a serenidade de um bairro tradicional e acolhedor.
               </p>
             </div>
 
             {/* Hotel Gallery Carousel (Moved here) */}
-            <div className="fade-in-section max-w-4xl mx-auto w-full">
-              <div className="relative h-[500px] border border-alpha-gold/30 overflow-hidden rounded-xl bg-obsidian-light group">
+            <div className="fade-in-section max-w-3xl mx-auto w-full">
+              <div className="relative h-[600px] border border-alpha-gold/30 overflow-hidden rounded-xl bg-obsidian-light group">
                 <Carousel
                   opts={{
                     align: "start",
@@ -127,7 +127,7 @@ const Location = () => {
                 </Carousel>
                 
                 {/* Testimonials Carousel Overlay */}
-                <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 w-full max-w-md bg-obsidian/90 backdrop-blur-xl border border-alpha-gold/30 p-3 z-30 rounded-xl overflow-hidden pointer-events-auto">
+                <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 w-full max-w-md bg-obsidian/70 backdrop-blur-md border border-alpha-gold/30 p-3 z-30 rounded-xl overflow-hidden pointer-events-auto">
                   <Carousel
                     opts={{
                       align: "end",
@@ -230,10 +230,10 @@ const Location = () => {
           </h3>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {[
-              { name: 'Aeroporto JK', distance: '15 km' },
-              { name: 'Esplanada', distance: '18 km' },
-              { name: 'Shopping Taguatinga', distance: '3 km' },
-              { name: 'Setor Hoteleiro', distance: '20 km' }
+              { name: 'Aeroporto JK', distance: '7 km' },
+              { name: 'Esplanada', distance: '14 km' },
+              { name: 'Park Shopping', distance: '6 km' },
+              { name: 'Rodoviária Interestadual', distance: '6 km' }
             ].map((point, index) => (
               <div 
                 key={index}

@@ -40,6 +40,24 @@ const Header = () => {
             </div>
           </div>
 
+          {/* Language Selector */}
+          <div className="hidden md:flex items-center space-x-4 bg-white/5 backdrop-blur-sm px-4 py-1.5 rounded-full border border-white/10">
+            <button className="flex items-center space-x-2 text-gray-300 hover:text-alpha-gold transition-colors text-xs tracking-wide group">
+              <img src="https://flagcdn.com/br.svg" alt="Português" className="w-4 h-3 object-cover rounded-[1px] opacity-80 group-hover:opacity-100 transition-opacity" />
+              <span>PT</span>
+            </button>
+            <div className="w-px h-3 bg-white/10"></div>
+            <button className="flex items-center space-x-2 text-gray-300 hover:text-alpha-gold transition-colors text-xs tracking-wide group">
+              <img src="https://flagcdn.com/us.svg" alt="English" className="w-4 h-3 object-cover rounded-[1px] opacity-80 group-hover:opacity-100 transition-opacity" />
+              <span>EN</span>
+            </button>
+            <div className="w-px h-3 bg-white/10"></div>
+            <button className="flex items-center space-x-2 text-gray-300 hover:text-alpha-gold transition-colors text-xs tracking-wide group">
+              <img src="https://flagcdn.com/es.svg" alt="Español" className="w-4 h-3 object-cover rounded-[1px] opacity-80 group-hover:opacity-100 transition-opacity" />
+              <span>ES</span>
+            </button>
+          </div>
+
           {/* Desktop & Mobile Navigation */}
           <nav className="flex items-center">
             <a 
