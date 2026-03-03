@@ -1,8 +1,11 @@
 import React from 'react';
 import { Button } from './ui/button';
 import { ChevronDown } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 const Hero = () => {
+  const { t } = useLanguage();
+
   const scrollToRooms = () => {
     const element = document.getElementById('rooms');
     if (element) {
@@ -28,7 +31,7 @@ const Hero = () => {
       </div>
 
       {/* Content */}
-      <div className="relative z-20 h-full flex items-center justify-center">
+      <div className="relative z-20 h-full flex items-center justify-center pt-24">
         <div className="max-w-6xl mx-auto px-6 text-center">
           {/* Main Headline */}
           <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-1000 p-12">
@@ -41,7 +44,7 @@ const Hero = () => {
           <div className="h-px w-32 bg-alpha-gold mx-auto mb-4"></div>
           
           <p className="text-xl md:text-2xl text-gray-300 font-light tracking-wide max-w-3xl mx-auto leading-relaxed">
-            Sofisticação e qualidade ao seu dispor.
+            {t.hero.subtitle}
           </p>
 
             {/* CTA Button */}
@@ -54,10 +57,14 @@ const Hero = () => {
                 <Button 
                   className="px-10 py-7 bg-alpha-gold text-obsidian font-semibold tracking-widest text-base hover:bg-alpha-gold/90 transition-all hover:scale-105 hover:shadow-2xl hover:shadow-alpha-gold/20"
                 >
-                  RESERVAR AGORA
+                  {t.hero.cta}
                 </Button>
               </a>
             </div>
+            
+            <p className="text-sm md:text-base text-gray-300 font-light italic tracking-wide mt-6 animate-pulse">
+              {t.hero.promo}
+            </p>
           </div>
         </div>
       </div>

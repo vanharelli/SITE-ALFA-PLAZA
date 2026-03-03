@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from './ui/button';
 import {
   Carousel,
@@ -7,81 +7,96 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "./ui/carousel";
+import { useLanguage } from '../context/LanguageContext';
 
-const rooms = [
-  {
-    id: 2,
-    title: 'Suíte Casal',
-    description: 'Conforto sofisticado com vista privilegiada',
-    image: 'https://images.unsplash.com/photo-1761039265583-9489b4246454?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NzR8MHwxfHNlYXJjaHwzfHxsdXh1cnklMjBob3RlbCUyMHN1aXRlfGVufDB8fHx8MTc3MDY0Mjk3N3ww&ixlib=rb-4.1.0&q=85',
-    features: ['King Size', 'Varanda', 'Banheira'],
-    price: 'A partir de R$ 380/noite',
-    badge: 'DISPONÍVEL'
-  },
-  {
-    id: 6,
-    title: 'Suíte Duplo Solteiro',
-    description: 'Perfeito para viagens a trabalho ou com amigos',
-    image: 'https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NzR8MHwxfHNlYXJjaHw1fHxiZWRyb29tfGVufDB8fHx8MTc3MDY0Mjk3N3ww&ixlib=rb-4.1.0&q=85',
-    features: ['2 Camas Solteiro', 'Wi-Fi Rápido', 'Mesa de Trabalho'],
-    price: 'A partir de R$ 300/noite',
-    badge: 'PRÁTICO'
-  },
-  {
-    id: 3,
-    title: 'Suíte Triplo Casal',
-    description: 'O ápice da exclusividade e requinte',
-    image: 'https://images.unsplash.com/photo-1758448755969-8791367cf5c5?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxODd8MHwxfHNlYXJjaHw0fHxsdXh1cnklMjBob3RlbCUyMGFtZW5pdGllc3xlbnwwfHx8fDE3NzA2NDI5ODJ8MA&ixlib=rb-4.1.0&q=85',
-    features: ['Suite Dupla', 'Vista Panorâmica', 'Jacuzzi Privativa'],
-    price: 'A partir de R$ 550/noite',
-    badge: 'PREMIUM'
-  },
-  {
-    id: 7,
-    title: 'Suíte Triplo Solteiro',
-    description: 'Espaço e conforto para grupos e colegas de trabalho',
-    image: 'https://images.unsplash.com/photo-1590490360182-c33d57733427?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NzR8MHwxfHNlYXJjaHw0fHxiZWRyb29tfGVufDB8fHx8MTc3MDY0Mjk3N3ww&ixlib=rb-4.1.0&q=85',
-    features: ['3 Camas Solteiro', 'Varanda', 'Frigobar'],
-    price: 'A partir de R$ 380/noite',
-    badge: 'ESPAÇOSO'
-  },
-  {
-    id: 4,
-    title: 'Suíte Quádruplo',
-    description: 'Espaço ideal para família ou pequenos grupos, com conforto completo',
-    image: 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=2070&q=80',
-    features: ['4 hóspedes', '2 Camas de Casal', 'Smart TV'],
-    price: 'A partir de R$ 420/noite',
-    badge: 'FAMÍLIA'
-  },
-  {
-    id: 5,
-    title: 'Suíte Adaptável',
-    description: 'Acessibilidade, praticidade e conforto, com estrutura pensada para PCD',
-    image: 'https://images.unsplash.com/photo-1616593969747-4797dc75033e?auto=format&fit=crop&w=2070&q=80',
-    features: ['Acessível (PCD)', 'Banheiro adaptado', 'Barras de apoio'],
-    price: 'A partir de R$ 320/noite',
-    badge: 'ACESSÍVEL'
+const roomImages = {
+  2: '/quartos/Suíte Casal.png',
+  6: '/quartos/Suíte Duplo Solteiro.png',
+  3: '/quartos/Suíte Triplo Casal.png',
+  7: '/quartos/Suíte Triplo Solteiro.png',
+  4: '/quartos/Suíte Quádruplo.png',
+  5: [
+    '/quartos/Suíte Adaptável.png',
+    '/quartos/Banheiro Adaptável.jpeg',
+    '/quartos/Banheiro Adaptável 1.jpeg'
+  ]
+};
+
+const RoomImageCarousel = ({ images, title }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    if (!Array.isArray(images)) return;
+    
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % images.length);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [images]);
+
+  if (!Array.isArray(images)) {
+    return (
+      <img 
+        src={images} 
+        alt={title}
+        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+        fetchPriority="high"
+      />
+    );
   }
-];
+
+  return (
+    <div className="w-full h-full relative group-hover:scale-110 transition-transform duration-700">
+      {images.map((img, idx) => (
+        <img
+          key={idx}
+          src={img}
+          alt={`${title} - Imagem ${idx + 1}`}
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+            idx === currentIndex ? 'opacity-100' : 'opacity-0'
+          }`}
+        />
+      ))}
+      {/* Indicators */}
+      <div className="absolute bottom-4 left-0 right-0 flex justify-center space-x-1.5 z-20">
+        {images.map((_, idx) => (
+          <div 
+            key={idx}
+            className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
+              idx === currentIndex ? 'bg-alpha-gold w-3' : 'bg-white/50'
+            }`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
 
 const RoomsGallery = () => {
+  const { t } = useLanguage();
+  const rooms = [2, 6, 3, 7, 4, 5].map(id => ({
+    id,
+    ...t.rooms.items[id],
+    image: roomImages[id]
+  }));
+
   return (
-    <section id="rooms" className="py-24 relative overflow-hidden">
+    <section id="rooms" className="py-24 relative overflow-hidden border-t border-alpha-gold/30">
       <div className="absolute inset-0 bg-obsidian/70 backdrop-blur-sm z-0"></div>
 
       <div className="max-w-7xl mx-auto px-12 relative z-10">
         {/* Section Header */}
         <div className="text-center mb-16 fade-in-section">
           <div className="inline-block px-6 py-2 border border-alpha-gold/30 bg-white/5 backdrop-blur-sm mb-6 rounded-full">
-            <span className="text-alpha-gold text-sm tracking-widest font-light">ACOMODAÇÕES</span>
+            <span className="text-alpha-gold text-sm tracking-widest font-light">{t.rooms.sectionTitle}</span>
           </div>
           <h2 className="font-serif text-4xl md:text-6xl text-white tracking-widest mb-6">
-            NOSSAS <span className="text-alpha-gold">SUÍTES</span>
+            {t.rooms.mainTitle.split(' ')[0]} <span className="text-alpha-gold">{t.rooms.mainTitle.split(' ').slice(1).join(' ')}</span>
           </h2>
           <div className="h-px w-24 bg-alpha-gold mx-auto mb-6"></div>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto tracking-wide font-light">
-            Seis categorias de hospedagem, cuidadosamente estruturadas para atender diferentes perfis com o mesmo padrão de excelência.
+            {t.rooms.description}
           </p>
         </div>
 
@@ -102,13 +117,8 @@ const RoomsGallery = () => {
                   <div className="p-0 flex flex-col h-full">
                     {/* Room Image */}
                     <div className="relative h-64 overflow-hidden shrink-0">
-                      <img 
-                        src={room.image} 
-                        alt={room.title}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                        fetchPriority="high"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-transparent opacity-60"></div>
+                      <RoomImageCarousel images={room.image} title={room.title} />
+                      <div className="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-transparent opacity-60 pointer-events-none z-10"></div>
                     </div>
 
                     {/* Content */}
@@ -119,7 +129,6 @@ const RoomsGallery = () => {
                       <div className="grid grid-cols-2 gap-y-3 gap-x-4 mb-6">
                         {room.features.map((feature, idx) => (
                           <div key={idx} className="flex items-center space-x-2">
-                            <div className="w-1 h-1 bg-alpha-gold rounded-full"></div>
                             <span className="text-gray-300 text-xs tracking-wide">{feature}</span>
                           </div>
                         ))}
@@ -133,7 +142,7 @@ const RoomsGallery = () => {
                           className="block w-full"
                         >
                           <Button className="w-full bg-alpha-gold text-obsidian font-semibold tracking-wider hover:bg-alpha-gold/90 transition-all text-xs">
-                            VERIFICAR DISPONIBILIDADE
+                            {t.rooms.checkAvailability}
                           </Button>
                         </a>
                       </div>

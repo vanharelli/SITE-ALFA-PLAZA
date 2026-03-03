@@ -1,8 +1,10 @@
 import React from 'react';
 import { Instagram, Facebook, Mail, Phone } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const { t } = useLanguage();
 
   return (
     <footer className="glass-dark border-t border-white/10 py-12 relative overflow-hidden">
@@ -26,13 +28,13 @@ const Footer = () => {
               </div>
             </div>
             <p className="text-gray-400 text-sm tracking-wide leading-relaxed">
-              Referência em hospitalidade no Distrito Federal, oferecendo conforto, localização estratégica e padrão elevado de atendimento para quem busca a escolha certa em Brasília.
+              {t.footer.description}
             </p>
           </div>
 
           {/* Contact & Social */}
           <div className="flex flex-col items-start md:items-end">
-            <h4 className="text-alpha-gold font-semibold tracking-widest text-sm mb-6">CONTATO</h4>
+            <h4 className="text-alpha-gold font-semibold tracking-widest text-sm mb-6">{t.footer.contactTitle}</h4>
             <div className="space-y-4 mb-6 text-left md:text-right">
               <div className="flex items-center space-x-3 md:flex-row-reverse md:space-x-reverse">
                 <Phone size={16} className="text-alpha-gold" />
@@ -71,14 +73,14 @@ const Footer = () => {
           <div className="flex flex-col items-center justify-center space-y-4 text-center">
             <div className="mb-2">
               <span className="text-alpha-gold text-xs tracking-wide">
-                Termos de Uso | Política de Privacidade
+                {t.footer.termsPrivacy}
               </span>
             </div>
-            <p className="text-gray-500 text-sm tracking-wide">
-              © {currentYear} Alfa Plaza Hotel. Todos os direitos reservados.
+            <p className="text-gray-400 text-sm tracking-wide">
+              © {currentYear} {t.footer.rightsReserved}
             </p>
             <div className="flex items-center space-x-1">
-              <span className="text-gray-500 text-sm tracking-wide">Desenvolvido por</span>
+              <span className="text-gray-500 text-sm tracking-wide">{t.footer.developedBy}</span>
               <a href="https://www.marketelli.com" target="_blank" rel="noopener noreferrer" className="text-alpha-gold font-semibold text-sm tracking-wider hover:text-white transition-colors">
                 www.marketelli.com
               </a>

@@ -9,6 +9,7 @@ import {
   CarouselPrevious,
 } from "./ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
+import { useLanguage } from '../context/LanguageContext';
 
 const hotelImages = [
   '/hotel/1.jpeg',
@@ -60,6 +61,8 @@ const testimonials = [
 ];
 
 const Location = () => {
+  const { t } = useLanguage();
+
   return (
     <section id="location" className="py-24 relative overflow-hidden">
       <div className="absolute inset-0 bg-obsidian/80 backdrop-blur-sm z-0"></div>
@@ -71,10 +74,10 @@ const Location = () => {
         {/* Section Header */}
         <div className="text-center mb-16 fade-in-section">
           <div className="inline-block px-6 py-2 border border-alpha-gold/30 bg-white/5 backdrop-blur-sm mb-6 rounded-full">
-            <span className="text-alpha-gold text-sm tracking-widest font-light">LOCALIZAÇÃO ESTRATÉGICA</span>
+            <span className="text-alpha-gold text-sm tracking-widest font-light">{t.location.sectionTitle}</span>
           </div>
           <h2 className="font-serif text-4xl md:text-6xl text-white tracking-widest mb-6">
-            NO CORAÇÃO DE <span className="text-alpha-gold">BRASÍLIA</span>
+            {t.location.mainTitle.split(' ').slice(0, -1).join(' ')} <span className="text-alpha-gold">{t.location.mainTitle.split(' ').slice(-1)}</span>
           </h2>
           <div className="h-px w-24 bg-alpha-gold mx-auto mb-6"></div>
         </div>
@@ -84,50 +87,52 @@ const Location = () => {
           <div className="space-y-8 fade-in-section w-full text-center">
             <div>
               <h3 className="font-serif text-3xl text-alpha-gold mb-6 tracking-wide">
-                Acesso Privilegiado
+                {t.location.accessTitle}
               </h3>
               <p className="text-gray-400 text-lg leading-relaxed tracking-wide font-light mb-8 max-w-3xl mx-auto">
-                Localizado no Núcleo Bandeirante, conhecido como a cidade pioneira de Brasília por ter sido palco das primeiras estruturas que deram origem à capital, nosso hotel combina acesso estratégico às principais regiões do Distrito Federal com a serenidade de um bairro tradicional e acolhedor.
+                {t.location.accessDescription}
               </p>
             </div>
 
             {/* Hotel Gallery Carousel (Moved here) */}
             <div className="fade-in-section max-w-3xl mx-auto w-full">
-              <div className="relative h-[600px] border border-alpha-gold/30 overflow-hidden rounded-xl bg-obsidian-light group">
+              <div className="relative aspect-[4/3] md:aspect-video w-full border border-alpha-gold/30 overflow-hidden rounded-xl bg-obsidian-light group shadow-2xl">
                 <Carousel
                   opts={{
-                    align: "start",
+                    align: "center",
                     loop: true,
+                    containScroll: false
                   }}
                   plugins={[
                     Autoplay({
                       delay: 4000,
+                      stopOnInteraction: false
                     }),
                   ]}
                   className="w-full h-full"
                 >
-                  <CarouselContent className="h-full ml-0">
+                  <CarouselContent className="-ml-0 h-full">
                     {hotelImages.map((image, index) => (
-                      <CarouselItem key={index} className="pl-0 h-full w-full">
-                        <div className="relative w-full h-full">
+                      <CarouselItem key={index} className="pl-0 h-full w-full flex items-center justify-center bg-black">
+                        <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
                           <img 
                             src={image}
                             alt={`Alfa Plaza Hotel - Imagem ${index + 1}`}
-                            className="w-full h-full object-cover object-bottom transition-transform duration-700 hover:scale-105"
+                            className="w-full h-full object-contain md:object-cover object-center transition-transform duration-700 hover:scale-105"
                           />
-                          <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-obsidian/90 via-obsidian/50 to-transparent pointer-events-none z-10"></div>
+                          <div className="absolute inset-x-0 bottom-0 h-24 md:h-32 bg-gradient-to-t from-obsidian/90 via-obsidian/50 to-transparent pointer-events-none z-10"></div>
                         </div>
                       </CarouselItem>
                     ))}
                   </CarouselContent>
                   <div className="hidden md:block z-20 relative">
-                    <CarouselPrevious className="carousel-btn-glass left-4 border-none bg-transparent hover:bg-transparent shadow-none" />
-                    <CarouselNext className="carousel-btn-glass right-4 border-none bg-transparent hover:bg-transparent shadow-none" />
+                    <CarouselPrevious className="carousel-btn-glass left-4 border-none bg-black/30 hover:bg-black/50 text-white shadow-none" />
+                    <CarouselNext className="carousel-btn-glass right-4 border-none bg-black/30 hover:bg-black/50 text-white shadow-none" />
                   </div>
                 </Carousel>
                 
                 {/* Testimonials Carousel Overlay */}
-                <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 w-full max-w-md bg-obsidian/70 backdrop-blur-md border border-alpha-gold/30 p-3 z-30 rounded-xl overflow-hidden pointer-events-auto">
+                <div className="absolute bottom-4 left-4 right-4 md:bottom-8 md:left-1/2 md:right-auto md:transform md:-translate-x-1/2 md:w-full md:max-w-md bg-obsidian/80 backdrop-blur-md border border-alpha-gold/30 p-3 z-30 rounded-xl overflow-hidden pointer-events-auto shadow-lg">
                   <Carousel
                     opts={{
                       align: "end",
@@ -175,7 +180,7 @@ const Location = () => {
                   <MapPin className="text-alpha-gold" size={24} />
                 </div>
                 <div>
-                  <h4 className="text-white font-semibold tracking-wide mb-2">Endereço</h4>
+                  <h4 className="text-white font-semibold tracking-wide mb-2">{t.location.contactLabels.address}</h4>
                   <p className="text-gray-400 text-sm tracking-wide">
                     Avenida Central, Lote 1040<br />
                     Núcleo Bandeirante - Brasília/DF
@@ -188,7 +193,7 @@ const Location = () => {
                   <Phone className="text-alpha-gold" size={24} />
                 </div>
                 <div>
-                  <h4 className="text-white font-semibold tracking-wide mb-2">Telefone</h4>
+                  <h4 className="text-white font-semibold tracking-wide mb-2">{t.location.contactLabels.phone}</h4>
                   <a href="tel:+5561982062229" className="text-gray-400 hover:text-alpha-gold transition-colors text-sm tracking-wide">
                     +55 (61) 98206-2229
                   </a>
@@ -200,9 +205,9 @@ const Location = () => {
                   <Clock className="text-alpha-gold" size={24} />
                 </div>
                 <div>
-                  <h4 className="text-white font-semibold tracking-wide mb-2">Atendimento</h4>
+                  <h4 className="text-white font-semibold tracking-wide mb-2">{t.location.contactLabels.service}</h4>
                   <p className="text-gray-400 text-sm tracking-wide">
-                    24 horas por dia, 7 dias por semana
+                    {t.location.contactLabels.serviceHours}
                   </p>
                 </div>
               </div>
@@ -216,7 +221,7 @@ const Location = () => {
                 rel="noopener noreferrer"
               >
                 <Button className="w-full bg-alpha-gold text-obsidian font-semibold tracking-widest hover:bg-alpha-gold/90 transition-all hover:scale-105 py-6">
-                  RESERVAR AGORA
+                  {t.header.bookButton}
                 </Button>
               </a>
             </div>
@@ -226,15 +231,10 @@ const Location = () => {
         {/* Nearby Points of Interest */}
         <div className="mt-20 fade-in-section">
           <h3 className="font-serif text-3xl text-white text-center mb-12 tracking-widest">
-            PONTOS DE <span className="text-alpha-gold">INTERESSE</span>
+            {t.location.pointsOfInterestTitle.split(' ').slice(0, 2).join(' ')} <span className="text-alpha-gold">{t.location.pointsOfInterestTitle.split(' ').slice(2).join(' ')}</span>
           </h3>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {[
-              { name: 'Aeroporto JK', distance: '7 km' },
-              { name: 'Esplanada', distance: '14 km' },
-              { name: 'Park Shopping', distance: '6 km' },
-              { name: 'Rodoviária Interestadual', distance: '6 km' }
-            ].map((point, index) => (
+            {t.location.pointsOfInterest.map((point, index) => (
               <div 
                 key={index}
                 className="text-center p-6 bg-obsidian-light/40 backdrop-blur-xl border border-alpha-gold/20 hover:border-alpha-gold/60 transition-all duration-300"
