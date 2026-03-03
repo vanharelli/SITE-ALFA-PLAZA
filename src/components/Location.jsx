@@ -4,14 +4,16 @@ import { Button } from './ui/button';
 
 const Location = () => {
   return (
-    <section id="location" className="py-24 bg-obsidian relative overflow-hidden">
+    <section id="location" className="py-24 relative overflow-hidden">
+      <div className="absolute inset-0 bg-obsidian/80 backdrop-blur-sm z-0"></div>
+
       {/* Background Elements */}
-      <div className="absolute top-1/2 left-0 w-96 h-96 bg-alpha-gold/5 rounded-full blur-3xl"></div>
+      <div className="absolute top-1/2 left-0 w-96 h-96 bg-alpha-gold/5 rounded-full blur-3xl z-0"></div>
       
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         {/* Section Header */}
         <div className="text-center mb-16 fade-in-section">
-          <div className="inline-block px-6 py-2 border border-alpha-gold/30 bg-alpha-gold/5 backdrop-blur-sm mb-6">
+          <div className="inline-block px-6 py-2 border border-alpha-gold/30 bg-white/5 backdrop-blur-sm mb-6 rounded-full">
             <span className="text-alpha-gold text-sm tracking-widest font-light">LOCALIZAÇÃO ESTRATÉGICA</span>
           </div>
           <h2 className="font-serif text-4xl md:text-6xl text-white tracking-widest mb-6">
@@ -34,8 +36,8 @@ const Location = () => {
 
             {/* Contact Cards */}
             <div className="space-y-6">
-              <div className="flex items-start space-x-4 p-6 bg-obsidian-light/40 backdrop-blur-xl border border-alpha-gold/20 hover:border-alpha-gold/60 transition-all duration-300">
-                <div className="w-12 h-12 bg-alpha-gold/10 border border-alpha-gold/30 flex items-center justify-center flex-shrink-0">
+              <div className="flex items-start space-x-4 p-6 glass-dark rounded-xl border border-white/5 hover:border-alpha-gold/60 transition-all duration-300">
+                <div className="w-12 h-12 bg-white/5 border border-alpha-gold/30 rounded-full flex items-center justify-center flex-shrink-0 backdrop-blur-md">
                   <MapPin className="text-alpha-gold" size={24} />
                 </div>
                 <div>
@@ -47,8 +49,8 @@ const Location = () => {
                 </div>
               </div>
 
-              <div className="flex items-start space-x-4 p-6 bg-obsidian-light/40 backdrop-blur-xl border border-alpha-gold/20 hover:border-alpha-gold/60 transition-all duration-300">
-                <div className="w-12 h-12 bg-alpha-gold/10 border border-alpha-gold/30 flex items-center justify-center flex-shrink-0">
+              <div className="flex items-start space-x-4 p-6 glass-dark rounded-xl border border-white/5 hover:border-alpha-gold/60 transition-all duration-300">
+                <div className="w-12 h-12 bg-white/5 border border-alpha-gold/30 rounded-full flex items-center justify-center flex-shrink-0 backdrop-blur-md">
                   <Phone className="text-alpha-gold" size={24} />
                 </div>
                 <div>
@@ -59,8 +61,8 @@ const Location = () => {
                 </div>
               </div>
 
-              <div className="flex items-start space-x-4 p-6 bg-obsidian-light/40 backdrop-blur-xl border border-alpha-gold/20 hover:border-alpha-gold/60 transition-all duration-300">
-                <div className="w-12 h-12 bg-alpha-gold/10 border border-alpha-gold/30 flex items-center justify-center flex-shrink-0">
+              <div className="flex items-start space-x-4 p-6 glass-dark rounded-xl border border-white/5 hover:border-alpha-gold/60 transition-all duration-300">
+                <div className="w-12 h-12 bg-white/5 border border-alpha-gold/30 rounded-full flex items-center justify-center flex-shrink-0 backdrop-blur-md">
                   <Clock className="text-alpha-gold" size={24} />
                 </div>
                 <div>
@@ -74,7 +76,7 @@ const Location = () => {
 
             {/* CTA Section */}
             <div id="contact" className="pt-8">
-              <div className="bg-alpha-gold/5 backdrop-blur-xl border border-alpha-gold/30 p-8">
+              <div className="glass-dark rounded-xl border border-white/5 p-8">
                 <h4 className="font-serif text-2xl text-alpha-gold mb-4 tracking-wide">
                   Fale com Nosso Consultor
                 </h4>

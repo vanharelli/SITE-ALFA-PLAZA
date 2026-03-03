@@ -5,13 +5,15 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-obsidian-dark border-t border-alpha-gold/20 py-12">
-      <div className="max-w-7xl mx-auto px-6">
+    <footer className="glass-dark border-t border-white/10 py-12 relative overflow-hidden">
+      <div className="absolute inset-0 bg-obsidian/90 backdrop-blur-sm z-0"></div>
+
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="grid md:grid-cols-3 gap-12 mb-12">
           {/* Brand */}
           <div>
             <div className="flex items-center space-x-3 mb-6">
-              <div className="w-12 h-12 bg-alpha-gold/10 border border-alpha-gold flex items-center justify-center">
+              <div className="w-12 h-12 glass border border-alpha-gold/30 rounded-lg flex items-center justify-center backdrop-blur-md">
                 <span className="text-alpha-gold font-serif text-2xl font-bold">Α</span>
               </div>
               <div>
