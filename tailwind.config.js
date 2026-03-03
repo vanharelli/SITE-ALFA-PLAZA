@@ -46,6 +46,14 @@ module.exports = {
   			border: 'hsl(var(--border))',
   			input: 'hsl(var(--input))',
   			ring: 'hsl(var(--ring))',
+  			obsidian: {
+  				DEFAULT: '#0a0a0b',
+  				light: '#1a1a1c',
+  				dark: '#050506'
+  			},
+  			'alpha-gold': {
+  				DEFAULT: '#D4AF37'
+  			},
   			chart: {
   				'1': 'hsl(var(--chart-1))',
   				'2': 'hsl(var(--chart-2))',

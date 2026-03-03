@@ -23,16 +23,18 @@ const Header = () => {
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-3">
             {!logoError ? (
-              <img
-                src="/logo.webp"
-                alt="Alpha Plaza Hotel"
-                className="h-12 w-auto"
-                onError={() => setLogoError(true)}
-              />
+              <div className="logo-module">
+                <img
+                  src="/logo.webp"
+                  alt="Alpha Plaza Hotel"
+                  className="h-8 w-auto z-10"
+                  onError={() => setLogoError(true)}
+                />
+              </div>
             ) : null}
             <div>
               <h1 className="font-serif text-xl tracking-widest text-white">
-                ALPHA <span className="text-alpha-gold">PLAZA</span>
+                ALFA <span className="text-alpha-gold">PLAZA</span>
               </h1>
               <p className="text-white text-xs tracking-wider">HOTEL</p>
             </div>

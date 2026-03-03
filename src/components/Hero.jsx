@@ -62,10 +62,6 @@ const Hero = () => {
       <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20 animate-bounce">
         <ChevronDown className="text-alpha-gold" size={32} />
       </div>
-
-      {/* Decorative Elements */}
-      <div className="absolute top-20 left-10 w-20 h-20 border border-alpha-gold/20 rotate-45 hidden lg:block z-20"></div>
-      <div className="absolute bottom-20 right-10 w-32 h-32 border border-alpha-gold/20 rotate-12 hidden lg:block z-20"></div>
     </section>
   );
 };

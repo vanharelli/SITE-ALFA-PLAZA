@@ -1,12 +1,47 @@
 import React from 'react';
-import { Wifi, Dumbbell, UtensilsCrossed, ParkingSquare, Wind } from 'lucide-react';
+import { Wifi, Coffee, Bell, Car, UserCheck, ArrowUpFromDot, ShieldCheck, Smartphone } from 'lucide-react';
 
 const amenities = [
-  { icon: Wifi, name: 'Wi-Fi de Alta Velocidade' },
-  { icon: Dumbbell, name: 'Academia Completa' },
-  { icon: UtensilsCrossed, name: 'Restaurante Premium' },
-  { icon: ParkingSquare, name: 'Estacionamento Privativo' },
-  { icon: Wind, name: 'Ambientes Climatizados' },
+  { 
+    icon: Wifi, 
+    name: 'Wi-Fi Ultra-Rápido', 
+    description: 'Conexão de alta velocidade em todos os ambientes' 
+  },
+  { 
+    icon: Coffee, 
+    name: 'Café da Manhã', 
+    description: 'Segunda a Sexta-feira: das 6h às 10h | Domingos e Feriados: das 7h às 10h30' 
+  },
+  { 
+    icon: Bell, 
+    name: 'Room Service 24h', 
+    description: 'Atendimento exclusivo a qualquer momento' 
+  },
+  { 
+    icon: Car, 
+    name: 'Estacionamento Privativo', 
+    description: 'Vagas cobertas com segurança 24 horas' 
+  },
+  { 
+    icon: UserCheck, 
+    name: 'Mordomo Digital', 
+    description: 'Nosso mordomo prestará atendimento dedicado, auxiliando em todas as solicitações e indicando experiências gastronômicas e passeios selecionados, com serviço impecável.' 
+  },
+  { 
+    icon: ArrowUpFromDot, 
+    name: 'Elevador', 
+    description: 'Acesso moderno e confortável a todos os andares' 
+  },
+  { 
+    icon: ShieldCheck, 
+    name: 'Segurança', 
+    description: 'Monitoramento 24h e acesso controlado' 
+  },
+  { 
+    icon: Smartphone, 
+    name: 'Check-in Digital', 
+    description: 'Processo ágil e sem burocracia' 
+  }
 ];
 
 const Amenities = () => {
@@ -26,32 +61,20 @@ const Amenities = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-16 max-w-5xl mx-auto">
           {amenities.map((item, index) => (
-            <div key={index} className="text-center fade-in-section" style={{ animationDelay: `${index * 100}ms` }}>
-              <div className="w-20 h-20 mx-auto mb-4 flex items-center justify-center bg-obsidian-light border border-alpha-gold/20 rounded-full">
-                <item.icon className="text-alpha-gold" size={32} />
+            <div 
+              key={index} 
+              className="group p-6 glass-dark rounded-xl border border-alpha-gold/30 hover:border-alpha-gold/60 transition-all duration-500 hover:-translate-y-1 fade-in-section flex flex-col items-center text-center" 
+              style={{ animationDelay: `${index * 100}ms` }}
+            >
+              <div className="w-14 h-14 mb-4 flex items-center justify-center bg-obsidian-light border border-alpha-gold/20 rounded-full group-hover:bg-alpha-gold/10 group-hover:border-alpha-gold/40 transition-colors">
+                <item.icon className="text-alpha-gold" size={24} />
               </div>
-              <p className="text-gray-300 tracking-wide">{item.name}</p>
+              <h3 className="text-white font-serif text-lg mb-2 tracking-wide">{item.name}</h3>
+              <p className="text-gray-400 text-xs leading-relaxed font-light">{item.description}</p>
             </div>
           ))}
-        </div>
-        
-        <div className="bg-alpha-gold/5 backdrop-blur-xl border border-alpha-gold/30 p-8 md:p-12 fade-in-section">
-          <div className="grid md:grid-cols-3 gap-8 text-center">
-            <div>
-              <h4 className="font-serif text-4xl text-alpha-gold mb-2">100%</h4>
-              <p className="text-gray-400 text-sm tracking-widest">CLIMATIZADO</p>
-            </div>
-            <div>
-              <h4 className="font-serif text-4xl text-alpha-gold mb-2">24/7</h4>
-              <p className="text-gray-400 text-sm tracking-widest">ATENDIMENTO</p>
-            </div>
-            <div>
-              <h4 className="font-serif text-4xl text-alpha-gold mb-2">5★</h4>
-              <p className="text-gray-400 text-sm tracking-widest">AVALIAÇÃO</p>
-            </div>
-          </div>
         </div>
       </div>
     </section>

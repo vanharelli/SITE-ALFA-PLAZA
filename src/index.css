@@ -52,16 +52,19 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
 
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Hide scrollbar for IE, Edge and Firefox */
+  html {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+
   body {
-    @apply bg-background text-foreground;
-    background-image: url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
-    background-size: cover;
-    background-attachment: fixed;
-    background-position: center;
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    @apply bg-obsidian text-white overflow-x-hidden;
   }
 }
 
@@ -71,30 +74,6 @@
   --obsidian-light: #1a1a1c;
   --obsidian-dark: #050506;
   --alpha-gold: #D4AF37;
-}
-
-.bg-obsidian {
-  background-color: var(--obsidian);
-}
-
-.bg-obsidian-light {
-  background-color: var(--obsidian-light);
-}
-
-.bg-obsidian-dark {
-  background-color: var(--obsidian-dark);
-}
-
-.text-alpha-gold {
-  color: var(--alpha-gold);
-}
-
-.bg-alpha-gold {
-  background-color: var(--alpha-gold);
-}
-
-.border-alpha-gold {
-  border-color: var(--alpha-gold);
 }
 
 /* Smooth Scrolling */
@@ -125,11 +104,54 @@ html {
   transform: translateY(0);
 }
 
-/* Glassmorphism Effect */
-.glass {
-  background: rgba(26, 26, 28, 0.4);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+/* Professional Carousel Animations */
+@keyframes slideLeft {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(-5px); }
+}
+
+@keyframes slideRight {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(5px); }
+}
+
+@layer components {
+  .animate-slide-left:hover svg {
+    animation: slideLeft 1s ease-in-out infinite;
+  }
+
+  .animate-slide-right:hover svg {
+    animation: slideRight 1s ease-in-out infinite;
+  }
+
+  .carousel-btn-glass {
+    @apply bg-transparent border-none text-alpha-gold/60 transition-all duration-300;
+  }
+
+  .carousel-btn-glass:hover {
+    @apply text-alpha-gold scale-125 opacity-100;
+  }
+
+  .carousel-btn-glass svg {
+    @apply w-12 h-12;
+  }
+
+  /* Logo Shimmer Module */
+  .logo-module {
+    @apply w-14 h-14 rounded-full flex items-center justify-center bg-white/5 border border-alpha-gold/30 backdrop-blur-md relative overflow-hidden;
+  }
+
+  .logo-module::after {
+    content: '';
+    @apply absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-alpha-gold/20 to-transparent;
+    animation: shimmer 3s infinite;
+  }
+
+  @keyframes shimmer {
+    100% {
+      transform: translateX(100%);
+    }
+  }
 }
 
 /* Selection Styling */

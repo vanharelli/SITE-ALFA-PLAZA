@@ -1,6 +1,63 @@
 import React from 'react';
-import { MapPin, Phone, Mail, Clock } from 'lucide-react';
+import { MapPin, Phone, Clock, Star, Quote } from 'lucide-react';
 import { Button } from './ui/button';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "./ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
+
+const hotelImages = [
+  '/hotel/1.jpeg',
+  '/hotel/2.jpeg',
+  '/hotel/3.jpeg',
+  '/hotel/4.jpg',
+  '/hotel/5.webp',
+  '/hotel/6.webp',
+  '/hotel/7.webp',
+  '/hotel/8.webp',
+  '/hotel/9.jpeg',
+  '/hotel/10.jpeg',
+  '/hotel/11.jpeg',
+  '/hotel/12.jpeg',
+  '/hotel/13.jpeg'
+];
+
+const testimonials = [
+  { name: "Dr. Marcos Andrade", role: "Google", text: "Excelente custo-benefício! Quarto confortável, limpo e com ótima localização para viagens a negócios ou lazer." },
+  { name: "Dra. Ana Paula Silva", role: "Booking.com", text: "Atendimento da equipe impecável — sempre educados e solícitos com qualquer solicitação." },
+  { name: "Roberto Souza", role: "Trivago", text: "Café da manhã saboroso e bem servido, superando expectativas pelo preço da diária." },
+  { name: "Juliana Ferreira", role: "Expedia", text: "Wi-Fi de alta velocidade e quartos equipados com tudo que é necessário para uma estadia tranquila." },
+  { name: "Dr. Ricardo Mendes", role: "Google", text: "A localização é ótima, próxima ao aeroporto e a opções de restaurantes e serviços." },
+  { name: "Carla Teixeira", role: "Booking.com", text: "Quarto limpo e arrumado, com ar-condicionado eficiente e ambiente agradável." },
+  { name: "Dr. Fábio Lemos", role: "Trivago", text: "Ideal para quem precisa descansar entre viagens — silêncio e conforto garantidos." },
+  { name: "Patrícia Rocha", role: "Expedia", text: "Equipe de recepção sempre atenciosa e pronta para ajudar com orientações locais." },
+  { name: "Gustavo Nunes", role: "Google", text: "Hotel muito organizado e com manutenção evidente — tudo parecia novo e bem cuidado." },
+  { name: "Dra. Beatriz Wagner", role: "Booking.com", text: "Estacionamento privativo disponível facilita a estadia para quem viaja de carro." },
+  { name: "Henrique Costa", role: "Trivago", text: "O quarto é aconchegante, e a cama confortável garante uma boa noite de sono." },
+  { name: "Mariana Duarte", role: "Expedia", text: "Excelente opção para hospedagem profissional e prática em Brasília." },
+  { name: "Dr. Sérgio Valente", role: "Google", text: "Fiquei impressionado com a limpeza e o cuidado nos detalhes da acomodação." },
+  { name: "Cláudia Borges", role: "Booking.com", text: "Bom conforto e atendimento constante, especialmente para estadias curtas." },
+  { name: "Tiago Holanda", role: "Trivago", text: "Ótimo para quem busca qualidade e preço justo sem abrir mão do conforto." },
+  { name: "Dra. Larissa Krause", role: "Expedia", text: "Hotel extremamente bem localizado, facilitando deslocamentos pela região e acesso rápido aos principais pontos da cidade." },
+  { name: "André Jardim", role: "Google", text: "Estrutura confortável e ambiente acolhedor, ideal tanto para viagens corporativas quanto para momentos de descanso." },
+  { name: "Dra. Camila Guimarães", role: "Booking.com", text: "Atendimento diferenciado desde o check-in até o check-out, com equipe sempre disponível e cordial." },
+  { name: "Rodrigo Paiva", role: "Trivago", text: "A organização e o padrão de limpeza dos quartos são notáveis, transmitindo segurança e cuidado com o hóspede." },
+  { name: "Fernanda Martins", role: "Expedia", text: "Café da manhã variado e bem apresentado, com opções que agradam diferentes perfis de hóspedes." },
+  { name: "Dr. Paulo Esteves", role: "Google", text: "Excelente opção para quem busca praticidade, conforto e atendimento eficiente em uma única hospedagem." },
+  { name: "Renata Queiroz", role: "Booking.com", text: "Ambiente tranquilo, perfeito para descansar após um dia intenso de compromissos." },
+  { name: "Marcelo Farias", role: "Trivago", text: "Quarto funcional, bem iluminado e equipado com tudo o que é necessário para uma estadia confortável." },
+  { name: "Simone Ribeiro", role: "Expedia", text: "Ótima relação entre qualidade e investimento, superando as expectativas." },
+  { name: "Dr. Eduardo Bittencourt", role: "Google", text: "Profissionais capacitados e atenciosos, sempre prontos para auxiliar com orientações e suporte." },
+  { name: "Vanessa Santos", role: "Booking.com", text: "Estrutura bem conservada, demonstrando cuidado contínuo com a experiência do hóspede." },
+  { name: "Dr. Leandro Machado", role: "Trivago", text: "Hospedagem segura e organizada, transmitindo confiança desde a chegada." },
+  { name: "Aline Oliveira", role: "Expedia", text: "Experiência muito positiva, com padrão de atendimento consistente e eficiente." },
+  { name: "Vitor Xavier", role: "Google", text: "Ideal para quem procura comodidade, bom atendimento e localização estratégica." },
+  { name: "Dra. Mônica Zanchetta", role: "Booking.com", text: "Recomendo pela combinação de conforto, profissionalismo e ambiente agradável durante toda a estadia." }
+];
 
 const Location = () => {
   return (
@@ -22,22 +79,99 @@ const Location = () => {
           <div className="h-px w-24 bg-alpha-gold mx-auto mb-6"></div>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="flex flex-col gap-12 items-center">
           {/* Left: Contact Information */}
-          <div className="space-y-8 fade-in-section">
+          <div className="space-y-8 fade-in-section w-full text-center">
             <div>
               <h3 className="font-serif text-3xl text-alpha-gold mb-6 tracking-wide">
                 Acesso Privilegiado
               </h3>
-              <p className="text-gray-400 text-lg leading-relaxed tracking-wide font-light mb-8">
+              <p className="text-gray-400 text-lg leading-relaxed tracking-wide font-light mb-8 max-w-3xl mx-auto">
                 Estrategicamente localizado em Taguatinga, nosso hotel oferece fácil acesso aos principais pontos de Brasília, combinando conveniência urbana com tranquilidade.
               </p>
             </div>
 
+            {/* Hotel Gallery Carousel (Moved here) */}
+            <div className="fade-in-section max-w-4xl mx-auto w-full">
+              <div className="relative h-[500px] border border-alpha-gold/30 overflow-hidden rounded-xl bg-obsidian-light group">
+                <Carousel
+                  opts={{
+                    align: "start",
+                    loop: true,
+                  }}
+                  plugins={[
+                    Autoplay({
+                      delay: 4000,
+                    }),
+                  ]}
+                  className="w-full h-full"
+                >
+                  <CarouselContent className="h-full ml-0">
+                    {hotelImages.map((image, index) => (
+                      <CarouselItem key={index} className="pl-0 h-full w-full">
+                        <div className="relative w-full h-full">
+                          <img 
+                            src={image}
+                            alt={`Alfa Plaza Hotel - Imagem ${index + 1}`}
+                            className="w-full h-full object-cover object-bottom transition-transform duration-700 hover:scale-105"
+                          />
+                          <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-obsidian/90 via-obsidian/50 to-transparent pointer-events-none z-10"></div>
+                        </div>
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                  <div className="hidden md:block z-20 relative">
+                    <CarouselPrevious className="carousel-btn-glass left-4 border-none bg-transparent hover:bg-transparent shadow-none" />
+                    <CarouselNext className="carousel-btn-glass right-4 border-none bg-transparent hover:bg-transparent shadow-none" />
+                  </div>
+                </Carousel>
+                
+                {/* Testimonials Carousel Overlay */}
+                <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 w-full max-w-md bg-obsidian/90 backdrop-blur-xl border border-alpha-gold/30 p-3 z-30 rounded-xl overflow-hidden pointer-events-auto">
+                  <Carousel
+                    opts={{
+                      align: "end",
+                      loop: true,
+                      axis: "y"
+                    }}
+                    plugins={[
+                      Autoplay({
+                        delay: 8000,
+                      }),
+                    ]}
+                    orientation="vertical"
+                    className="w-full h-14"
+                  >
+                    <CarouselContent className="-mt-1 h-[56px]">
+                      {testimonials.map((item, index) => (
+                        <CarouselItem key={index} className="pt-1 basis-full pb-0 flex flex-col justify-end">
+                          <div className="space-y-0.5 text-center">
+                            <div className="flex items-center justify-center space-x-2">
+                              <span className="text-white font-serif font-semibold tracking-wide text-xs">{item.name}</span>
+                              <span className="text-alpha-gold/60 text-[10px]">|</span>
+                              <span className="text-gray-400 text-[10px] tracking-wide uppercase">{item.role}</span>
+                              <div className="flex space-x-0.5 ml-1">
+                                {[...Array(5)].map((_, i) => (
+                                  <Star key={i} size={8} className="text-alpha-gold fill-alpha-gold" />
+                                ))}
+                              </div>
+                            </div>
+                            <p className="text-gray-300 text-[10px] tracking-wide leading-tight italic line-clamp-2">
+                              "{item.text}"
+                            </p>
+                          </div>
+                        </CarouselItem>
+                      ))}
+                    </CarouselContent>
+                  </Carousel>
+                </div>
+              </div>
+            </div>
+
             {/* Contact Cards */}
-            <div className="space-y-6">
-              <div className="flex items-start space-x-4 p-6 glass-dark rounded-xl border border-white/5 hover:border-alpha-gold/60 transition-all duration-300">
-                <div className="w-12 h-12 bg-white/5 border border-alpha-gold/30 rounded-full flex items-center justify-center flex-shrink-0 backdrop-blur-md">
+            <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto w-full">
+              <div className="flex flex-col items-center p-6 glass-dark rounded-xl border border-white/5 hover:border-alpha-gold/60 transition-all duration-300 text-center">
+                <div className="w-12 h-12 bg-white/5 border border-alpha-gold/30 rounded-full flex items-center justify-center mb-4 backdrop-blur-md">
                   <MapPin className="text-alpha-gold" size={24} />
                 </div>
                 <div>
@@ -49,8 +183,8 @@ const Location = () => {
                 </div>
               </div>
 
-              <div className="flex items-start space-x-4 p-6 glass-dark rounded-xl border border-white/5 hover:border-alpha-gold/60 transition-all duration-300">
-                <div className="w-12 h-12 bg-white/5 border border-alpha-gold/30 rounded-full flex items-center justify-center flex-shrink-0 backdrop-blur-md">
+              <div className="flex flex-col items-center p-6 glass-dark rounded-xl border border-white/5 hover:border-alpha-gold/60 transition-all duration-300 text-center">
+                <div className="w-12 h-12 bg-white/5 border border-alpha-gold/30 rounded-full flex items-center justify-center mb-4 backdrop-blur-md">
                   <Phone className="text-alpha-gold" size={24} />
                 </div>
                 <div>
@@ -61,8 +195,8 @@ const Location = () => {
                 </div>
               </div>
 
-              <div className="flex items-start space-x-4 p-6 glass-dark rounded-xl border border-white/5 hover:border-alpha-gold/60 transition-all duration-300">
-                <div className="w-12 h-12 bg-white/5 border border-alpha-gold/30 rounded-full flex items-center justify-center flex-shrink-0 backdrop-blur-md">
+              <div className="flex flex-col items-center p-6 glass-dark rounded-xl border border-white/5 hover:border-alpha-gold/60 transition-all duration-300 text-center">
+                <div className="w-12 h-12 bg-white/5 border border-alpha-gold/30 rounded-full flex items-center justify-center mb-4 backdrop-blur-md">
                   <Clock className="text-alpha-gold" size={24} />
                 </div>
                 <div>
@@ -75,44 +209,16 @@ const Location = () => {
             </div>
 
             {/* CTA Section */}
-            <div id="contact" className="pt-8">
-              <div className="glass-dark rounded-xl border border-white/5 p-8">
-                <h4 className="font-serif text-2xl text-alpha-gold mb-4 tracking-wide">
-                  Fale com Nosso Consultor
-                </h4>
-                <p className="text-gray-400 text-sm mb-6 tracking-wide">
-                  Nossa equipe está pronta para atendê-lo e criar a experiência perfeita para sua estadia.
-                </p>
-                <a 
-                  href="https://wa.me/5561982062229"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Button className="w-full bg-alpha-gold text-obsidian font-semibold tracking-widest hover:bg-alpha-gold/90 transition-all hover:scale-105 py-6">
-                    FALAR COM CONSULTOR
-                  </Button>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          {/* Right: Map/Image */}
-          <div className="fade-in-section">
-            <div className="relative h-[600px] border border-alpha-gold/30 overflow-hidden group">
-              <img 
-                src="https://images.unsplash.com/photo-1702814160779-4a88cfb330c7?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMzl8MHwxfHNlYXJjaHwzfHxsdXh1cnklMjBob3RlbCUyMGxvYmJ5fGVufDB8fHx8MTc3MDY0Mjk3Mnww&ixlib=rb-4.1.0&q=85"
-                alt="Hotel Location"
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-transparent"></div>
-              
-              {/* Overlay Info */}
-              <div className="absolute bottom-8 left-8 right-8 bg-obsidian/80 backdrop-blur-xl border border-alpha-gold/30 p-6">
-                <h5 className="text-alpha-gold font-serif text-xl mb-2 tracking-wide">Taguatinga</h5>
-                <p className="text-gray-300 text-sm tracking-wide">
-                  Região administrativa estratégica de Brasília, com fácil acesso ao Plano Piloto e principais vias da capital.
-                </p>
-              </div>
+            <div id="contact" className="pt-4 max-w-md mx-auto w-full">
+              <a 
+                href="https://wa.me/5561982062229"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Button className="w-full bg-alpha-gold text-obsidian font-semibold tracking-widest hover:bg-alpha-gold/90 transition-all hover:scale-105 py-6">
+                  RESERVAR AGORA
+                </Button>
+              </a>
             </div>
           </div>
         </div>

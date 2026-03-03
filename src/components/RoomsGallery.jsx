@@ -61,10 +61,6 @@ const RoomsGallery = () => {
     <section id="rooms" className="py-24 relative overflow-hidden">
       <div className="absolute inset-0 bg-obsidian/70 backdrop-blur-sm z-0"></div>
 
-      {/* Background Decorative Elements */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-alpha-gold/5 rounded-full blur-3xl z-0"></div>
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-alpha-gold/5 rounded-full blur-3xl z-0"></div>
-      
       <div className="max-w-7xl mx-auto px-12 relative z-10">
         {/* Section Header */}
         <div className="text-center mb-16 fade-in-section">
@@ -153,8 +149,8 @@ const RoomsGallery = () => {
             ))}
           </CarouselContent>
           <div className="hidden md:block">
-            <CarouselPrevious className="border-alpha-gold/30 text-alpha-gold hover:bg-alpha-gold/10 -left-12" />
-            <CarouselNext className="border-alpha-gold/30 text-alpha-gold hover:bg-alpha-gold/10 -right-12" />
+            <CarouselPrevious className="carousel-btn-glass animate-slide-left -left-12 border-none bg-transparent hover:bg-transparent shadow-none" />
+            <CarouselNext className="carousel-btn-glass animate-slide-right -right-12 border-none bg-transparent hover:bg-transparent shadow-none" />
           </div>
         </Carousel>
 
