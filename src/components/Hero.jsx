@@ -62,17 +62,17 @@ const Hero = () => {
               </a>
             </div>
             
-            <p className="text-sm md:text-base text-gray-300 font-light italic tracking-wide mt-6 animate-pulse">
-              {t.hero.promo}
-            </p>
+            <div className="flex flex-col items-center mt-6 space-y-2 animate-pulse">
+              <p className="text-sm md:text-base text-gray-300 font-light italic tracking-wide">
+                {t.hero.promo}
+              </p>
+              <ChevronDown className="text-alpha-gold w-6 h-6 animate-bounce" />
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20 animate-bounce">
-        <ChevronDown className="text-alpha-gold" size={32} />
-      </div>
+      {/* Scroll Indicator - Removed */}
     </section>
   );
 };
