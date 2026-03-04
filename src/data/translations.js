@@ -146,7 +146,7 @@ export const translations = {
         sendEmail: "ENVIAR SOLICITAÇÃO POR E-MAIL"
       },
       types: {
-        individual: "Reserva Individual",
+        individual: "Reserva",
         corporate: "Reserva Faturada",
         groups: "Grupos e Eventos",
         partnership: "Parceria Comercial"

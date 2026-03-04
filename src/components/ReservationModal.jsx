@@ -442,7 +442,7 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                       <div className="space-y-3">
                         <label className="text-alpha-gold text-[10px] tracking-[0.2em] uppercase font-bold ml-1">{t.reservation.dates.checkIn}</label>
                         <div className="relative group">
-                          <Calendar className="absolute left-4 top-1/2 -translate-y-1/2 text-alpha-gold/50 group-focus-within:text-alpha-gold transition-colors" size={20} />
+                          <Calendar className="absolute left-4 top-1/2 -translate-y-1/2 text-alpha-gold/50 group-focus-within:text-alpha-gold transition-colors z-10 pointer-events-none" size={20} />
                           <input 
                             type="date"
                             value={formData.checkIn}
@@ -455,7 +455,7 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                       <div className="space-y-3">
                         <label className="text-alpha-gold text-[10px] tracking-[0.2em] uppercase font-bold ml-1">{t.reservation.dates.checkOut}</label>
                         <div className="relative group">
-                          <Calendar className="absolute left-4 top-1/2 -translate-y-1/2 text-alpha-gold/50 group-focus-within:text-alpha-gold transition-colors" size={20} />
+                          <Calendar className="absolute left-4 top-1/2 -translate-y-1/2 text-alpha-gold/50 group-focus-within:text-alpha-gold transition-colors z-10 pointer-events-none" size={20} />
                           <input 
                             type="date"
                             value={formData.checkOut}
@@ -484,7 +484,7 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                           {formData.type === 'Grupos e Eventos' ? t.reservation.guests.titleGroup : t.reservation.guests.titleIndividual}
                         </label>
                         <div className="relative group">
-                          <Users className="absolute left-4 top-1/2 -translate-y-1/2 text-alpha-gold/50 group-focus-within:text-alpha-gold transition-colors" size={20} />
+                          <Users className="absolute left-4 top-1/2 -translate-y-1/2 text-alpha-gold/50 group-focus-within:text-alpha-gold transition-colors z-10 pointer-events-none" size={20} />
                           {formData.type === 'Grupos e Eventos' ? (
                             <input 
                               type="number"
@@ -585,7 +585,7 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                       </div>
 
                       <div className="relative group max-w-xs mx-auto w-full">
-                        <Clock className="absolute left-4 top-1/2 -translate-y-1/2 text-alpha-gold/50 group-focus-within:text-alpha-gold transition-colors" size={24} />
+                        <Clock className="absolute left-4 top-1/2 -translate-y-1/2 text-alpha-gold/50 group-focus-within:text-alpha-gold transition-colors z-10 pointer-events-none" size={24} />
                         <input
                           type="time"
                           value={formData.arrivalTime}
@@ -617,7 +617,7 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                         <div className="space-y-2">
                           <label className="text-alpha-gold text-[10px] tracking-[0.2em] uppercase font-bold ml-1">{t.reservation.contact.nameLabel}</label>
                           <div className="relative group">
-                            <User className="absolute left-4 top-1/2 -translate-y-1/2 text-alpha-gold/50" size={20} />
+                            <User className="absolute left-4 top-1/2 -translate-y-1/2 text-alpha-gold/50 z-10 pointer-events-none" size={20} />
                             <input 
                               type="text"
                               placeholder={t.reservation.contact.namePlaceholder}
@@ -631,7 +631,7 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                         <div className="space-y-2">
                           <label className="text-alpha-gold text-[10px] tracking-[0.2em] uppercase font-bold ml-1">{t.reservation.contact.emailLabel}</label>
                           <div className="relative group">
-                            <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-alpha-gold/50" size={20} />
+                            <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-alpha-gold/50 z-10 pointer-events-none" size={20} />
                             <input 
                               type="email"
                               placeholder={t.reservation.contact.emailPlaceholder}
@@ -645,7 +645,7 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                         <div className="space-y-2">
                           <label className="text-alpha-gold text-[10px] tracking-[0.2em] uppercase font-bold ml-1">{t.reservation.contact.whatsappLabel}</label>
                           <div className="relative group">
-                            <MessageSquare className="absolute left-4 top-1/2 -translate-y-1/2 text-alpha-gold/50" size={20} />
+                            <MessageSquare className="absolute left-4 top-1/2 -translate-y-1/2 text-alpha-gold/50 z-10 pointer-events-none" size={20} />
                             <input 
                               type="tel"
                               placeholder={t.reservation.contact.whatsappPlaceholder}
