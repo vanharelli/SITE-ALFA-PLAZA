@@ -21,28 +21,28 @@ const Header = ({ onOpenReservation }) => {
   }, []);
 
   const LanguageSelector = ({ mobile = false }) => (
-    <div className={`${mobile ? 'flex flex-col space-y-4' : 'flex items-center space-x-4 bg-white/5 backdrop-blur-sm px-4 py-1.5 rounded-full border border-white/10'}`}>
+    <div className={`${mobile ? 'flex flex-col space-y-4' : 'flex items-center space-x-2 sm:space-x-4 bg-white/5 backdrop-blur-sm px-3 sm:px-4 py-1.5 rounded-full border border-white/10'}`}>
       <button 
         onClick={() => changeLanguage('pt')}
-        className={`flex items-center space-x-2 transition-colors text-xs tracking-wide group ${language === 'pt' ? 'text-alpha-gold' : 'text-gray-300 hover:text-alpha-gold'}`}
+        className={`flex items-center space-x-1 sm:space-x-2 transition-colors text-[10px] sm:text-xs tracking-wide group ${language === 'pt' ? 'text-alpha-gold' : 'text-gray-300 hover:text-alpha-gold'}`}
       >
-        <img src="https://flagcdn.com/br.svg" alt="Português" className="w-4 h-3 object-cover rounded-[1px] opacity-80 group-hover:opacity-100 transition-opacity" />
+        <img src="https://flagcdn.com/br.svg" alt="Português" className="w-3 h-2 sm:w-4 sm:h-3 object-cover rounded-[1px] opacity-80 group-hover:opacity-100 transition-opacity" />
         <span>PT</span>
       </button>
       {!mobile && <div className="w-px h-3 bg-white/10"></div>}
       <button 
         onClick={() => changeLanguage('en')}
-        className={`flex items-center space-x-2 transition-colors text-xs tracking-wide group ${language === 'en' ? 'text-alpha-gold' : 'text-gray-300 hover:text-alpha-gold'}`}
+        className={`flex items-center space-x-1 sm:space-x-2 transition-colors text-[10px] sm:text-xs tracking-wide group ${language === 'en' ? 'text-alpha-gold' : 'text-gray-300 hover:text-alpha-gold'}`}
       >
-        <img src="https://flagcdn.com/us.svg" alt="English" className="w-4 h-3 object-cover rounded-[1px] opacity-80 group-hover:opacity-100 transition-opacity" />
+        <img src="https://flagcdn.com/us.svg" alt="English" className="w-3 h-2 sm:w-4 sm:h-3 object-cover rounded-[1px] opacity-80 group-hover:opacity-100 transition-opacity" />
         <span>EN</span>
       </button>
       {!mobile && <div className="w-px h-3 bg-white/10"></div>}
       <button 
         onClick={() => changeLanguage('es')}
-        className={`flex items-center space-x-2 transition-colors text-xs tracking-wide group ${language === 'es' ? 'text-alpha-gold' : 'text-gray-300 hover:text-alpha-gold'}`}
+        className={`flex items-center space-x-1 sm:space-x-2 transition-colors text-[10px] sm:text-xs tracking-wide group ${language === 'es' ? 'text-alpha-gold' : 'text-gray-300 hover:text-alpha-gold'}`}
       >
-        <img src="https://flagcdn.com/es.svg" alt="Español" className="w-4 h-3 object-cover rounded-[1px] opacity-80 group-hover:opacity-100 transition-opacity" />
+        <img src="https://flagcdn.com/es.svg" alt="Español" className="w-3 h-2 sm:w-4 sm:h-3 object-cover rounded-[1px] opacity-80 group-hover:opacity-100 transition-opacity" />
         <span>ES</span>
       </button>
     </div>
@@ -51,19 +51,19 @@ const Header = ({ onOpenReservation }) => {
   return (
     <header 
       style={{ top: 0, left: 0, right: 0, position: 'fixed' }}
-      className={`z-[100] w-full transition-colors duration-300 transform-gpu ${ 
-        isScrolled ? 'bg-black/90 shadow-lg border-b border-alpha-gold/30 backdrop-blur-md' : 'bg-transparent border-b border-transparent'
+      className={`z-[100] w-full overflow-hidden transition-all duration-300 transform-gpu select-none ${ 
+        isScrolled ? 'bg-black/95 shadow-lg border-b border-alpha-gold/30 backdrop-blur-md h-16 md:h-20' : 'bg-transparent border-b border-transparent h-16 md:h-20'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 h-16 md:h-20 flex items-center pt-[env(safe-area-inset-top)]">
+      <div className="max-w-7xl mx-auto px-6 h-full flex items-center pt-[env(safe-area-inset-top)]">
         <div className="flex items-center justify-between w-full">
           <div className="flex items-center space-x-3">
             {!logoError ? (
-              <div className="logo-module w-9 h-9 md:w-12 md:h-12">
+              <div className="logo-module w-8 h-8 md:w-11 md:h-11">
                 <img
                   src="/logo.webp"
                   alt="Alpha Plaza Hotel"
-                  className="h-5 md:h-7 w-auto z-10"
+                  className="h-4 md:h-6 w-auto z-10"
                   onError={() => setLogoError(true)}
                 />
               </div>
