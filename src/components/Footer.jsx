@@ -40,14 +40,14 @@ const Footer = () => {
             <div className="space-y-4 mb-6 text-left md:text-right">
               <div className="flex items-center space-x-3 md:flex-row-reverse md:space-x-reverse">
                 <Phone size={16} className="text-alpha-gold" />
-                <a href="tel:+5561982062229" className="text-gray-400 hover:text-alpha-gold transition-colors text-sm tracking-wide">
-                  (61) 98206-2229
+                <a href="tel:+556132639131" className="text-gray-400 hover:text-alpha-gold transition-colors text-sm tracking-wide">
+                  (61) 3263-9131
                 </a>
               </div>
               <div className="flex items-center space-x-3 md:flex-row-reverse md:space-x-reverse">
                 <Mail size={16} className="text-alpha-gold" />
                 <span className="text-gray-400 text-sm tracking-wide">
-                  contato@alfaplazahotel.com.br
+                  reservas@alfaplazahotel.com.br
                 </span>
               </div>
             </div>

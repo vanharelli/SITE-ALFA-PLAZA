@@ -272,8 +272,8 @@ const Location = ({ onOpenReservation }) => {
                 </div>
                 <div>
                   <h4 className="text-white font-semibold tracking-wide mb-2">{t.location.contactLabels.phone}</h4>
-                  <a href="tel:+5561982062229" className="text-gray-400 hover:text-alpha-gold transition-colors text-sm tracking-wide">
-                    +55 (61) 98206-2229
+                  <a href="tel:+556132639131" className="text-gray-400 hover:text-alpha-gold transition-colors text-sm tracking-wide">
+                    +55 (61) 3263-9131
                   </a>
                 </div>
               </div>
