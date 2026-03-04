@@ -218,21 +218,21 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
   const experiences = [
     {
       id: 'welcome-vip',
-      title: 'Welcome VIP',
+      title: 'Boas-Vindas VIP',
       icon: Star,
       focus: 'Recepção de alto padrão no apartamento para ocasiões únicas.',
       setup: 'Cartão nominal escrito à mão, águas premium e macarons/trufas artesanais.'
     },
     {
       id: 'boutique-exp',
-      title: 'Boutique Experience',
+      title: 'Lounge Privativo',
       icon: Gem,
       focus: 'Recepção sofisticada para casais ou executivos.',
       setup: 'Tábua de frios, meia garrafa de vinho e arranjo floral minimalista.'
     },
     {
       id: 'guest-honor',
-      title: 'Guest of Honor',
+      title: 'Convidado de Honra',
       icon: Crown,
       focus: 'Comemorações marcantes e hóspedes VIP.',
       setup: 'Cesta de frutas e chocolates, vinho/espumante (750ml), roupões e café da manhã no quarto.'
@@ -440,12 +440,12 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                           </div>
                           
                           <div className="mb-6 relative z-10">
-                            <div className="w-12 h-12 rounded-xl bg-alpha-gold/10 flex items-center justify-center mb-4 text-alpha-gold border border-alpha-gold/20">
-                              <exp.icon size={24} />
+                            <div className="w-10 h-10 rounded-xl bg-alpha-gold/10 flex items-center justify-center mb-4 text-alpha-gold border border-alpha-gold/20">
+                              <exp.icon size={20} />
                             </div>
-                            <h3 className="text-xl font-serif text-white mb-2">{exp.title}</h3>
-                            <p className="text-xs text-alpha-gold font-bold tracking-widest uppercase mb-4">{exp.focus}</p>
-                            <p className="text-sm text-gray-400 leading-relaxed">{exp.setup}</p>
+                            <h3 className="text-lg font-serif text-white mb-2">{exp.title}</h3>
+                            <p className="text-[10px] text-alpha-gold font-bold tracking-widest uppercase mb-4">{exp.focus}</p>
+                            <p className="text-xs text-gray-400 leading-relaxed">{exp.setup}</p>
                           </div>
 
                           <Button
