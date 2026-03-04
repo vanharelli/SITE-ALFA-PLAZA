@@ -39,7 +39,7 @@ const roomData = [
 ];
 
 const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [step, setStep] = useState(STEPS.HUB);
   const [history, setHistory] = useState([]);
   const [formData, setFormData] = useState({
@@ -439,12 +439,13 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                     )}
                     
                     <div className="space-y-6 flex-1">
-                      <div className="space-y-3">
+                      <div className="space-y-1">
                         <label className="text-alpha-gold text-[10px] tracking-[0.2em] uppercase font-bold ml-1">{t.reservation.dates.checkIn}</label>
                         <div className="relative group">
                           <Calendar className="absolute left-4 top-1/2 -translate-y-1/2 text-alpha-gold/50 group-focus-within:text-alpha-gold transition-colors z-10 pointer-events-none" size={20} />
                           <input 
                             type="date"
+                            lang={language === 'pt' ? 'pt-BR' : language === 'es' ? 'es-ES' : 'en-US'}
                             value={formData.checkIn}
                             onChange={(e) => setFormData(prev => ({ ...prev, checkIn: e.target.value }))}
                             className="w-full bg-black/40 backdrop-blur-md border border-white/10 rounded-xl py-4 pl-12 pr-4 text-white focus:outline-none focus:border-alpha-gold/50 transition-all appearance-none [color-scheme:dark]"
@@ -452,12 +453,13 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                         </div>
                       </div>
 
-                      <div className="space-y-3">
+                      <div className="space-y-1">
                         <label className="text-alpha-gold text-[10px] tracking-[0.2em] uppercase font-bold ml-1">{t.reservation.dates.checkOut}</label>
                         <div className="relative group">
                           <Calendar className="absolute left-4 top-1/2 -translate-y-1/2 text-alpha-gold/50 group-focus-within:text-alpha-gold transition-colors z-10 pointer-events-none" size={20} />
                           <input 
                             type="date"
+                            lang={language === 'pt' ? 'pt-BR' : language === 'es' ? 'es-ES' : 'en-US'}
                             value={formData.checkOut}
                             onChange={(e) => setFormData(prev => ({ ...prev, checkOut: e.target.value }))}
                             className="w-full bg-black/40 backdrop-blur-md border border-white/10 rounded-xl py-4 pl-12 pr-4 text-white focus:outline-none focus:border-alpha-gold/50 transition-all appearance-none [color-scheme:dark]"
@@ -479,7 +481,7 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                 {step === STEPS.GUESTS && (
                   <div className="space-y-8 flex flex-col h-full">
                     <div className="space-y-6 flex-1">
-                      <div className="space-y-3">
+                      <div className="space-y-1">
                         <label className="text-alpha-gold text-[10px] tracking-[0.2em] uppercase font-bold ml-1">
                           {formData.type === 'Grupos e Eventos' ? t.reservation.guests.titleGroup : t.reservation.guests.titleIndividual}
                         </label>
@@ -536,7 +538,7 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                             animate={{ opacity: 1, height: 'auto' }}
                             className="space-y-6"
                           >
-                            <div className="space-y-3">
+                            <div className="space-y-1">
                               <label className="text-alpha-gold text-[10px] tracking-[0.2em] uppercase font-bold">{t.reservation.guests.childrenCount}</label>
                               <input 
                                 type="number"
@@ -614,7 +616,7 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                       </div>
 
                       <div className="space-y-4">
-                        <div className="space-y-2">
+                        <div className="space-y-1">
                           <label className="text-alpha-gold text-[10px] tracking-[0.2em] uppercase font-bold ml-1">{t.reservation.contact.nameLabel}</label>
                           <div className="relative group">
                             <User className="absolute left-4 top-1/2 -translate-y-1/2 text-alpha-gold/50 z-10 pointer-events-none" size={20} />
@@ -628,7 +630,7 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                           </div>
                         </div>
 
-                        <div className="space-y-2">
+                        <div className="space-y-1">
                           <label className="text-alpha-gold text-[10px] tracking-[0.2em] uppercase font-bold ml-1">{t.reservation.contact.emailLabel}</label>
                           <div className="relative group">
                             <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-alpha-gold/50 z-10 pointer-events-none" size={20} />
@@ -642,7 +644,7 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                           </div>
                         </div>
 
-                        <div className="space-y-2">
+                        <div className="space-y-1">
                           <label className="text-alpha-gold text-[10px] tracking-[0.2em] uppercase font-bold ml-1">{t.reservation.contact.whatsappLabel}</label>
                           <div className="relative group">
                             <MessageSquare className="absolute left-4 top-1/2 -translate-y-1/2 text-alpha-gold/50 z-10 pointer-events-none" size={20} />
