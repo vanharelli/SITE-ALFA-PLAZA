@@ -529,10 +529,12 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
 
                         <div className="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-6">
                           <div className="flex items-center justify-between">
-                            <div>
-                              <p className="text-white font-semibold text-sm">{t.reservation.guests.hasChildren}</p>
-                              <p className="text-gray-400 text-[10px] tracking-wider uppercase mt-1">{t.reservation.guests.childrenCourtesy}</p>
-                            </div>
+                          <div>
+                            <p className="text-white font-semibold text-sm">{t.reservation.guests.hasChildren}</p>
+                            <p className="text-gray-400 text-[10px] tracking-wider uppercase mt-1">{t.reservation.guests.childrenCourtesy}</p>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            {formData.hasChildren && <span className="text-alpha-gold text-[10px] font-bold uppercase">Sim</span>}
                             <button 
                               onClick={() => setFormData(prev => ({ ...prev, hasChildren: !prev.hasChildren }))}
                               className={`w-12 h-6 rounded-full transition-all relative ${formData.hasChildren ? 'bg-alpha-gold' : 'bg-white/10'}`}
@@ -543,6 +545,7 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                               />
                             </button>
                           </div>
+                        </div>
 
                           {formData.hasChildren && (
                             <motion.div 
@@ -570,15 +573,18 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                                     }
                                   </p>
                                 </div>
-                                <button 
-                                  onClick={() => setFormData(prev => ({ ...prev, allChildrenOver5: !prev.allChildrenOver5 }))}
-                                  className={`w-12 h-6 rounded-full transition-all relative ${formData.allChildrenOver5 ? 'bg-alpha-gold' : 'bg-white/10'}`}
-                                >
-                                  <motion.div 
-                                    animate={{ x: formData.allChildrenOver5 ? 26 : 4 }}
-                                    className="absolute top-1 w-4 h-4 rounded-full bg-white shadow-sm"
-                                  />
-                                </button>
+                                <div className="flex items-center gap-2">
+                                  {formData.allChildrenOver5 && <span className="text-alpha-gold text-[10px] font-bold uppercase">Sim</span>}
+                                  <button 
+                                    onClick={() => setFormData(prev => ({ ...prev, allChildrenOver5: !prev.allChildrenOver5 }))}
+                                    className={`w-12 h-6 rounded-full transition-all relative ${formData.allChildrenOver5 ? 'bg-alpha-gold' : 'bg-white/10'}`}
+                                  >
+                                    <motion.div 
+                                      animate={{ x: formData.allChildrenOver5 ? 26 : 4 }}
+                                      className="absolute top-1 w-4 h-4 rounded-full bg-white shadow-sm"
+                                    />
+                                  </button>
+                                </div>
                               </div>
                               <p className="text-gray-500 text-[10px] italic">{t.reservation.guests.childrenWarning}</p>
                             </motion.div>
