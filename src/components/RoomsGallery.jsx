@@ -87,7 +87,7 @@ const RoomsGallery = ({ onOpenReservation }) => {
   }));
 
   return (
-    <section id="rooms" className="relative py-20 sm:py-32 bg-cover bg-center bg-fixed" style={{ backgroundImage: "url('/backgroundalfa.webp')" }}>
+    <section id="rooms" className="relative py-20 sm:py-32 bg-cover bg-center bg-fixed border-b border-alpha-gold/30" style={{ backgroundImage: "url('/backgroundalfa.webp')" }}>
       <div className="absolute inset-0 bg-obsidian/70 backdrop-blur-sm z-0"></div>
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
@@ -143,7 +143,7 @@ const RoomsGallery = ({ onOpenReservation }) => {
                       <div className="mt-auto">
                         <Button 
                           onClick={() => onOpenReservation(room)}
-                          className="w-full bg-alpha-gold text-obsidian font-semibold tracking-wider hover:bg-alpha-gold/90 transition-all text-xs"
+                          className="btn-magic w-full bg-alpha-gold text-obsidian font-semibold tracking-wider hover:bg-alpha-gold/90 transition-all text-xs"
                         >
                           {t.rooms.checkAvailability}
                         </Button>

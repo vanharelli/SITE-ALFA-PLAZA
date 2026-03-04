@@ -14,7 +14,7 @@ const Hero = ({ onOpenReservation }) => {
   };
 
   return (
-    <section className="relative h-screen w-full overflow-hidden bg-cover bg-center bg-fixed" style={{ backgroundImage: "url('/backgroundalfa.webp')" }}>
+    <section className="relative h-screen w-full overflow-hidden bg-cover bg-center bg-fixed border-b border-alpha-gold/30" style={{ backgroundImage: "url('/backgroundalfa.webp')" }}>
       {/* Background Video */}
       <div className="absolute inset-0 z-0">
         <video
@@ -59,14 +59,14 @@ const Hero = ({ onOpenReservation }) => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8 w-full max-w-md mx-auto sm:max-w-none">
               <Button 
                 onClick={onOpenReservation}
-                className="w-full sm:w-auto px-10 py-7 bg-alpha-gold text-obsidian font-semibold tracking-widest text-base hover:bg-alpha-gold/90 transition-all hover:scale-105 hover:shadow-2xl hover:shadow-alpha-gold/20"
+                className="btn-magic w-full sm:w-auto px-10 py-7 bg-alpha-gold text-obsidian font-semibold tracking-widest text-base hover:bg-alpha-gold/90 transition-all hover:scale-105"
               >
                 {t.hero.cta}
               </Button>
             </div>
             
             <div className="flex flex-col items-center mt-6 space-y-2 animate-pulse">
-              <p className="text-sm md:text-base text-gray-300 font-light italic tracking-wide">
+              <p className="text-sm md:text-base text-gray-300 font-bold italic tracking-wide">
                 {t.hero.promo}
               </p>
               <ChevronDown className="text-alpha-gold w-6 h-6 animate-bounce" />

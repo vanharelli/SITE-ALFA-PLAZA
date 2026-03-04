@@ -59,7 +59,7 @@ const amenities = [
 const Amenities = ({ onOpenReservation }) => {
   const { t } = useLanguage();
   return (
-    <section id="amenities" className="relative py-20 sm:py-32 bg-cover bg-center bg-fixed" style={{ backgroundImage: "url('/backgroundalfa.webp')" }}>
+    <section id="amenities" className="relative pt-10 pb-10 sm:pt-20 sm:pb-20 bg-cover bg-center bg-fixed border-b border-alpha-gold/30" style={{ backgroundImage: "url('/backgroundalfa.webp')" }}>
       <div className="absolute inset-0 bg-obsidian/80 backdrop-blur-sm z-0"></div>
       <div className="relative z-10 max-w-7xl mx-auto px-6">
         <div className="text-center mb-12 md:mb-16 fade-in-section">
@@ -95,7 +95,7 @@ const Amenities = ({ onOpenReservation }) => {
         <div className="flex justify-center fade-in-section relative z-10">
           <Button 
             onClick={onOpenReservation}
-            className="bg-alpha-gold text-obsidian font-bold tracking-[0.2em] uppercase px-10 py-6 text-lg hover:bg-alpha-gold/90 transition-all hover:scale-105 shadow-xl shadow-alpha-gold/20"
+            className="btn-magic bg-alpha-gold text-obsidian font-bold tracking-[0.2em] uppercase px-10 py-6 text-lg hover:bg-alpha-gold/90 transition-all hover:scale-105 shadow-xl shadow-alpha-gold/20"
           >
             {t.header.bookButton}
           </Button>

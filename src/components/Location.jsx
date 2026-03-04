@@ -74,7 +74,7 @@ const Location = ({ onOpenReservation }) => {
   };
 
   return (
-    <section id="location" className="relative py-20 sm:py-32 bg-cover bg-center bg-fixed" style={{ backgroundImage: "url('/backgroundalfa.webp')" }}>
+    <section id="location" className="relative py-20 sm:py-32 bg-cover bg-center bg-fixed border-b border-alpha-gold/30" style={{ backgroundImage: "url('/backgroundalfa.webp')" }}>
       <div className="absolute inset-0 bg-obsidian/80 backdrop-blur-sm z-0"></div>
 
       {/* Expanded Gallery Modal */}
@@ -106,12 +106,23 @@ const Location = ({ onOpenReservation }) => {
                 initial={{ scale: 0.95, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                className="w-full h-full flex items-center justify-center"
+                drag="x"
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={0.2}
+                onDragEnd={(e, { offset, velocity }) => {
+                  const swipe = offset.x;
+                  if (swipe < -50) {
+                    nextImage();
+                  } else if (swipe > 50) {
+                    prevImage();
+                  }
+                }}
+                className="w-full h-full flex items-center justify-center cursor-grab active:cursor-grabbing"
               >
                 <img 
                   src={hotelImages[selectedImageIndex]}
                   alt="Hotel Expanded View"
-                  className="max-w-full max-h-full object-contain shadow-2xl rounded-lg"
+                  className="max-w-full max-h-full object-contain shadow-2xl rounded-lg pointer-events-none"
                 />
               </motion.div>
 
@@ -215,7 +226,8 @@ const Location = ({ onOpenReservation }) => {
                     opts={{
                       align: "end",
                       loop: true,
-                      axis: "y"
+                      axis: "y",
+                      watchDrag: false
                     }}
                     plugins={[
                       Autoplay({
@@ -295,7 +307,7 @@ const Location = ({ onOpenReservation }) => {
             <div id="contact" className="pt-4 max-w-md mx-auto w-full">
               <Button 
                 onClick={onOpenReservation}
-                className="w-full bg-alpha-gold text-obsidian font-semibold tracking-widest hover:bg-alpha-gold/90 transition-all hover:scale-105 py-6"
+                className="btn-magic w-full bg-alpha-gold text-obsidian font-semibold tracking-widest hover:bg-alpha-gold/90 transition-all hover:scale-105 py-6"
               >
                 {t.header.bookButton}
               </Button>

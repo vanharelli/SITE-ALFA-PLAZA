@@ -9,7 +9,7 @@ const Footer = () => {
   const [isLegalModalOpen, setIsLegalModalOpen] = useState(false);
 
   return (
-    <footer className="relative bg-cover bg-center bg-fixed border-t border-white/10 py-12 overflow-hidden" style={{ backgroundImage: "url('/backgroundalfa.webp')" }}>
+    <footer className="relative bg-cover bg-center bg-fixed border-b border-alpha-gold/30 py-12 overflow-hidden" style={{ backgroundImage: "url('/backgroundalfa.webp')" }}>
       <div className="absolute inset-0 bg-obsidian/90 backdrop-blur-sm z-0"></div>
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
@@ -46,9 +46,9 @@ const Footer = () => {
               </div>
               <div className="flex items-center space-x-3 md:flex-row-reverse md:space-x-reverse">
                 <Mail size={16} className="text-alpha-gold" />
-                <span className="text-gray-400 text-sm tracking-wide">
+                <a href="mailto:reservas@alfaplazahotel.com.br" className="text-gray-400 hover:text-alpha-gold transition-colors text-sm tracking-wide">
                   reservas@alfaplazahotel.com.br
-                </span>
+                </a>
               </div>
             </div>
             

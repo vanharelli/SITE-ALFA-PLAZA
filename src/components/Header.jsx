@@ -86,7 +86,7 @@ const Header = ({ onOpenReservation }) => {
           <nav className="hidden md:flex items-center">
             <Button 
               onClick={onOpenReservation}
-              className="bg-alpha-gold text-obsidian font-semibold tracking-wider hover:bg-alpha-gold/90 transition-all hover:scale-105 px-6 py-2"
+              className="btn-magic bg-alpha-gold text-obsidian font-semibold tracking-wider hover:bg-alpha-gold/90 transition-all hover:scale-105 px-6 py-2"
             >
               {t.header.bookButton}
             </Button>
