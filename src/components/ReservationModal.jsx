@@ -71,7 +71,7 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
     'Reserva Faturada': 'corporate',
     'Grupos e Eventos': 'groups',
     'Parceria Comercial': 'partnership',
-    'Celebrações & Romance': 'celebrations'
+    'Recepção VIP & Homenagens': 'celebrations'
   };
 
   useEffect(() => {
@@ -220,7 +220,7 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
       id: 'welcome-vip',
       title: 'Welcome VIP',
       icon: Star,
-      focus: 'Surpreender com elegância e simplicidade.',
+      focus: 'Detalhes de alto padrão no apartamento para elevar a experiência de quem você valoriza.',
       setup: 'Cartão nominal escrito à mão, águas premium e macarons/trufas artesanais.'
     },
     {
@@ -360,7 +360,7 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
 
                       <button 
                         onClick={() => {
-                          setFormData(prev => ({ ...prev, type: 'Celebrações & Romance' }));
+                          setFormData(prev => ({ ...prev, type: 'Recepção VIP & Homenagens' }));
                           wrapSetStep(STEPS.EXPERIENCES);
                         }}
                         className="group p-4 rounded-2xl border border-white/10 bg-white/5 hover:bg-white/10 transition-all flex flex-col items-center justify-center text-center h-full gap-3"
@@ -369,8 +369,8 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                           <Heart size={24} />
                         </div>
                         <div>
-                          <p className="text-white font-semibold tracking-wide text-sm">Celebrações & Romance</p>
-                          <p className="text-gray-400 text-[10px]">Decoração exclusiva e momentos inesquecíveis.</p>
+                          <p className="text-white font-semibold tracking-wide text-sm">Recepção VIP & Homenagens</p>
+                          <p className="text-gray-400 text-[10px]">Detalhes de alto padrão no apartamento para elevar a experiência de quem você valoriza.</p>
                         </div>
                       </button>
                     </div>
