@@ -198,3 +198,15 @@ img {
   min-height: 100vh;
   min-height: 100dvh;
 }
+
+/* Safe Area for Mobile Notch */
+.safe-top {
+  padding-top: env(safe-area-inset-top);
+}
+
+@layer utilities {
+  .backdrop-blur-md {
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+  }
+}
