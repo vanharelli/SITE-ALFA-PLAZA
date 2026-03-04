@@ -216,7 +216,7 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 0.9, opacity: 0 }}
-          className="relative w-full max-w-[500px] bg-black/90 backdrop-blur-xl border border-alpha-gold/30 rounded-3xl shadow-2xl overflow-hidden flex flex-col h-[650px] max-h-[90vh]"
+          className="relative w-full max-w-[500px] bg-black/60 backdrop-blur-xl border border-alpha-gold/30 rounded-3xl shadow-2xl overflow-hidden flex flex-col h-[650px] max-h-[90vh]"
         >
           {/* Progress Bar */}
           <div className="absolute top-0 left-0 w-full h-1 bg-white/5 z-50">
