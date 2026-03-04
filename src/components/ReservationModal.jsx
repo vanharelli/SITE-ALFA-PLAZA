@@ -413,9 +413,6 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                             ))}
                           </>
                         )}
-                        <div className="flex justify-center pt-2">
-                          <ChevronDown className="text-alpha-gold animate-bounce opacity-50" size={20} />
-                        </div>
                       </div>
                     </div>
                     <div className="p-6 pt-0 mt-auto shrink-0 relative z-10">
@@ -451,13 +448,15 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                           <label className="text-alpha-gold text-[10px] tracking-[0.2em] uppercase font-bold ml-1">{t.reservation.dates.checkIn}</label>
                           <div className="relative group">
                             <Calendar className="absolute left-4 top-1/2 -translate-y-1/2 text-alpha-gold/50 group-focus-within:text-alpha-gold transition-colors z-10 pointer-events-none" size={20} />
-                            <input 
-                              type="date"
-                              lang={language === 'pt' ? 'pt-BR' : language === 'es' ? 'es-ES' : 'en-US'}
-                              value={formData.checkIn}
-                              onChange={(e) => setFormData(prev => ({ ...prev, checkIn: e.target.value }))}
-                              className="w-full bg-black/40 backdrop-blur-md border border-white/10 rounded-xl py-4 pl-12 pr-4 text-white focus:outline-none focus:border-alpha-gold/50 transition-all appearance-none [color-scheme:dark]"
-                            />
+                            <div className="relative">
+                              <input 
+                                type="date"
+                                lang={language === 'pt' ? 'pt-BR' : language === 'es' ? 'es-ES' : 'en-US'}
+                                value={formData.checkIn}
+                                onChange={(e) => setFormData(prev => ({ ...prev, checkIn: e.target.value }))}
+                                className="w-full bg-black/40 backdrop-blur-md border border-white/10 rounded-xl py-4 pl-12 pr-4 text-white focus:outline-none focus:border-alpha-gold/50 transition-all appearance-none [color-scheme:dark]"
+                              />
+                            </div>
                           </div>
                         </div>
 
@@ -465,13 +464,15 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                           <label className="text-alpha-gold text-[10px] tracking-[0.2em] uppercase font-bold ml-1">{t.reservation.dates.checkOut}</label>
                           <div className="relative group">
                             <Calendar className="absolute left-4 top-1/2 -translate-y-1/2 text-alpha-gold/50 group-focus-within:text-alpha-gold transition-colors z-10 pointer-events-none" size={20} />
-                            <input 
-                              type="date"
-                              lang={language === 'pt' ? 'pt-BR' : language === 'es' ? 'es-ES' : 'en-US'}
-                              value={formData.checkOut}
-                              onChange={(e) => setFormData(prev => ({ ...prev, checkOut: e.target.value }))}
-                              className="w-full bg-black/40 backdrop-blur-md border border-white/10 rounded-xl py-4 pl-12 pr-4 text-white focus:outline-none focus:border-alpha-gold/50 transition-all appearance-none [color-scheme:dark]"
-                            />
+                            <div className="relative">
+                              <input 
+                                type="date"
+                                lang={language === 'pt' ? 'pt-BR' : language === 'es' ? 'es-ES' : 'en-US'}
+                                value={formData.checkOut}
+                                onChange={(e) => setFormData(prev => ({ ...prev, checkOut: e.target.value }))}
+                                className="w-full bg-black/40 backdrop-blur-md border border-white/10 rounded-xl py-4 pl-12 pr-4 text-white focus:outline-none focus:border-alpha-gold/50 transition-all appearance-none [color-scheme:dark]"
+                              />
+                            </div>
                           </div>
                         </div>
                       </div>
