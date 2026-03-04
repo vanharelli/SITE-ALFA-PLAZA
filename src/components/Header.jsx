@@ -92,64 +92,9 @@ const Header = () => {
             </a>
           </nav>
 
-          {/* Mobile Actions: Language Switcher + Menu */}
-          <div className="flex items-center space-x-6 md:hidden">
-            {/* Minimalist Mobile Language Switcher */}
-            <div className="flex items-center space-x-3">
-              {['PT', 'EN', 'ES'].map((lang, index) => (
-                <React.Fragment key={lang}>
-                  <button
-                    onClick={() => changeLanguage(lang.toLowerCase())}
-                    className={`text-[12px] font-semibold uppercase tracking-[0.1em] transition-colors ${
-                      language === lang.toLowerCase() ? 'text-alpha-gold' : 'text-white/70 hover:text-white'
-                    }`}
-                  >
-                    {lang}
-                  </button>
-                  {index < 2 && <span className="text-white/20 text-[10px]">|</span>}
-                </React.Fragment>
-              ))}
-            </div>
-
-            {/* Mobile Menu Trigger */}
-            <Sheet>
-              <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="text-white hover:bg-white/10">
-                  <Menu className="h-6 w-6" />
-                </Button>
-              </SheetTrigger>
-              <SheetContent side="right" className="bg-obsidian border-l border-alpha-gold/30 w-[300px] sm:w-[400px]">
-                <VisuallyHidden.Root>
-                  <SheetTitle>Menu de Navegação</SheetTitle>
-                  <SheetDescription>Acesse as opções de idioma e reserva.</SheetDescription>
-                </VisuallyHidden.Root>
-                <div className="flex flex-col h-full py-6 space-y-8">
-                  <div className="border-b border-white/10 pb-6">
-                    <h3 className="text-alpha-gold font-serif text-lg tracking-widest mb-4">IDIOMA</h3>
-                    <LanguageSelector mobile={true} />
-                  </div>
-                  
-                  <div className="flex-1">
-                    <a 
-                      href="https://wa.me/5561982062229"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block w-full"
-                    >
-                      <Button 
-                        className="w-full bg-alpha-gold text-obsidian font-semibold tracking-wider hover:bg-alpha-gold/90 transition-all h-12"
-                      >
-                        {t.header.bookButton}
-                      </Button>
-                    </a>
-                  </div>
-
-                  <div className="text-center text-gray-500 text-xs tracking-wide">
-                    <p>ALFA PLAZA HOTEL</p>
-                  </div>
-                </div>
-              </SheetContent>
-            </Sheet>
+          {/* Mobile Actions: Language Switcher */}
+          <div className="md:hidden">
+            <LanguageSelector mobile={false} />
           </div>
         </div>
       </div>
