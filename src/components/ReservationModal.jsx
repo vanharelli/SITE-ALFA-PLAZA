@@ -325,17 +325,17 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
 
                 {step === STEPS.SUITE_SELECTION && (
                   <div className="space-y-4 h-full flex flex-col">
-                    <p className="text-alpha-gold text-sm font-semibold tracking-widest uppercase mb-4">
+                    <p className="text-alpha-gold text-sm font-semibold tracking-widest uppercase mb-2 md:mb-4">
                       {formData.type === 'Grupos e Eventos' ? 'Selecione as categorias do grupo' : 'Escolha sua Suíte'}
                     </p>
-                    <div className="grid grid-cols-1 gap-4 overflow-y-auto pr-2 custom-scrollbar flex-1">
+                    <div className="grid grid-cols-1 gap-3 md:gap-4 overflow-y-auto pr-2 custom-scrollbar flex-1 min-h-0">
                       {roomData.map((room) => {
                         const isSelected = formData.suites.find(s => s.id === room.id);
                         return (
                           <button
                             key={room.id}
                             onClick={() => handleSuiteSelect(room)}
-                            className={`group relative h-28 rounded-2xl border transition-all overflow-hidden text-left ${
+                            className={`group relative h-24 md:h-28 rounded-2xl border transition-all overflow-hidden text-left shrink-0 ${
                               isSelected ? 'border-alpha-gold ring-2 ring-alpha-gold/30' : 'border-white/10'
                             }`}
                           >
@@ -364,7 +364,7 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                       <Button 
                         disabled={formData.suites.length === 0}
                         onClick={() => wrapSetStep(STEPS.DATES)}
-                        className="w-full bg-alpha-gold text-obsidian font-bold tracking-widest py-6 mt-4 disabled:opacity-30"
+                        className="w-full bg-alpha-gold text-obsidian font-bold tracking-widest py-4 md:py-6 mt-4 disabled:opacity-30 shrink-0"
                       >
                         PRÓXIMO PASSO <ArrowRight className="ml-2" size={20} />
                       </Button>
@@ -415,7 +415,7 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                         const subject = formData.type === 'Reserva Faturada' ? 'Solicitação de Reserva Faturada' : 'Interesse em Parceria Comercial';
                         window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}`;
                       }}
-                      className="w-full bg-alpha-gold text-obsidian font-bold tracking-widest py-6"
+                      className="w-full bg-alpha-gold text-obsidian font-bold tracking-widest py-4 md:py-6 mt-auto shrink-0"
                     >
                       ENVIAR SOLICITAÇÃO POR E-MAIL
                     </Button>
@@ -443,7 +443,7 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                             type="date"
                             value={formData.checkIn}
                             onChange={(e) => setFormData(prev => ({ ...prev, checkIn: e.target.value }))}
-                            className="w-full bg-white/5 border border-white/10 rounded-xl py-4 pl-12 pr-4 text-white focus:outline-none focus:border-alpha-gold/50 transition-all appearance-none"
+                            className="w-full bg-white/5 border border-white/10 rounded-xl py-4 pl-12 pr-4 text-white focus:outline-none focus:border-alpha-gold/50 transition-all appearance-none [color-scheme:dark]"
                           />
                         </div>
                       </div>
@@ -456,7 +456,7 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                             type="date"
                             value={formData.checkOut}
                             onChange={(e) => setFormData(prev => ({ ...prev, checkOut: e.target.value }))}
-                            className="w-full bg-white/5 border border-white/10 rounded-xl py-4 pl-12 pr-4 text-white focus:outline-none focus:border-alpha-gold/50 transition-all appearance-none"
+                            className="w-full bg-white/5 border border-white/10 rounded-xl py-4 pl-12 pr-4 text-white focus:outline-none focus:border-alpha-gold/50 transition-all appearance-none [color-scheme:dark]"
                           />
                         </div>
                       </div>
@@ -465,7 +465,7 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                     <Button 
                       disabled={!formData.checkIn || !formData.checkOut}
                       onClick={() => wrapSetStep(STEPS.GUESTS)}
-                      className="w-full bg-alpha-gold text-obsidian font-bold tracking-widest py-6 disabled:opacity-30"
+                      className="w-full bg-alpha-gold text-obsidian font-bold tracking-widest py-4 md:py-6 disabled:opacity-30 mt-auto shrink-0"
                     >
                       PRÓXIMO PASSO <ArrowRight className="ml-2" size={20} />
                     </Button>
@@ -565,7 +565,7 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
 
                     <Button 
                       onClick={() => wrapSetStep(STEPS.ARRIVAL_TIME)}
-                      className="w-full bg-alpha-gold text-obsidian font-bold tracking-widest py-6"
+                      className="w-full bg-alpha-gold text-obsidian font-bold tracking-widest py-4 md:py-6 mt-auto shrink-0"
                     >
                       PRÓXIMO PASSO <ArrowRight className="ml-2" size={20} />
                     </Button>
@@ -601,7 +601,7 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                     <Button 
                       disabled={!formData.arrivalTime}
                       onClick={() => wrapSetStep(STEPS.CONTACT)}
-                      className="w-full bg-alpha-gold text-obsidian font-bold tracking-widest py-6 disabled:opacity-30"
+                      className="w-full bg-alpha-gold text-obsidian font-bold tracking-widest py-4 md:py-6 disabled:opacity-30 mt-auto shrink-0"
                     >
                       QUASE LÁ <ArrowRight className="ml-2" size={20} />
                     </Button>
@@ -672,7 +672,7 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                     <Button 
                       disabled={!formData.name || !formData.whatsapp || !formData.email}
                       onClick={handleReservation}
-                      className="w-full bg-alpha-gold text-obsidian font-bold tracking-[0.2em] py-6 disabled:opacity-30"
+                      className="w-full bg-alpha-gold text-obsidian font-bold tracking-[0.2em] py-4 md:py-6 disabled:opacity-30 mt-auto shrink-0"
                     >
                       FINALIZAR E ENVIAR
                     </Button>
