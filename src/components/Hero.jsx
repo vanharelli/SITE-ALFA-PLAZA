@@ -36,7 +36,14 @@ const Hero = ({ onOpenReservation }) => {
         <div className="max-w-6xl mx-auto px-6 text-center">
           {/* Main Headline */}
           <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-1000 p-6 md:p-12">
-          <h1 className="font-serif text-4xl md:text-6xl lg:text-8xl tracking-widest leading-tight mb-4">
+            {/* Mobile Logo Module */}
+            <div className="md:hidden flex justify-center mb-6">
+              <div className="logo-module w-20 h-20 rounded-full flex items-center justify-center bg-white/5 border border-alpha-gold/30 backdrop-blur-md relative overflow-hidden shadow-lg shadow-alpha-gold/10">
+                <img src="/logo.webp" alt="Alpha Plaza Hotel" className="w-full h-full object-cover p-1" />
+              </div>
+            </div>
+
+            <h1 className="font-serif text-4xl md:text-6xl lg:text-8xl tracking-widest leading-tight mb-4">
             <span className="text-white">ALFA </span>
             <span className="text-alpha-gold">PLAZA</span>
             <span className="text-white"> HOTEL</span>
