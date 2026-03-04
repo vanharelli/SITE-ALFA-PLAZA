@@ -121,16 +121,20 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
       ? `${formData.childCount} crianças (${formData.allChildrenOver5 ? 'Todas acima de 5 anos' : 'Inclui menores de 5 anos'})`
       : 'Nenhuma';
 
-    const message = `*RESERVA - ALFA PLAZA HOTEL*\n` +
-      `*Tipo:* ${formData.type}\n` +
-      `*Categorias:* ${suitesText}\n` +
-      `*Datas:* ${formData.checkIn} a ${formData.checkOut}\n` +
-      `*Pessoas:* ${formData.adults}\n` +
-      `*Crianças:* ${childrenText}\n` +
-      `*Chegada:* ${formData.arrivalTime}\n` +
-      `*Cliente:* ${formData.name}\n` +
-      `*E-mail:* ${formData.email}\n` +
-      `*WhatsApp:* ${formData.whatsapp}`;
+    const message = `🏢 *RESERVA - ALFA PLAZA HOTEL*\n` +
+      `__________________________________\n\n` +
+      `👤 *Cliente:* ${formData.name}\n` +
+      `📱 *WhatsApp:* ${formData.whatsapp}\n` +
+      `✉️ *E-mail:* ${formData.email}\n` +
+      `__________________________________\n\n` +
+      `🛏️ *Categoria:* ${suitesText}\n` +
+      `👥 *Pessoas:* ${formData.adults}\n` +
+      `🧒 *Crianças:* ${childrenText}\n` +
+      `__________________________________\n\n` +
+      `📅 *Datas:* ${formData.checkIn} a ${formData.checkOut}\n` +
+      `🕒 *Chegada prevista:* ${formData.arrivalTime}\n` +
+      `__________________________________\n\n` +
+      `_Aguarde um momento. Nossa equipe de recepção iniciará o seu atendimento em instantes._`;
 
     const encodedMessage = encodeURIComponent(message);
     window.open(`https://wa.me/556132639131?text=${encodedMessage}`, '_blank');
