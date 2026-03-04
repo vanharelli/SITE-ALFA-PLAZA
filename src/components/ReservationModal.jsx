@@ -265,7 +265,7 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                   x: { type: "spring", stiffness: 300, damping: 30 },
                   opacity: { duration: 0.2 }
                 }}
-                className="p-6 h-full flex flex-col"
+                className="p-6 min-h-full flex flex-col"
               >
                 {step === STEPS.HUB && (
                   <div className="space-y-4 flex-1 flex flex-col justify-center">
@@ -551,7 +551,12 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
 
                             <div className="flex items-center justify-between p-4 rounded-xl bg-white/5 border border-white/10">
                               <div>
-                                <p className="text-white font-semibold text-xs">{t.reservation.guests.allOver5}</p>
+                                <p className="text-white font-semibold text-xs">
+                                  {formData.type === 'Grupos e Eventos' 
+                                    ? t.reservation.guests.allOver5 
+                                    : (parseInt(formData.childCount) > 1 ? t.reservation.guests.allOver5 : t.reservation.guests.oneChildOver5)
+                                  }
+                                </p>
                               </div>
                               <button 
                                 onClick={() => setFormData(prev => ({ ...prev, allChildrenOver5: !prev.allChildrenOver5 }))}

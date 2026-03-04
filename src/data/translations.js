@@ -108,6 +108,7 @@ export const translations = {
         childrenCourtesy: "Crianças até 5 anos ficam por cortesia.",
         childrenCount: "Quantas crianças?",
         allOver5: "Todos acima de 5 anos?",
+        oneChildOver5: "Tem mais que 5 anos?",
         childrenWarning: "*Crianças acima de 5 anos possuem tarifa diferenciada.",
         nextStep: "PRÓXIMO PASSO"
       },
