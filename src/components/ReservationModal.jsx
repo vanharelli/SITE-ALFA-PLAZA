@@ -427,54 +427,58 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                 )}
 
                 {step === STEPS.DATES && (
-                  <div className="space-y-8 flex flex-col h-full p-6">
-                    {formData.suite && (
-                      <div className="relative h-24 rounded-2xl overflow-hidden shrink-0 border border-white/10">
-                        <img src={formData.suite.image} className="w-full h-full object-cover" alt="" />
-                        <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px]" />
-                        <div className="absolute inset-0 flex items-center justify-center">
-                          <p className="text-white font-serif tracking-widest text-sm uppercase">{formData.suite.title}</p>
+                  <div className="flex flex-col h-full">
+                    <div className="flex-1 overflow-y-auto custom-scrollbar p-6 space-y-8">
+                      {formData.suite && (
+                        <div className="relative h-24 rounded-2xl overflow-hidden shrink-0 border border-white/10">
+                          <img src={formData.suite.image} className="w-full h-full object-cover" alt="" />
+                          <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px]" />
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <p className="text-white font-serif tracking-widest text-sm uppercase">{formData.suite.title}</p>
+                          </div>
                         </div>
-                      </div>
-                    )}
-                    
-                    <div className="space-y-6 flex-1 overflow-y-auto custom-scrollbar pr-2">
-                      <div className="space-y-1">
-                        <label className="text-alpha-gold text-[10px] tracking-[0.2em] uppercase font-bold ml-1">{t.reservation.dates.checkIn}</label>
-                        <div className="relative group">
-                          <Calendar className="absolute left-4 top-1/2 -translate-y-1/2 text-alpha-gold/50 group-focus-within:text-alpha-gold transition-colors z-10 pointer-events-none" size={20} />
-                          <input 
-                            type="date"
-                            lang={language === 'pt' ? 'pt-BR' : language === 'es' ? 'es-ES' : 'en-US'}
-                            value={formData.checkIn}
-                            onChange={(e) => setFormData(prev => ({ ...prev, checkIn: e.target.value }))}
-                            className="w-full bg-black/40 backdrop-blur-md border border-white/10 rounded-xl py-4 pl-12 pr-4 text-white focus:outline-none focus:border-alpha-gold/50 transition-all appearance-none [color-scheme:dark]"
-                          />
+                      )}
+                      
+                      <div className="space-y-6">
+                        <div className="space-y-1">
+                          <label className="text-alpha-gold text-[10px] tracking-[0.2em] uppercase font-bold ml-1">{t.reservation.dates.checkIn}</label>
+                          <div className="relative group">
+                            <Calendar className="absolute left-4 top-1/2 -translate-y-1/2 text-alpha-gold/50 group-focus-within:text-alpha-gold transition-colors z-10 pointer-events-none" size={20} />
+                            <input 
+                              type="date"
+                              lang={language === 'pt' ? 'pt-BR' : language === 'es' ? 'es-ES' : 'en-US'}
+                              value={formData.checkIn}
+                              onChange={(e) => setFormData(prev => ({ ...prev, checkIn: e.target.value }))}
+                              className="w-full bg-black/40 backdrop-blur-md border border-white/10 rounded-xl py-4 pl-12 pr-4 text-white focus:outline-none focus:border-alpha-gold/50 transition-all appearance-none [color-scheme:dark]"
+                            />
+                          </div>
                         </div>
-                      </div>
 
-                      <div className="space-y-1">
-                        <label className="text-alpha-gold text-[10px] tracking-[0.2em] uppercase font-bold ml-1">{t.reservation.dates.checkOut}</label>
-                        <div className="relative group">
-                          <Calendar className="absolute left-4 top-1/2 -translate-y-1/2 text-alpha-gold/50 group-focus-within:text-alpha-gold transition-colors z-10 pointer-events-none" size={20} />
-                          <input 
-                            type="date"
-                            lang={language === 'pt' ? 'pt-BR' : language === 'es' ? 'es-ES' : 'en-US'}
-                            value={formData.checkOut}
-                            onChange={(e) => setFormData(prev => ({ ...prev, checkOut: e.target.value }))}
-                            className="w-full bg-black/40 backdrop-blur-md border border-white/10 rounded-xl py-4 pl-12 pr-4 text-white focus:outline-none focus:border-alpha-gold/50 transition-all appearance-none [color-scheme:dark]"
-                          />
+                        <div className="space-y-1">
+                          <label className="text-alpha-gold text-[10px] tracking-[0.2em] uppercase font-bold ml-1">{t.reservation.dates.checkOut}</label>
+                          <div className="relative group">
+                            <Calendar className="absolute left-4 top-1/2 -translate-y-1/2 text-alpha-gold/50 group-focus-within:text-alpha-gold transition-colors z-10 pointer-events-none" size={20} />
+                            <input 
+                              type="date"
+                              lang={language === 'pt' ? 'pt-BR' : language === 'es' ? 'es-ES' : 'en-US'}
+                              value={formData.checkOut}
+                              onChange={(e) => setFormData(prev => ({ ...prev, checkOut: e.target.value }))}
+                              className="w-full bg-black/40 backdrop-blur-md border border-white/10 rounded-xl py-4 pl-12 pr-4 text-white focus:outline-none focus:border-alpha-gold/50 transition-all appearance-none [color-scheme:dark]"
+                            />
+                          </div>
                         </div>
                       </div>
                     </div>
 
-                    <Button 
-                      disabled={!formData.checkIn || !formData.checkOut}
-                      onClick={() => wrapSetStep(STEPS.GUESTS)}
-                      className="w-full bg-alpha-gold text-obsidian font-bold tracking-widest py-4 md:py-6 disabled:opacity-30 mt-auto shrink-0 relative z-10 mb-4"
-                    >
-                      {t.reservation.dates.nextStep} <ArrowRight className="ml-2" size={20} />
-                    </Button>
+                    <div className="p-6 pt-0 mt-auto shrink-0 relative z-10">
+                      <Button 
+                        disabled={!formData.checkIn || !formData.checkOut}
+                        onClick={() => wrapSetStep(STEPS.GUESTS)}
+                        className="w-full bg-alpha-gold text-obsidian font-bold tracking-widest py-4 md:py-6 disabled:opacity-30"
+                      >
+                        {t.reservation.dates.nextStep} <ArrowRight className="ml-2" size={20} />
+                      </Button>
+                    </div>
                   </div>
                 )}
 
