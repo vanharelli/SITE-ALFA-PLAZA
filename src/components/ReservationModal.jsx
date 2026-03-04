@@ -436,7 +436,7 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                       {experiences.map((exp) => (
                         <div 
                           key={exp.id}
-                          className="min-w-[280px] w-[80%] snap-center bg-zinc-950 border border-alpha-gold/30 rounded-2xl p-6 flex flex-col shadow-2xl relative overflow-hidden shrink-0 group"
+                          className="min-w-[280px] w-[80%] snap-center bg-white/5 backdrop-blur-sm border border-alpha-gold/30 rounded-2xl p-6 flex flex-col shadow-2xl relative overflow-hidden shrink-0 group"
                         >
                           {/* Background Image */}
                           <div className="absolute inset-0">
