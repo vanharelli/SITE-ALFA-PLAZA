@@ -236,7 +236,7 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
       id: 'guest-honor',
       title: 'Convidado de Honra',
       icon: Crown,
-      image: '/hotel/1.webp', // Using a placeholder as specific image wasn't found
+      image: '/convidado de honra.jpg',
       focus: 'Comemorações marcantes e hóspedes VIP.',
       setup: 'Bandeja de frutas frescas e chocolates, garrafa de vinho ou espumante, roupões para uso na estadia e café da manhã servido no quarto.'
     }
@@ -443,7 +443,7 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                             <img 
                               src={exp.image} 
                               alt={exp.title} 
-                              className="w-full h-full object-cover opacity-40 group-hover:scale-110 transition-transform duration-700"
+                              className="w-full h-full object-cover opacity-20 group-hover:scale-110 transition-transform duration-700"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-black/40" />
                           </div>
