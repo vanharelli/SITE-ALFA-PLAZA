@@ -436,16 +436,16 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                       {experiences.map((exp) => (
                         <div 
                           key={exp.id}
-                          className="min-w-[280px] w-[80%] snap-center bg-white/5 backdrop-blur-sm border border-alpha-gold/30 rounded-2xl p-6 flex flex-col shadow-2xl relative overflow-hidden shrink-0 group"
+                          className="min-w-[280px] w-[80%] snap-center bg-transparent border border-alpha-gold/30 rounded-2xl p-6 flex flex-col shadow-2xl relative overflow-hidden shrink-0 group"
                         >
                           {/* Background Image */}
                           <div className="absolute inset-0">
                             <img 
                               src={exp.image} 
                               alt={exp.title} 
-                              className="w-full h-full object-cover opacity-20 group-hover:scale-110 transition-transform duration-700"
+                              className="w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-700"
                             />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-black/40" />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/20" />
                           </div>
 
                           <div className="absolute top-0 right-0 p-4 opacity-10">
