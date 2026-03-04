@@ -245,81 +245,71 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
               >
                 {step === STEPS.HUB && (
                   <div className="space-y-4 flex-1 flex flex-col justify-center">
-                    <button 
-                      onClick={() => {
-                        setFormData(prev => ({ ...prev, type: 'Reserva Individual' }));
-                        wrapSetStep(STEPS.SUITE_SELECTION);
-                      }}
-                      className="group w-full p-5 rounded-2xl border border-alpha-gold/20 bg-white/5 hover:bg-alpha-gold/10 hover:border-alpha-gold/50 transition-all flex items-center justify-between text-left"
-                    >
-                      <div className="flex items-center space-x-4">
+                    <div className="grid grid-cols-2 gap-3">
+                      <button 
+                        onClick={() => {
+                          setFormData(prev => ({ ...prev, type: 'Reserva Individual' }));
+                          wrapSetStep(STEPS.SUITE_SELECTION);
+                        }}
+                        className="group p-4 rounded-2xl border border-alpha-gold/20 bg-white/5 hover:bg-alpha-gold/10 hover:border-alpha-gold/50 transition-all flex flex-col items-center justify-center text-center h-full gap-3"
+                      >
                         <div className="w-12 h-12 rounded-xl bg-alpha-gold/20 flex items-center justify-center text-alpha-gold group-hover:scale-110 transition-transform">
                           <CalendarCheck2 size={24} />
                         </div>
                         <div>
-                          <p className="text-white font-semibold tracking-wide">Reservar Agora</p>
-                          <p className="text-gray-400 text-xs">Individual ou Família</p>
+                          <p className="text-white font-semibold tracking-wide text-sm">Reservar Agora</p>
+                          <p className="text-gray-400 text-[10px]">Individual ou Família</p>
                         </div>
-                      </div>
-                      <ChevronRight className="text-alpha-gold/50 group-hover:text-alpha-gold" />
-                    </button>
+                      </button>
 
-                    <button 
-                      onClick={() => {
-                        setFormData(prev => ({ ...prev, type: 'Reserva Faturada' }));
-                        wrapSetStep(STEPS.RULES);
-                      }}
-                      className="group w-full p-5 rounded-2xl border border-white/10 bg-white/5 hover:bg-white/10 transition-all flex items-center justify-between text-left"
-                    >
-                      <div className="flex items-center space-x-4">
+                      <button 
+                        onClick={() => {
+                          setFormData(prev => ({ ...prev, type: 'Reserva Faturada' }));
+                          wrapSetStep(STEPS.RULES);
+                        }}
+                        className="group p-4 rounded-2xl border border-white/10 bg-white/5 hover:bg-white/10 transition-all flex flex-col items-center justify-center text-center h-full gap-3"
+                      >
                         <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center text-white/70 group-hover:scale-110 transition-transform">
                           <Building2 size={24} />
                         </div>
                         <div>
-                          <p className="text-white font-semibold tracking-wide">Reserva Faturada</p>
-                          <p className="text-gray-400 text-xs">Exclusivo para Empresas</p>
+                          <p className="text-white font-semibold tracking-wide text-sm">Reserva Faturada</p>
+                          <p className="text-gray-400 text-[10px]">Exclusivo para Empresas</p>
                         </div>
-                      </div>
-                      <ChevronRight className="text-white/20 group-hover:text-white/50" />
-                    </button>
+                      </button>
 
-                    <button 
-                      onClick={() => {
-                        setFormData(prev => ({ ...prev, type: 'Grupos e Eventos' }));
-                        wrapSetStep(STEPS.SUITE_SELECTION);
-                      }}
-                      className="group w-full p-5 rounded-2xl border border-white/10 bg-white/5 hover:bg-white/10 transition-all flex items-center justify-between text-left"
-                    >
-                      <div className="flex items-center space-x-4">
+                      <button 
+                        onClick={() => {
+                          setFormData(prev => ({ ...prev, type: 'Grupos e Eventos' }));
+                          wrapSetStep(STEPS.SUITE_SELECTION);
+                        }}
+                        className="group p-4 rounded-2xl border border-white/10 bg-white/5 hover:bg-white/10 transition-all flex flex-col items-center justify-center text-center h-full gap-3"
+                      >
                         <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center text-white/70 group-hover:scale-110 transition-transform">
                           <Users2 size={24} />
                         </div>
                         <div>
-                          <p className="text-white font-semibold tracking-wide">Grupos e Eventos</p>
-                          <p className="text-gray-400 text-xs">Solicitar Cotação Especial</p>
+                          <p className="text-white font-semibold tracking-wide text-sm">Grupos e Eventos</p>
+                          <p className="text-gray-400 text-[10px]">Solicitar Cotação Especial</p>
                         </div>
-                      </div>
-                      <ChevronRight className="text-white/20 group-hover:text-white/50" />
-                    </button>
+                      </button>
 
-                    <button 
-                      onClick={() => {
-                        setFormData(prev => ({ ...prev, type: 'Parceria Comercial' }));
-                        wrapSetStep(STEPS.RULES);
-                      }}
-                      className="group w-full p-5 rounded-2xl border border-white/10 bg-white/5 hover:bg-white/10 transition-all flex items-center justify-between text-left"
-                    >
-                      <div className="flex items-center space-x-4">
+                      <button 
+                        onClick={() => {
+                          setFormData(prev => ({ ...prev, type: 'Parceria Comercial' }));
+                          wrapSetStep(STEPS.RULES);
+                        }}
+                        className="group p-4 rounded-2xl border border-white/10 bg-white/5 hover:bg-white/10 transition-all flex flex-col items-center justify-center text-center h-full gap-3"
+                      >
                         <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center text-white/70 group-hover:scale-110 transition-transform">
                           <Mail size={24} />
                         </div>
                         <div>
-                          <p className="text-white font-semibold tracking-wide">Parceria Comercial</p>
-                          <p className="text-gray-400 text-xs">Seja um Parceiro Alfa Plaza</p>
+                          <p className="text-white font-semibold tracking-wide text-sm">Parceria Comercial</p>
+                          <p className="text-gray-400 text-[10px]">Seja um Parceiro Alfa Plaza</p>
                         </div>
-                      </div>
-                      <ChevronRight className="text-white/20 group-hover:text-white/50" />
-                    </button>
+                      </button>
+                    </div>
                   </div>
                 )}
 
