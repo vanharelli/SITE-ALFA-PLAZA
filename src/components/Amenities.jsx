@@ -46,9 +46,9 @@ const amenities = [
 
 const Amenities = () => {
   return (
-    <section id="amenities" className="py-24 bg-obsidian-dark">
+    <section id="amenities" className="py-12 md:py-24 bg-obsidian-dark">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-16 fade-in-section">
+        <div className="text-center mb-12 md:mb-16 fade-in-section">
           <div className="inline-block px-6 py-2 border border-alpha-gold/30 bg-white/5 backdrop-blur-sm mb-6 rounded-full">
             <span className="text-alpha-gold text-sm tracking-widest font-light">CONFORTO & LAZER</span>
           </div>

@@ -82,20 +82,20 @@ const RoomsGallery = () => {
   }));
 
   return (
-    <section id="rooms" className="py-24 relative overflow-hidden border-t border-alpha-gold/30">
+    <section id="rooms" className="py-12 md:py-24 relative overflow-hidden border-t border-alpha-gold/30">
       <div className="absolute inset-0 bg-obsidian/70 backdrop-blur-sm z-0"></div>
 
-      <div className="max-w-7xl mx-auto px-12 relative z-10">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-16 fade-in-section">
+        <div className="text-center mb-12 md:mb-16 fade-in-section">
           <div className="inline-block px-6 py-2 border border-alpha-gold/30 bg-white/5 backdrop-blur-sm mb-6 rounded-full">
             <span className="text-alpha-gold text-sm tracking-widest font-light">{t.rooms.sectionTitle}</span>
           </div>
-          <h2 className="font-serif text-4xl md:text-6xl text-white tracking-widest mb-6">
+          <h2 className="font-serif text-3xl md:text-6xl text-white tracking-widest mb-6">
             {t.rooms.mainTitle.split(' ')[0]} <span className="text-alpha-gold">{t.rooms.mainTitle.split(' ').slice(1).join(' ')}</span>
           </h2>
           <div className="h-px w-24 bg-alpha-gold mx-auto mb-6"></div>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto tracking-wide font-light">
+          <p className="text-gray-400 text-base md:text-lg max-w-2xl mx-auto tracking-wide font-light">
             {t.rooms.description}
           </p>
         </div>
@@ -110,7 +110,7 @@ const RoomsGallery = () => {
         >
           <CarouselContent className="-ml-4">
             {rooms.map((room, index) => (
-              <CarouselItem key={room.id} className="pl-4 md:basis-1/2 lg:basis-1/4">
+              <CarouselItem key={room.id} className="pl-4 basis-[85%] sm:basis-1/2 lg:basis-1/4">
                 <div 
                   className="group glass-dark rounded-xl overflow-hidden hover:border-alpha-gold/60 transition-all duration-500 hover:shadow-2xl hover:shadow-alpha-gold/10 hover:-translate-y-2 h-full"
                 >

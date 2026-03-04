@@ -6,7 +6,7 @@ import { User, MapPin, Car } from 'lucide-react';
 
 const DigitalProtocol = () => {
   return (
-    <section id="protocol" className="py-24 relative overflow-hidden">
+    <section id="protocol" className="py-12 md:py-24 relative overflow-hidden">
       <div className="absolute top-0 left-0 w-96 h-96 bg-alpha-gold/5 rounded-full blur-3xl z-0"></div>
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-alpha-gold/5 rounded-full blur-3xl z-0"></div>
       <div className="max-w-4xl mx-auto px-6 relative z-10">
@@ -14,15 +14,15 @@ const DigitalProtocol = () => {
           <div className="inline-block px-6 py-2 border border-alpha-gold/30 bg-white/5 backdrop-blur-sm mb-6 rounded-full">
             <span className="text-alpha-gold text-sm tracking-widest font-light">ACESSO PRIORITÁRIO</span>
           </div>
-          <h2 className="font-serif text-4xl md:text-6xl text-white tracking-widest mb-6">
+          <h2 className="font-serif text-3xl md:text-6xl text-white tracking-widest mb-6">
             PROTOCOLO DE <span className="text-alpha-gold">IDENTIFICAÇÃO DIGITAL</span>
           </h2>
           <div className="h-px w-24 bg-alpha-gold mx-auto mb-6"></div>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto tracking-wide font-light leading-relaxed">
+          <p className="text-gray-400 text-base md:text-lg max-w-2xl mx-auto tracking-wide font-light leading-relaxed">
             Inicie sua experiência de hospitalidade avançada. Valide suas credenciais abaixo.
           </p>
         </div>
-        <div className="glass-dark rounded-xl border border-white/5 p-8 md:p-12 fade-in-section">
+        <div className="glass-dark rounded-xl border border-white/5 p-6 md:p-12 fade-in-section">
           <form className="space-y-8">
             <div className="space-y-3">
               <Label htmlFor="fullName" className="text-gray-300 tracking-wide flex items-center space-x-2 text-base">

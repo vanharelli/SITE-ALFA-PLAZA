@@ -34,8 +34,8 @@ const Hero = () => {
       <div className="relative z-20 h-full flex items-center justify-center pt-24">
         <div className="max-w-6xl mx-auto px-6 text-center">
           {/* Main Headline */}
-          <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-1000 p-12">
-          <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl tracking-widest leading-tight mb-4">
+          <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-1000 p-6 md:p-12">
+          <h1 className="font-serif text-4xl md:text-6xl lg:text-8xl tracking-widest leading-tight mb-4">
             <span className="text-white">ALFA </span>
             <span className="text-alpha-gold">PLAZA</span>
             <span className="text-white"> HOTEL</span>
@@ -43,19 +43,20 @@ const Hero = () => {
           
           <div className="h-px w-32 bg-alpha-gold mx-auto mb-4"></div>
           
-          <p className="text-xl md:text-2xl text-gray-300 font-light tracking-wide max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg md:text-2xl text-gray-300 font-light tracking-wide max-w-3xl mx-auto leading-relaxed">
             {t.hero.subtitle}
           </p>
 
             {/* CTA Button */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8 w-full max-w-md mx-auto sm:max-w-none">
               <a 
                 href="https://wa.me/5561982062229"
                 target="_blank"
                 rel="noopener noreferrer"
+                className="w-full sm:w-auto"
               >
                 <Button 
-                  className="px-10 py-7 bg-alpha-gold text-obsidian font-semibold tracking-widest text-base hover:bg-alpha-gold/90 transition-all hover:scale-105 hover:shadow-2xl hover:shadow-alpha-gold/20"
+                  className="w-full sm:w-auto px-10 py-7 bg-alpha-gold text-obsidian font-semibold tracking-widest text-base hover:bg-alpha-gold/90 transition-all hover:scale-105 hover:shadow-2xl hover:shadow-alpha-gold/20"
                 >
                   {t.hero.cta}
                 </Button>
