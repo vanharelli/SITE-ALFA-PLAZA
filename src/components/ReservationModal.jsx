@@ -531,6 +531,9 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                       )}
                       
                       <div className="space-y-6">
+                        <div className="flex justify-center pb-2">
+                          <ChevronDown className="text-alpha-gold animate-bounce opacity-50" size={20} />
+                        </div>
                         <div className="space-y-1">
                           <label className="text-alpha-gold text-[10px] tracking-[0.2em] uppercase font-bold ml-1">{t.reservation.dates.checkIn}</label>
                           <div className="relative group">
