@@ -220,7 +220,7 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
       id: 'welcome-vip',
       title: 'Welcome VIP',
       icon: Star,
-      focus: 'Detalhes de alto padrão no apartamento para elevar a experiência de quem você valoriza.',
+      focus: 'Recepção de alto padrão no apartamento para ocasiões únicas.',
       setup: 'Cartão nominal escrito à mão, águas premium e macarons/trufas artesanais.'
     },
     {
@@ -370,7 +370,7 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                         </div>
                         <div>
                           <p className="text-white font-semibold tracking-wide text-xs">Recepção VIP & Homenagens</p>
-                          <p className="text-gray-400 text-[9px]">Detalhes de alto padrão no apartamento para elevar a experiência de quem você valoriza.</p>
+                          <p className="text-gray-400 text-[9px]">Recepção de alto padrão no apartamento para ocasiões únicas.</p>
                         </div>
                       </button>
                     </div>
