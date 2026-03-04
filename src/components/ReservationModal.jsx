@@ -16,7 +16,10 @@ import {
   ChevronRight,
   Info,
   ChevronDown,
-  Heart
+  Heart,
+  Star,
+  Gem,
+  Crown
 } from 'lucide-react';
 import { Button } from './ui/button';
 import { useLanguage } from '../context/LanguageContext';
@@ -24,6 +27,7 @@ import { useLanguage } from '../context/LanguageContext';
 const STEPS = {
   HUB: 'HUB',
   SUITE_SELECTION: 'SUITE_SELECTION',
+  EXPERIENCES: 'EXPERIENCES',
   DATES: 'DATES',
   GUESTS: 'GUESTS',
   ARRIVAL_TIME: 'ARRIVAL_TIME',
@@ -58,14 +62,16 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
     name: '',
     email: '',
     whatsapp: '',
-    type: 'Reserva Individual'
+    type: 'Reserva Individual',
+    experiencePackage: ''
   });
 
   const typeMapping = {
     'Reserva Individual': 'individual',
     'Reserva Faturada': 'corporate',
     'Grupos e Eventos': 'groups',
-    'Parceria Comercial': 'partnership'
+    'Parceria Comercial': 'partnership',
+    'Celebrações & Romance': 'celebrations'
   };
 
   useEffect(() => {
@@ -75,13 +81,15 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
           ...prev, 
           suite: initialSuite, 
           suites: [initialSuite],
-          type: 'Reserva Individual' 
+          type: 'Reserva Individual',
+          experiencePackage: ''
         }));
         setStep(STEPS.DATES);
         setHistory([STEPS.HUB]);
       } else {
         setStep(STEPS.HUB);
         setHistory([]);
+        setFormData(prev => ({ ...prev, experiencePackage: '' }));
       }
     }
   }, [isOpen, initialSuite]);
@@ -142,14 +150,19 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
       ? `${formData.childCount} crianças (${formData.allChildrenOver5 ? 'Todas acima de 5 anos' : 'Inclui menores de 5 anos'})`
       : 'Nenhuma';
 
-    const message = `🏢 *RESERVA - ALFA PLAZA HOTEL*\n` +
+    let message = `🏢 *RESERVA - ALFA PLAZA HOTEL*\n` +
       `__________________________________\n\n` +
       `👤 *Cliente:* ${formData.name}\n` +
       `📱 *WhatsApp:* ${formData.whatsapp}\n` +
       `✉️ *E-mail:* ${formData.email}\n` +
       `__________________________________\n\n` +
-      `🛏️ *Categoria:* ${suitesText}\n` +
-      `👥 *Pessoas:* ${formData.adults}\n` +
+      `🛏️ *Categoria:* ${suitesText}\n`;
+
+    if (formData.experiencePackage) {
+      message += `💎 *Recepção VIP:* ${formData.experiencePackage}\n`;
+    }
+
+    message += `👥 *Pessoas:* ${formData.adults}\n` +
       `🧒 *Crianças:* ${childrenText}\n` +
       `__________________________________\n\n` +
       `📅 *Datas:* ${formData.checkIn} a ${formData.checkOut}\n` +
@@ -165,6 +178,7 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
   const stepsProgress = {
     [STEPS.HUB]: 0,
     [STEPS.SUITE_SELECTION]: 20,
+    [STEPS.EXPERIENCES]: 20,
     [STEPS.DATES]: 40,
     [STEPS.GUESTS]: 60,
     [STEPS.ARRIVAL_TIME]: 80,
@@ -200,6 +214,30 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
     setDirection(-1);
     goBack();
   };
+
+  const experiences = [
+    {
+      id: 'welcome-vip',
+      title: 'Welcome VIP',
+      icon: Star,
+      focus: 'Surpreender com elegância e simplicidade.',
+      setup: 'Cartão nominal escrito à mão, águas premium e macarons/trufas artesanais.'
+    },
+    {
+      id: 'boutique-exp',
+      title: 'Boutique Experience',
+      icon: Gem,
+      focus: 'Recepção sofisticada para casais ou executivos.',
+      setup: 'Tábua de frios, meia garrafa de vinho e arranjo floral minimalista.'
+    },
+    {
+      id: 'guest-honor',
+      title: 'Guest of Honor',
+      icon: Crown,
+      focus: 'Comemorações marcantes e hóspedes VIP.',
+      setup: 'Cesta de frutas e chocolates, vinho/espumante (750ml), roupões e café da manhã no quarto.'
+    }
+  ];
 
   if (!isOpen) return null;
 
@@ -241,7 +279,7 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
               <span>{step === STEPS.HUB ? t.reservation.title : t.reservation.request}</span>
               {step !== STEPS.HUB && (
                 <span className="text-white/50 text-[10px] tracking-wider mt-0.5 normal-case font-sans">
-                  {t.reservation.types[typeMapping[formData.type]]}
+                  {t.reservation.types[typeMapping[formData.type]] || formData.type}
                 </span>
               )}
             </h2>
@@ -322,8 +360,8 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
 
                       <button 
                         onClick={() => {
-                          const msg = encodeURIComponent("Olá! Gostaria de saber mais sobre os pacotes de decoração e experiências para uma Data Especial no Alfa Plaza Hotel.");
-                          window.open(`https://wa.me/556132639131?text=${msg}`, '_blank');
+                          setFormData(prev => ({ ...prev, type: 'Celebrações & Romance' }));
+                          wrapSetStep(STEPS.EXPERIENCES);
                         }}
                         className="group p-4 rounded-2xl border border-white/10 bg-white/5 hover:bg-white/10 transition-all flex flex-col items-center justify-center text-center h-full gap-3"
                       >
@@ -389,6 +427,42 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                   </div>
                 )}
 
+                {step === STEPS.EXPERIENCES && (
+                  <div className="flex flex-col h-full justify-center">
+                    <div className="flex overflow-x-auto snap-x snap-mandatory gap-4 p-6 pb-8 no-scrollbar">
+                      {experiences.map((exp) => (
+                        <div 
+                          key={exp.id}
+                          className="min-w-[280px] w-[80%] snap-center bg-zinc-950 border border-alpha-gold/30 rounded-2xl p-6 flex flex-col shadow-2xl relative overflow-hidden shrink-0"
+                        >
+                          <div className="absolute top-0 right-0 p-4 opacity-10">
+                            <exp.icon size={80} className="text-alpha-gold" />
+                          </div>
+                          
+                          <div className="mb-6 relative z-10">
+                            <div className="w-12 h-12 rounded-xl bg-alpha-gold/10 flex items-center justify-center mb-4 text-alpha-gold border border-alpha-gold/20">
+                              <exp.icon size={24} />
+                            </div>
+                            <h3 className="text-xl font-serif text-white mb-2">{exp.title}</h3>
+                            <p className="text-xs text-alpha-gold font-bold tracking-widest uppercase mb-4">{exp.focus}</p>
+                            <p className="text-sm text-gray-400 leading-relaxed">{exp.setup}</p>
+                          </div>
+
+                          <Button
+                            onClick={() => {
+                              setFormData(prev => ({ ...prev, experiencePackage: exp.title }));
+                              wrapSetStep(STEPS.DATES);
+                            }}
+                            className="w-full bg-alpha-gold text-obsidian font-bold tracking-widest py-4 mt-auto relative z-10"
+                          >
+                            SELECIONAR
+                          </Button>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
                 {step === STEPS.RULES && (
                   <div className="flex flex-col h-full">
                     <div className="flex-1 overflow-y-auto custom-scrollbar p-6 space-y-4">
@@ -413,6 +487,9 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                             ))}
                           </>
                         )}
+                        <div className="flex justify-center pt-2">
+                          <ChevronDown className="text-alpha-gold animate-bounce opacity-50" size={20} />
+                        </div>
                       </div>
                     </div>
                     <div className="p-6 pt-0 mt-auto shrink-0 relative z-10">
@@ -530,23 +607,23 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
 
                         <div className="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-6">
                           <div className="flex items-center justify-between">
-                          <div>
-                            <p className="text-white font-semibold text-sm">{t.reservation.guests.hasChildren}</p>
-                            <p className="text-gray-400 text-[10px] tracking-wider uppercase mt-1">{t.reservation.guests.childrenCourtesy}</p>
+                            <div>
+                              <p className="text-white font-semibold text-sm">{t.reservation.guests.hasChildren}</p>
+                              <p className="text-gray-400 text-[10px] tracking-wider uppercase mt-1">{t.reservation.guests.childrenCourtesy}</p>
+                            </div>
+                            <div className="flex items-center gap-2">
+                              {formData.hasChildren && <span className="text-alpha-gold text-[10px] font-bold uppercase">Sim</span>}
+                              <button 
+                                onClick={() => setFormData(prev => ({ ...prev, hasChildren: !prev.hasChildren }))}
+                                className={`w-12 h-6 rounded-full transition-all relative ${formData.hasChildren ? 'bg-alpha-gold' : 'bg-white/10'}`}
+                              >
+                                <motion.div 
+                                  animate={{ x: formData.hasChildren ? 26 : 4 }}
+                                  className="absolute top-1 w-4 h-4 rounded-full bg-white shadow-sm"
+                                />
+                              </button>
+                            </div>
                           </div>
-                          <div className="flex items-center gap-2">
-                            {formData.hasChildren && <span className="text-alpha-gold text-[10px] font-bold uppercase">Sim</span>}
-                            <button 
-                              onClick={() => setFormData(prev => ({ ...prev, hasChildren: !prev.hasChildren }))}
-                              className={`w-12 h-6 rounded-full transition-all relative ${formData.hasChildren ? 'bg-alpha-gold' : 'bg-white/10'}`}
-                            >
-                              <motion.div 
-                                animate={{ x: formData.hasChildren ? 26 : 4 }}
-                                className="absolute top-1 w-4 h-4 rounded-full bg-white shadow-sm"
-                              />
-                            </button>
-                          </div>
-                        </div>
 
                           {formData.hasChildren && (
                             <motion.div 
