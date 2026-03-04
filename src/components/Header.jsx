@@ -58,6 +58,17 @@ const Header = ({ onOpenReservation }) => {
       <div className="max-w-7xl mx-auto px-6 h-full flex items-center pt-[env(safe-area-inset-top)]">
         <div className="flex items-center justify-between w-full">
           <div className="flex items-center space-x-3">
+            {/* Desktop Logo */}
+            {!logoError && (
+              <div className="hidden md:flex logo-module w-10 h-10 md:w-12 md:h-12 mr-2">
+                <img
+                  src="/logo.webp"
+                  alt="Alpha Plaza Hotel"
+                  className="w-full h-full object-cover p-0.5"
+                  onError={() => setLogoError(true)}
+                />
+              </div>
+            )}
             <div className="flex flex-col items-start">
               <h1 className="font-serif text-lg md:text-xl tracking-widest text-white leading-none">
                 ALFA <span className="text-alpha-gold">PLAZA</span>
