@@ -14,21 +14,9 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative h-screen w-full overflow-hidden">
-      {/* Background Video */}
-      <div className="absolute inset-0 z-0">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="w-full h-full object-cover"
-        >
-          <source src="/background video.mp4" type="video/mp4" />
-          Seu navegador não suporta a tag de vídeo.
-        </video>
-        <div className="absolute inset-0 bg-obsidian/40 backdrop-blur-[10px]"></div>
-      </div>
+    <section className="relative h-screen w-full overflow-hidden bg-cover bg-center bg-fixed" style={{ backgroundImage: "url('/backgroundalfa.jpg')" }}>
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-obsidian/60 backdrop-blur-sm z-10"></div>
 
       {/* Content */}
       <div className="relative z-20 h-full flex items-center justify-center pt-24">

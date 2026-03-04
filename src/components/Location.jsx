@@ -1,5 +1,5 @@
-import React from 'react';
-import { MapPin, Phone, Clock, Star, Quote } from 'lucide-react';
+import React, { useState } from 'react';
+import { MapPin, Phone, Clock, Star, Quote, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from './ui/button';
 import {
   Carousel,
@@ -10,6 +10,7 @@ import {
 } from "./ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import { useLanguage } from '../context/LanguageContext';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const hotelImages = [
   '/hotel/1.jpeg',
@@ -62,10 +63,81 @@ const testimonials = [
 
 const Location = () => {
   const { t } = useLanguage();
+  const [selectedImageIndex, setSelectedImageIndex] = useState(null);
+
+  const nextImage = () => {
+    setSelectedImageIndex((prev) => (prev + 1) % hotelImages.length);
+  };
+
+  const prevImage = () => {
+    setSelectedImageIndex((prev) => (prev - 1 + hotelImages.length) % hotelImages.length);
+  };
 
   return (
-    <section id="location" className="py-24 relative overflow-hidden">
+    <section id="location" className="relative py-20 sm:py-32 bg-cover bg-center bg-fixed" style={{ backgroundImage: "url('/backgroundalfa.jpg')" }}>
       <div className="absolute inset-0 bg-obsidian/80 backdrop-blur-sm z-0"></div>
+
+      {/* Expanded Gallery Modal */}
+      <AnimatePresence>
+        {selectedImageIndex !== null && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[10000] bg-black/95 backdrop-blur-xl flex flex-col items-center justify-center p-4 md:p-8"
+          >
+            <button 
+              onClick={() => setSelectedImageIndex(null)}
+              className="absolute top-6 right-6 text-white/70 hover:text-white transition-colors z-[10001] p-2 bg-white/10 rounded-full"
+            >
+              <X size={32} />
+            </button>
+
+            <div className="relative w-full h-full max-w-6xl flex items-center justify-center">
+              <button 
+                onClick={prevImage}
+                className="absolute left-0 md:-left-16 text-white/50 hover:text-white transition-all z-[10001] p-4"
+              >
+                <ChevronLeft size={48} strokeWidth={1} />
+              </button>
+
+              <motion.div
+                key={selectedImageIndex}
+                initial={{ scale: 0.95, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                className="w-full h-full flex items-center justify-center"
+              >
+                <img 
+                  src={hotelImages[selectedImageIndex]}
+                  alt="Hotel Expanded View"
+                  className="max-w-full max-h-full object-contain shadow-2xl rounded-lg"
+                />
+              </motion.div>
+
+              <button 
+                onClick={nextImage}
+                className="absolute right-0 md:-right-16 text-white/50 hover:text-white transition-all z-[10001] p-4"
+              >
+                <ChevronRight size={48} strokeWidth={1} />
+              </button>
+            </div>
+
+            {/* Thumbnail Navigation (Optional but helpful) */}
+            <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2 px-4 overflow-x-auto max-w-full pb-2">
+              {hotelImages.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setSelectedImageIndex(idx)}
+                  className={`w-2 h-2 rounded-full transition-all ${
+                    selectedImageIndex === idx ? 'bg-alpha-gold w-8' : 'bg-white/20 hover:bg-white/40'
+                  }`}
+                />
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Background Elements */}
       <div className="absolute top-1/2 left-0 w-96 h-96 bg-alpha-gold/5 rounded-full blur-3xl z-0"></div>
@@ -114,7 +186,10 @@ const Location = () => {
                   <CarouselContent className="-ml-0 h-full">
                     {hotelImages.map((image, index) => (
                       <CarouselItem key={index} className="pl-0 h-full w-full flex items-center justify-center bg-black">
-                        <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
+                        <div 
+                          className="relative w-full h-full flex items-center justify-center overflow-hidden cursor-zoom-in"
+                          onClick={() => setSelectedImageIndex(index)}
+                        >
                           <img 
                             src={image}
                             alt={`Alfa Plaza Hotel - Imagem ${index + 1}`}

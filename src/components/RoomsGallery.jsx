@@ -82,7 +82,7 @@ const RoomsGallery = () => {
   }));
 
   return (
-    <section id="rooms" className="py-12 md:py-24 relative overflow-hidden border-t border-alpha-gold/30">
+    <section id="rooms" className="relative py-20 sm:py-32 bg-cover bg-center bg-fixed" style={{ backgroundImage: "url('/backgroundalfa.jpg')" }}>
       <div className="absolute inset-0 bg-obsidian/70 backdrop-blur-sm z-0"></div>
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">

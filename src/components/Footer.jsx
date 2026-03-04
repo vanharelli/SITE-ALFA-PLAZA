@@ -9,7 +9,7 @@ const Footer = () => {
   const [isLegalModalOpen, setIsLegalModalOpen] = useState(false);
 
   return (
-    <footer className="glass-dark border-t border-white/10 py-12 relative overflow-hidden">
+    <footer className="relative bg-cover bg-center bg-fixed border-t border-white/10 py-12 overflow-hidden" style={{ backgroundImage: "url('/backgroundalfa.jpg')" }}>
       <div className="absolute inset-0 bg-obsidian/90 backdrop-blur-sm z-0"></div>
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">

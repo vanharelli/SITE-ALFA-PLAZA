@@ -1,5 +1,7 @@
 import React from 'react';
 import { Wifi, Coffee, Bell, Car, UserCheck, ArrowUpFromDot, ShieldCheck, Smartphone } from 'lucide-react';
+import { Button } from './ui/button';
+import { useLanguage } from '../context/LanguageContext';
 
 const amenities = [
   { 
@@ -45,9 +47,11 @@ const amenities = [
 ];
 
 const Amenities = () => {
+  const { t } = useLanguage();
   return (
-    <section id="amenities" className="py-12 md:py-24 bg-obsidian-dark">
-      <div className="max-w-7xl mx-auto px-6">
+    <section id="amenities" className="relative py-20 sm:py-32 bg-cover bg-center bg-fixed" style={{ backgroundImage: "url('/backgroundalfa.jpg')" }}>
+      <div className="absolute inset-0 bg-obsidian/80 backdrop-blur-sm z-0"></div>
+      <div className="relative z-10 max-w-7xl mx-auto px-6">
         <div className="text-center mb-12 md:mb-16 fade-in-section">
           <div className="inline-block px-6 py-2 border border-alpha-gold/30 bg-white/5 backdrop-blur-sm mb-6 rounded-full">
             <span className="text-alpha-gold text-sm tracking-widest font-light">CONFORTO & LAZER</span>
@@ -75,6 +79,22 @@ const Amenities = () => {
               <p className="text-gray-400 text-xs leading-relaxed font-light">{item.description}</p>
             </div>
           ))}
+        </div>
+
+        {/* Action Button */}
+        <div className="flex justify-center fade-in-section relative z-10">
+          <a 
+            href="https://wa.me/5561982062229"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block"
+          >
+            <Button 
+              className="bg-alpha-gold text-obsidian font-bold tracking-[0.2em] uppercase px-10 py-6 text-lg hover:bg-alpha-gold/90 transition-all hover:scale-105 shadow-xl shadow-alpha-gold/20"
+            >
+              {t.header.bookButton}
+            </Button>
+          </a>
         </div>
       </div>
     </section>
