@@ -500,6 +500,9 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                       </div>
                     </div>
                     <div className="p-6 pt-0 mt-auto shrink-0 relative z-10">
+                      <div className="flex justify-center pb-2">
+                        <ChevronDown className="text-alpha-gold animate-bounce opacity-50" size={20} />
+                      </div>
                       <Button 
                         onClick={() => {
                           const email = formData.type === 'Reserva Faturada' ? 'reservas@alfaplazahotel.com.br' : 'administrativo@alfaplazahotel.com.br';
@@ -563,6 +566,9 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                     </div>
 
                     <div className="p-6 pt-0 mt-auto shrink-0 relative z-10">
+                      <div className="flex justify-center pb-2">
+                        <ChevronDown className="text-alpha-gold animate-bounce opacity-50" size={20} />
+                      </div>
                       <Button 
                         disabled={!formData.checkIn || !formData.checkOut}
                         onClick={() => wrapSetStep(STEPS.GUESTS)}
