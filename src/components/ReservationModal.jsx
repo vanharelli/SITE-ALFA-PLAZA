@@ -44,21 +44,30 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
   const [history, setHistory] = useState([]);
   const [formData, setFormData] = useState({
     suite: initialSuite,
+    suites: initialSuite ? [initialSuite] : [],
     checkIn: '',
     checkOut: '',
     adults: '1',
     hasChildren: false,
+    childCount: '1',
+    allChildrenOver5: false,
     childAge: '',
     arrivalTime: '',
     name: '',
+    email: '',
     whatsapp: '',
-    type: 'Reserva Individual' // Default
+    type: 'Reserva Individual'
   });
 
   useEffect(() => {
     if (isOpen) {
       if (initialSuite) {
-        setFormData(prev => ({ ...prev, suite: initialSuite, type: 'Reserva Individual' }));
+        setFormData(prev => ({ 
+          ...prev, 
+          suite: initialSuite, 
+          suites: [initialSuite],
+          type: 'Reserva Individual' 
+        }));
         setStep(STEPS.DATES);
         setHistory([STEPS.HUB]);
       } else {
@@ -84,19 +93,43 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
   };
 
   const handleSuiteSelect = (suite) => {
-    setFormData(prev => ({ ...prev, suite }));
-    goToStep(STEPS.DATES);
+    if (formData.type === 'Grupos e Eventos') {
+      const isSelected = formData.suites.find(s => s.id === suite.id);
+      if (isSelected) {
+        setFormData(prev => ({
+          ...prev,
+          suites: prev.suites.filter(s => s.id !== suite.id)
+        }));
+      } else {
+        setFormData(prev => ({
+          ...prev,
+          suites: [...prev.suites, suite]
+        }));
+      }
+    } else {
+      setFormData(prev => ({ ...prev, suite, suites: [suite] }));
+      goToStep(STEPS.DATES);
+    }
   };
 
   const handleReservation = () => {
-    const childrenText = formData.hasChildren ? `Criança (${formData.childAge} anos)` : 'Nenhuma';
+    const suitesText = formData.type === 'Grupos e Eventos' 
+      ? formData.suites.map(s => s.title).join(', ')
+      : (formData.suite?.title || 'Não especificada');
+
+    const childrenText = formData.hasChildren 
+      ? `${formData.childCount} crianças (${formData.allChildrenOver5 ? 'Todas acima de 5 anos' : 'Inclui menores de 5 anos'})`
+      : 'Nenhuma';
+
     const message = `*RESERVA - ALFA PLAZA HOTEL*\n` +
       `*Tipo:* ${formData.type}\n` +
-      `*Categoria:* ${formData.suite?.title || 'Não especificada'}\n` +
+      `*Categorias:* ${suitesText}\n` +
       `*Datas:* ${formData.checkIn} a ${formData.checkOut}\n` +
-      `*Adultos:* ${formData.adults} | *Crianças:* ${childrenText}\n` +
+      `*Pessoas:* ${formData.adults}\n` +
+      `*Crianças:* ${childrenText}\n` +
       `*Chegada:* ${formData.arrivalTime}\n` +
       `*Cliente:* ${formData.name}\n` +
+      `*E-mail:* ${formData.email}\n` +
       `*WhatsApp:* ${formData.whatsapp}`;
 
     const encodedMessage = encodeURIComponent(message);
@@ -160,7 +193,7 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 0.9, opacity: 0 }}
-          className="relative w-full max-w-[500px] bg-obsidian border border-alpha-gold/30 rounded-3xl shadow-2xl overflow-hidden flex flex-col h-[650px] max-h-[90vh]"
+          className="relative w-full max-w-[500px] bg-black/90 backdrop-blur-xl border border-alpha-gold/30 rounded-3xl shadow-2xl overflow-hidden flex flex-col h-[650px] max-h-[90vh]"
         >
           {/* Progress Bar */}
           <div className="absolute top-0 left-0 w-full h-1 bg-white/5 z-50">
@@ -172,7 +205,7 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
           </div>
 
           {/* Header */}
-          <div className="p-6 border-b border-white/10 flex items-center justify-between bg-obsidian-light shrink-0">
+          <div className="p-6 border-b border-white/10 flex items-center justify-between bg-white/5 backdrop-blur-md shrink-0">
             <button 
               onClick={wrapGoBack}
               className="text-white/50 hover:text-white transition-colors p-2 -ml-2"
@@ -191,7 +224,7 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
           </div>
 
           {/* Content Area */}
-          <div className="flex-1 overflow-y-auto custom-scrollbar relative">
+          <div className="flex-1 overflow-y-auto custom-scrollbar relative bg-transparent">
             <AnimatePresence mode="wait" custom={direction}>
               <motion.div
                 key={step}
@@ -287,24 +320,51 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                 )}
 
                 {step === STEPS.SUITE_SELECTION && (
-                  <div className="space-y-4">
-                    <p className="text-alpha-gold text-sm font-semibold tracking-widest uppercase mb-4">Escolha sua Suíte</p>
-                    <div className="grid grid-cols-1 gap-4 overflow-y-auto pr-2 custom-scrollbar">
-                      {roomData.map((room) => (
-                        <button
-                          key={room.id}
-                          onClick={() => handleSuiteSelect(room)}
-                          className="group relative h-32 rounded-2xl border border-white/10 overflow-hidden text-left hover:border-alpha-gold/50 transition-all"
-                        >
-                          <img src={room.image} alt={room.title} className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
-                          <div className="absolute inset-0 bg-gradient-to-r from-black via-black/40 to-transparent" />
-                          <div className="relative p-5 h-full flex flex-col justify-center">
-                            <p className="text-white font-serif text-lg tracking-wide">{room.title}</p>
-                            <p className="text-alpha-gold text-xs tracking-widest uppercase mt-1">Selecionar</p>
-                          </div>
-                        </button>
-                      ))}
+                  <div className="space-y-4 h-full flex flex-col">
+                    <p className="text-alpha-gold text-sm font-semibold tracking-widest uppercase mb-4">
+                      {formData.type === 'Grupos e Eventos' ? 'Selecione as categorias do grupo' : 'Escolha sua Suíte'}
+                    </p>
+                    <div className="grid grid-cols-1 gap-4 overflow-y-auto pr-2 custom-scrollbar flex-1">
+                      {roomData.map((room) => {
+                        const isSelected = formData.suites.find(s => s.id === room.id);
+                        return (
+                          <button
+                            key={room.id}
+                            onClick={() => handleSuiteSelect(room)}
+                            className={`group relative h-28 rounded-2xl border transition-all overflow-hidden text-left ${
+                              isSelected ? 'border-alpha-gold ring-2 ring-alpha-gold/30' : 'border-white/10'
+                            }`}
+                          >
+                            <img src={room.image} alt={room.title} className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                            <div className="absolute inset-0 bg-gradient-to-r from-black via-black/40 to-transparent" />
+                            <div className="relative p-5 h-full flex items-center justify-between">
+                              <div>
+                                <p className="text-white font-serif text-lg tracking-wide">{room.title}</p>
+                                {isSelected && (
+                                  <p className="text-alpha-gold text-[10px] tracking-widest uppercase font-bold mt-1">Selecionado</p>
+                                )}
+                              </div>
+                              {formData.type === 'Grupos e Eventos' && (
+                                <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all ${
+                                  isSelected ? 'bg-alpha-gold border-alpha-gold' : 'border-white/30'
+                                }`}>
+                                  {isSelected && <ArrowRight size={14} className="text-obsidian" />}
+                                </div>
+                              )}
+                            </div>
+                          </button>
+                        );
+                      })}
                     </div>
+                    {formData.type === 'Grupos e Eventos' && (
+                      <Button 
+                        disabled={formData.suites.length === 0}
+                        onClick={() => wrapSetStep(STEPS.DATES)}
+                        className="w-full bg-alpha-gold text-obsidian font-bold tracking-widest py-6 mt-4 disabled:opacity-30"
+                      >
+                        PRÓXIMO PASSO <ArrowRight className="ml-2" size={20} />
+                      </Button>
+                    )}
                   </div>
                 )}
 
@@ -412,20 +472,36 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                   <div className="space-y-8 flex flex-col h-full">
                     <div className="space-y-6 flex-1">
                       <div className="space-y-3">
-                        <label className="text-alpha-gold text-[10px] tracking-[0.2em] uppercase font-bold ml-1">Quantos adultos?</label>
+                        <label className="text-alpha-gold text-[10px] tracking-[0.2em] uppercase font-bold ml-1">
+                          {formData.type === 'Grupos e Eventos' ? 'Quantas pessoas no grupo?' : 'Quantos adultos?'}
+                        </label>
                         <div className="relative group">
-                          <Users className="absolute left-4 top-1/2 -translate-y-1/2 text-alpha-gold/50" size={20} />
-                          <select 
-                            value={formData.adults}
-                            onChange={(e) => setFormData(prev => ({ ...prev, adults: e.target.value }))}
-                            className="w-full bg-white/5 border border-white/10 rounded-xl py-4 pl-12 pr-4 text-white focus:outline-none focus:border-alpha-gold/50 transition-all appearance-none"
-                          >
-                            <option value="1">1 Adulto</option>
-                            <option value="2">2 Adultos</option>
-                            <option value="3">3 Adultos</option>
-                            <option value="4">4 Adultos</option>
-                            <option value="5">5+ Adultos</option>
-                          </select>
+                          <Users className="absolute left-4 top-1/2 -translate-y-1/2 text-alpha-gold/50 group-focus-within:text-alpha-gold transition-colors" size={20} />
+                          {formData.type === 'Grupos e Eventos' ? (
+                            <input 
+                              type="number"
+                              min="1"
+                              max="100"
+                              value={formData.adults}
+                              onChange={(e) => {
+                                const val = Math.min(100, Math.max(1, parseInt(e.target.value) || 1));
+                                setFormData(prev => ({ ...prev, adults: val.toString() }));
+                              }}
+                              className="w-full bg-white/5 border border-white/10 rounded-xl py-4 pl-12 pr-4 text-white focus:outline-none focus:border-alpha-gold/50 transition-all"
+                            />
+                          ) : (
+                            <select 
+                              value={formData.adults}
+                              onChange={(e) => setFormData(prev => ({ ...prev, adults: e.target.value }))}
+                              className="w-full bg-white/5 border border-white/10 rounded-xl py-4 pl-12 pr-4 text-white focus:outline-none focus:border-alpha-gold/50 transition-all appearance-none"
+                            >
+                              <option value="1">1 Adulto</option>
+                              <option value="2">2 Adultos</option>
+                              <option value="3">3 Adultos</option>
+                              <option value="4">4 Adultos</option>
+                              <option value="5">5+ Adultos</option>
+                            </select>
+                          )}
                         </div>
                       </div>
 
@@ -450,17 +526,34 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                           <motion.div 
                             initial={{ opacity: 0, height: 0 }}
                             animate={{ opacity: 1, height: 'auto' }}
-                            className="space-y-3"
+                            className="space-y-6"
                           >
-                            <label className="text-alpha-gold text-[10px] tracking-[0.2em] uppercase font-bold">Qual a idade da criança?</label>
-                            <input 
-                              type="number"
-                              placeholder="Ex: 4"
-                              value={formData.childAge}
-                              onChange={(e) => setFormData(prev => ({ ...prev, childAge: e.target.value }))}
-                              className="w-full bg-white/10 border border-white/10 rounded-xl py-4 px-4 text-white focus:outline-none focus:border-alpha-gold/50 transition-all"
-                            />
-                            <p className="text-gray-500 text-[10px] italic">*Acima de 5 anos, será cobrado como adulto.</p>
+                            <div className="space-y-3">
+                              <label className="text-alpha-gold text-[10px] tracking-[0.2em] uppercase font-bold">Quantas crianças?</label>
+                              <input 
+                                type="number"
+                                min="1"
+                                value={formData.childCount}
+                                onChange={(e) => setFormData(prev => ({ ...prev, childCount: e.target.value }))}
+                                className="w-full bg-white/10 border border-white/10 rounded-xl py-4 px-4 text-white focus:outline-none focus:border-alpha-gold/50 transition-all"
+                              />
+                            </div>
+
+                            <div className="flex items-center justify-between p-4 rounded-xl bg-white/5 border border-white/10">
+                              <div>
+                                <p className="text-white font-semibold text-xs">Todos acima de 5 anos?</p>
+                              </div>
+                              <button 
+                                onClick={() => setFormData(prev => ({ ...prev, allChildrenOver5: !prev.allChildrenOver5 }))}
+                                className={`w-12 h-6 rounded-full transition-all relative ${formData.allChildrenOver5 ? 'bg-alpha-gold' : 'bg-white/10'}`}
+                              >
+                                <motion.div 
+                                  animate={{ x: formData.allChildrenOver5 ? 26 : 4 }}
+                                  className="absolute top-1 w-4 h-4 rounded-full bg-white shadow-sm"
+                                />
+                              </button>
+                            </div>
+                            <p className="text-gray-500 text-[10px] italic">*Crianças acima de 5 anos possuem tarifa diferenciada.</p>
                           </motion.div>
                         )}
                       </div>
@@ -527,9 +620,23 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                             <User className="absolute left-4 top-1/2 -translate-y-1/2 text-alpha-gold/50" size={20} />
                             <input 
                               type="text"
-                              placeholder="Como devemos te chamar?"
+                              placeholder="Qual seu nome?"
                               value={formData.name}
                               onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
+                              className="w-full bg-white/5 border border-white/10 rounded-xl py-4 pl-12 pr-4 text-white focus:outline-none focus:border-alpha-gold/50 transition-all"
+                            />
+                          </div>
+                        </div>
+
+                        <div className="space-y-2">
+                          <label className="text-alpha-gold text-[10px] tracking-[0.2em] uppercase font-bold ml-1">E-mail</label>
+                          <div className="relative group">
+                            <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-alpha-gold/50" size={20} />
+                            <input 
+                              type="email"
+                              placeholder="seu@email.com"
+                              value={formData.email}
+                              onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
                               className="w-full bg-white/5 border border-white/10 rounded-xl py-4 pl-12 pr-4 text-white focus:outline-none focus:border-alpha-gold/50 transition-all"
                             />
                           </div>
@@ -559,7 +666,7 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                     </div>
 
                     <Button 
-                      disabled={!formData.name || !formData.whatsapp}
+                      disabled={!formData.name || !formData.whatsapp || !formData.email}
                       onClick={handleReservation}
                       className="w-full bg-alpha-gold text-obsidian font-bold tracking-[0.2em] py-6 disabled:opacity-30"
                     >

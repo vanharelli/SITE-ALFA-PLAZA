@@ -61,10 +61,12 @@
   html {
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
+    overscroll-behavior: none; /* Prevent scroll bounce */
   }
 
   body {
     @apply bg-obsidian text-white overflow-x-hidden;
+    overscroll-behavior: none; /* Prevent scroll bounce */
   }
 }
 
@@ -138,7 +140,7 @@ html {
 
   /* Logo Shimmer Module */
   .logo-module {
-    @apply w-14 h-14 rounded-full flex items-center justify-center bg-white/5 border border-alpha-gold/30 backdrop-blur-md relative overflow-hidden;
+    @apply w-12 h-12 rounded-full flex items-center justify-center bg-white/5 border border-alpha-gold/30 backdrop-blur-md relative overflow-hidden;
   }
 
   .logo-module::after {

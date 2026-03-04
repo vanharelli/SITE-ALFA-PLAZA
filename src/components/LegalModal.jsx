@@ -23,10 +23,10 @@ const LegalModal = ({ isOpen, onClose }) => {
             animate={{ scale: 1, opacity: 1, y: 0 }}
             exit={{ scale: 0.9, opacity: 0, y: 20 }}
             transition={{ type: "spring", duration: 0.5, bounce: 0.3 }}
-            className="relative w-full max-w-[600px] bg-obsidian border border-alpha-gold/30 rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]"
+            className="relative w-full max-w-[600px] bg-black/90 backdrop-blur-xl border border-alpha-gold/30 rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]"
           >
             {/* Header */}
-            <div className="p-6 border-b border-white/10 flex items-center justify-between bg-obsidian-light">
+            <div className="p-6 border-b border-white/10 flex items-center justify-between bg-white/5 backdrop-blur-md">
               <div className="flex items-center space-x-3">
                 <ShieldCheck className="text-alpha-gold h-6 w-6" />
                 <h2 className="text-white font-serif text-lg sm:text-xl tracking-wider uppercase">
@@ -42,7 +42,7 @@ const LegalModal = ({ isOpen, onClose }) => {
             </div>
 
             {/* Content Area */}
-            <div className="flex-1 overflow-y-auto p-6 space-y-8 custom-scrollbar bg-obsidian">
+            <div className="flex-1 overflow-y-auto p-6 space-y-8 custom-scrollbar bg-transparent">
               {/* Section 1: LGPD */}
               <section className="space-y-3">
                 <div className="flex items-center space-x-2 text-alpha-gold">
@@ -72,7 +72,7 @@ const LegalModal = ({ isOpen, onClose }) => {
                   <h3 className="font-semibold uppercase tracking-widest text-sm">Segurança Financeira</h3>
                 </div>
                 <p className="text-gray-400 text-sm leading-relaxed">
-                  O Alfa Plaza Hotel prioriza sua segurança financeira: não solicitamos dados de cartão de crédito diretamente via interface web. Todos os pagamentos são processados exclusivamente através de links seguros de pagamento ou presencialmente no balcão físico do hotel.
+                  O Alfa Plaza Hotel prioriza sua segurança financeira: não solicitamos dados de cartão de crédito diretamente via interface web. Todos os pagamentos são processados exclusivamente via PIX ou presencialmente no balcão físico do hotel.
                 </p>
               </section>
 
@@ -89,7 +89,7 @@ const LegalModal = ({ isOpen, onClose }) => {
             </div>
 
             {/* Footer / Action */}
-            <div className="p-6 border-t border-white/10 bg-obsidian-light">
+            <div className="p-6 border-t border-white/10 bg-white/5 backdrop-blur-md">
               <Button
                 onClick={onClose}
                 className="w-full bg-alpha-gold text-obsidian font-bold tracking-[0.2em] uppercase py-6 rounded-xl hover:bg-alpha-gold/90 transition-all hover:scale-[1.02] shadow-lg shadow-alpha-gold/20"

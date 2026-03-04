@@ -12,9 +12,11 @@ const Header = ({ onOpenReservation }) => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+      setIsScrolled(currentScroll > 20);
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -47,27 +49,30 @@ const Header = ({ onOpenReservation }) => {
   );
 
   return (
-    <header className={`fixed top-0 w-full z-50 transition-all duration-300 ${ 
-      isScrolled ? 'bg-black/90 shadow-lg border-b border-alpha-gold/30 backdrop-blur-md' : 'bg-transparent border-b border-transparent'
-    }`}>
-      <div className="max-w-7xl mx-auto px-6 h-16 md:h-20 flex items-center safe-top">
-        <div className="flex items-center justify-between w-full pt-2 md:pt-0">
+    <header 
+      style={{ top: 0, left: 0, right: 0, position: 'fixed' }}
+      className={`z-[100] w-full transition-colors duration-300 transform-gpu ${ 
+        isScrolled ? 'bg-black/90 shadow-lg border-b border-alpha-gold/30 backdrop-blur-md' : 'bg-transparent border-b border-transparent'
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-6 h-16 md:h-20 flex items-center pt-[env(safe-area-inset-top)]">
+        <div className="flex items-center justify-between w-full">
           <div className="flex items-center space-x-3">
             {!logoError ? (
-              <div className="logo-module">
+              <div className="logo-module w-9 h-9 md:w-12 md:h-12">
                 <img
                   src="/logo.webp"
                   alt="Alpha Plaza Hotel"
-                  className="h-8 w-auto z-10"
+                  className="h-5 md:h-7 w-auto z-10"
                   onError={() => setLogoError(true)}
                 />
               </div>
             ) : null}
             <div>
-              <h1 className="font-serif text-xs md:text-xl tracking-widest text-white">
+              <h1 className="font-serif text-[10px] md:text-xl tracking-widest text-white leading-none">
                 ALFA <span className="text-alpha-gold">PLAZA</span>
               </h1>
-              <p className="text-white text-xs tracking-wider">HOTEL</p>
+              <p className="text-white text-[8px] md:text-xs tracking-[0.2em] uppercase mt-0.5">HOTEL</p>
             </div>
           </div>
 
