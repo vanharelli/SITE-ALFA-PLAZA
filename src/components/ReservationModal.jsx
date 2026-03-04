@@ -15,7 +15,8 @@ import {
   CalendarCheck2,
   ChevronRight,
   Info,
-  ChevronDown
+  ChevronDown,
+  Heart
 } from 'lucide-react';
 import { Button } from './ui/button';
 import { useLanguage } from '../context/LanguageContext';
@@ -321,17 +322,17 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
 
                       <button 
                         onClick={() => {
-                          setFormData(prev => ({ ...prev, type: 'Parceria Comercial' }));
-                          wrapSetStep(STEPS.RULES);
+                          const msg = encodeURIComponent("Olá! Gostaria de saber mais sobre os pacotes de decoração e experiências para uma Data Especial no Alfa Plaza Hotel.");
+                          window.open(`https://wa.me/556132639131?text=${msg}`, '_blank');
                         }}
                         className="group p-4 rounded-2xl border border-white/10 bg-white/5 hover:bg-white/10 transition-all flex flex-col items-center justify-center text-center h-full gap-3"
                       >
                         <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center text-white/70 group-hover:scale-110 transition-transform">
-                          <Mail size={24} />
+                          <Heart size={24} />
                         </div>
                         <div>
-                          <p className="text-white font-semibold tracking-wide text-sm">{t.reservation.hub.partnership}</p>
-                          <p className="text-gray-400 text-[10px]">{t.reservation.hub.partnershipDesc}</p>
+                          <p className="text-white font-semibold tracking-wide text-sm">Celebrações & Romance</p>
+                          <p className="text-gray-400 text-[10px]">Decoração exclusiva e recepção premium para momentos inesquecíveis.</p>
                         </div>
                       </button>
                     </div>
