@@ -252,7 +252,7 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
           </div>
 
           {/* Content Area */}
-          <div className="flex-1 overflow-y-auto custom-scrollbar relative bg-transparent">
+          <div className="flex-1 overflow-hidden relative bg-transparent">
             <AnimatePresence mode="wait" custom={direction}>
               <motion.div
                 key={step}
@@ -265,10 +265,10 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                   x: { type: "spring", stiffness: 300, damping: 30 },
                   opacity: { duration: 0.2 }
                 }}
-                className="p-6 min-h-full flex flex-col"
+                className="h-full flex flex-col"
               >
                 {step === STEPS.HUB && (
-                  <div className="space-y-4 flex-1 flex flex-col justify-center">
+                  <div className="space-y-4 flex-1 flex flex-col justify-center p-6">
                     <div className="grid grid-cols-2 gap-3">
                       <button 
                         onClick={() => {
@@ -338,7 +338,7 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                 )}
 
                 {step === STEPS.SUITE_SELECTION && (
-                  <div className="space-y-4 h-full flex flex-col">
+                  <div className="space-y-4 h-full flex flex-col p-6">
                     <p className="text-alpha-gold text-sm font-semibold tracking-widest uppercase mb-2 md:mb-4">
                       {formData.type === 'Grupos e Eventos' ? t.reservation.suiteSelection.titleGroup : t.reservation.suiteSelection.titleIndividual}
                     </p>
@@ -388,8 +388,8 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                 )}
 
                 {step === STEPS.RULES && (
-                  <div className="space-y-6 flex flex-col h-full">
-                    <div className="flex-1 space-y-4">
+                  <div className="space-y-6 flex flex-col h-full p-6">
+                    <div className="flex-1 space-y-4 overflow-y-auto custom-scrollbar pr-2">
                       <h3 className="text-white font-serif text-xl text-center tracking-wide">
                         {formData.type === 'Reserva Faturada' ? t.reservation.rules.corporateTitle : t.reservation.rules.partnershipTitle}
                       </h3>
@@ -427,7 +427,7 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                 )}
 
                 {step === STEPS.DATES && (
-                  <div className="space-y-8 flex flex-col h-full">
+                  <div className="space-y-8 flex flex-col h-full p-6">
                     {formData.suite && (
                       <div className="relative h-24 rounded-2xl overflow-hidden shrink-0 border border-white/10">
                         <img src={formData.suite.image} className="w-full h-full object-cover" alt="" />
@@ -438,7 +438,7 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                       </div>
                     )}
                     
-                    <div className="space-y-6 flex-1">
+                    <div className="space-y-6 flex-1 overflow-y-auto custom-scrollbar pr-2">
                       <div className="space-y-1">
                         <label className="text-alpha-gold text-[10px] tracking-[0.2em] uppercase font-bold ml-1">{t.reservation.dates.checkIn}</label>
                         <div className="relative group">
@@ -479,113 +479,117 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                 )}
 
                 {step === STEPS.GUESTS && (
-                  <div className="space-y-8 flex flex-col h-full">
-                    <div className="space-y-6 flex-1">
-                      <div className="space-y-1">
-                        <label className="text-alpha-gold text-[10px] tracking-[0.2em] uppercase font-bold ml-1">
-                          {formData.type === 'Grupos e Eventos' ? t.reservation.guests.titleGroup : t.reservation.guests.titleIndividual}
-                        </label>
-                        <div className="relative group">
-                          <Users className="absolute left-4 top-1/2 -translate-y-1/2 text-alpha-gold/50 group-focus-within:text-alpha-gold transition-colors z-10 pointer-events-none" size={20} />
-                          {formData.type === 'Grupos e Eventos' ? (
-                            <input 
-                              type="number"
-                              min="1"
-                              max="100"
-                              value={formData.adults}
-                              onChange={(e) => {
-                                const val = Math.min(100, Math.max(1, parseInt(e.target.value) || 1));
-                                setFormData(prev => ({ ...prev, adults: val.toString() }));
-                              }}
-                              className="w-full bg-black/40 backdrop-blur-md border border-white/10 rounded-xl py-4 pl-12 pr-4 text-white focus:outline-none focus:border-alpha-gold/50 transition-all"
-                            />
-                          ) : (
-                            <select 
-                              value={formData.adults}
-                              onChange={(e) => setFormData(prev => ({ ...prev, adults: e.target.value }))}
-                              className="w-full bg-black/40 backdrop-blur-md border border-white/10 rounded-xl py-4 pl-12 pr-4 text-white focus:outline-none focus:border-alpha-gold/50 transition-all appearance-none relative z-10"
-                            >
-                              <option value="1">{t.reservation.guests.adult1}</option>
-                              <option value="2">{t.reservation.guests.adults2}</option>
-                              <option value="3">{t.reservation.guests.adults3}</option>
-                              <option value="4">{t.reservation.guests.adults4}</option>
-                              <option value="5">{t.reservation.guests.adults5Plus}</option>
-                            </select>
-                          )}
-                        </div>
-                      </div>
-
-                      <div className="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-6">
-                        <div className="flex items-center justify-between">
-                          <div>
-                            <p className="text-white font-semibold text-sm">{t.reservation.guests.hasChildren}</p>
-                            <p className="text-gray-400 text-[10px] tracking-wider uppercase mt-1">{t.reservation.guests.childrenCourtesy}</p>
-                          </div>
-                          <button 
-                            onClick={() => setFormData(prev => ({ ...prev, hasChildren: !prev.hasChildren }))}
-                            className={`w-12 h-6 rounded-full transition-all relative ${formData.hasChildren ? 'bg-alpha-gold' : 'bg-white/10'}`}
-                          >
-                            <motion.div 
-                              animate={{ x: formData.hasChildren ? 26 : 4 }}
-                              className="absolute top-1 w-4 h-4 rounded-full bg-white shadow-sm"
-                            />
-                          </button>
-                        </div>
-
-                        {formData.hasChildren && (
-                          <motion.div 
-                            initial={{ opacity: 0, height: 0 }}
-                            animate={{ opacity: 1, height: 'auto' }}
-                            className="space-y-6"
-                          >
-                            <div className="space-y-1">
-                              <label className="text-alpha-gold text-[10px] tracking-[0.2em] uppercase font-bold">{t.reservation.guests.childrenCount}</label>
+                  <div className="flex flex-col h-full">
+                    <div className="flex-1 overflow-y-auto custom-scrollbar p-6 space-y-8">
+                      <div className="space-y-6">
+                        <div className="space-y-1">
+                          <label className="text-alpha-gold text-[10px] tracking-[0.2em] uppercase font-bold ml-1">
+                            {formData.type === 'Grupos e Eventos' ? t.reservation.guests.titleGroup : t.reservation.guests.titleIndividual}
+                          </label>
+                          <div className="relative group">
+                            <Users className="absolute left-4 top-1/2 -translate-y-1/2 text-alpha-gold/50 group-focus-within:text-alpha-gold transition-colors z-10 pointer-events-none" size={20} />
+                            {formData.type === 'Grupos e Eventos' ? (
                               <input 
                                 type="number"
                                 min="1"
-                                value={formData.childCount}
-                                onChange={(e) => setFormData(prev => ({ ...prev, childCount: e.target.value }))}
-                                className="w-full bg-black/40 backdrop-blur-md border border-white/10 rounded-xl py-4 px-4 text-white focus:outline-none focus:border-alpha-gold/50 transition-all"
+                                max="100"
+                                value={formData.adults}
+                                onChange={(e) => {
+                                  const val = Math.min(100, Math.max(1, parseInt(e.target.value) || 1));
+                                  setFormData(prev => ({ ...prev, adults: val.toString() }));
+                                }}
+                                className="w-full bg-black/40 backdrop-blur-md border border-white/10 rounded-xl py-4 pl-12 pr-4 text-white focus:outline-none focus:border-alpha-gold/50 transition-all"
                               />
-                            </div>
-
-                            <div className="flex items-center justify-between p-4 rounded-xl bg-white/5 border border-white/10">
-                              <div>
-                                <p className="text-white font-semibold text-xs">
-                                  {formData.type === 'Grupos e Eventos' 
-                                    ? t.reservation.guests.allOver5 
-                                    : (parseInt(formData.childCount) > 1 ? t.reservation.guests.allOver5 : t.reservation.guests.oneChildOver5)
-                                  }
-                                </p>
-                              </div>
-                              <button 
-                                onClick={() => setFormData(prev => ({ ...prev, allChildrenOver5: !prev.allChildrenOver5 }))}
-                                className={`w-12 h-6 rounded-full transition-all relative ${formData.allChildrenOver5 ? 'bg-alpha-gold' : 'bg-white/10'}`}
+                            ) : (
+                              <select 
+                                value={formData.adults}
+                                onChange={(e) => setFormData(prev => ({ ...prev, adults: e.target.value }))}
+                                className="w-full bg-black/40 backdrop-blur-md border border-white/10 rounded-xl py-4 pl-12 pr-4 text-white focus:outline-none focus:border-alpha-gold/50 transition-all appearance-none relative z-10"
                               >
-                                <motion.div 
-                                  animate={{ x: formData.allChildrenOver5 ? 26 : 4 }}
-                                  className="absolute top-1 w-4 h-4 rounded-full bg-white shadow-sm"
-                                />
-                              </button>
+                                <option value="1">{t.reservation.guests.adult1}</option>
+                                <option value="2">{t.reservation.guests.adults2}</option>
+                                <option value="3">{t.reservation.guests.adults3}</option>
+                                <option value="4">{t.reservation.guests.adults4}</option>
+                                <option value="5">{t.reservation.guests.adults5Plus}</option>
+                              </select>
+                            )}
+                          </div>
+                        </div>
+
+                        <div className="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-6">
+                          <div className="flex items-center justify-between">
+                            <div>
+                              <p className="text-white font-semibold text-sm">{t.reservation.guests.hasChildren}</p>
+                              <p className="text-gray-400 text-[10px] tracking-wider uppercase mt-1">{t.reservation.guests.childrenCourtesy}</p>
                             </div>
-                            <p className="text-gray-500 text-[10px] italic">{t.reservation.guests.childrenWarning}</p>
-                          </motion.div>
-                        )}
+                            <button 
+                              onClick={() => setFormData(prev => ({ ...prev, hasChildren: !prev.hasChildren }))}
+                              className={`w-12 h-6 rounded-full transition-all relative ${formData.hasChildren ? 'bg-alpha-gold' : 'bg-white/10'}`}
+                            >
+                              <motion.div 
+                                animate={{ x: formData.hasChildren ? 26 : 4 }}
+                                className="absolute top-1 w-4 h-4 rounded-full bg-white shadow-sm"
+                              />
+                            </button>
+                          </div>
+
+                          {formData.hasChildren && (
+                            <motion.div 
+                              initial={{ opacity: 0, height: 0 }}
+                              animate={{ opacity: 1, height: 'auto' }}
+                              className="space-y-6"
+                            >
+                              <div className="space-y-1">
+                                <label className="text-alpha-gold text-[10px] tracking-[0.2em] uppercase font-bold">{t.reservation.guests.childrenCount}</label>
+                                <input 
+                                  type="number"
+                                  min="1"
+                                  value={formData.childCount}
+                                  onChange={(e) => setFormData(prev => ({ ...prev, childCount: e.target.value }))}
+                                  className="w-full bg-black/40 backdrop-blur-md border border-white/10 rounded-xl py-4 px-4 text-white focus:outline-none focus:border-alpha-gold/50 transition-all"
+                                />
+                              </div>
+
+                              <div className="flex items-center justify-between p-4 rounded-xl bg-white/5 border border-white/10">
+                                <div>
+                                  <p className="text-white font-semibold text-xs">
+                                    {formData.type === 'Grupos e Eventos' 
+                                      ? t.reservation.guests.allOver5 
+                                      : (parseInt(formData.childCount) > 1 ? t.reservation.guests.allOver5 : t.reservation.guests.oneChildOver5)
+                                    }
+                                  </p>
+                                </div>
+                                <button 
+                                  onClick={() => setFormData(prev => ({ ...prev, allChildrenOver5: !prev.allChildrenOver5 }))}
+                                  className={`w-12 h-6 rounded-full transition-all relative ${formData.allChildrenOver5 ? 'bg-alpha-gold' : 'bg-white/10'}`}
+                                >
+                                  <motion.div 
+                                    animate={{ x: formData.allChildrenOver5 ? 26 : 4 }}
+                                    className="absolute top-1 w-4 h-4 rounded-full bg-white shadow-sm"
+                                  />
+                                </button>
+                              </div>
+                              <p className="text-gray-500 text-[10px] italic">{t.reservation.guests.childrenWarning}</p>
+                            </motion.div>
+                          )}
+                        </div>
                       </div>
                     </div>
 
-                    <Button 
-                      onClick={() => wrapSetStep(STEPS.ARRIVAL_TIME)}
-                      className="w-full bg-alpha-gold text-obsidian font-bold tracking-widest py-4 md:py-6 mt-auto shrink-0 relative z-20 mb-4"
-                    >
-                      {t.reservation.guests.nextStep} <ArrowRight className="ml-2" size={20} />
-                    </Button>
+                    <div className="p-6 pt-0 mt-auto shrink-0 relative z-20">
+                      <Button 
+                        onClick={() => wrapSetStep(STEPS.ARRIVAL_TIME)}
+                        className="w-full bg-alpha-gold text-obsidian font-bold tracking-widest py-4 md:py-6"
+                      >
+                        {t.reservation.guests.nextStep} <ArrowRight className="ml-2" size={20} />
+                      </Button>
+                    </div>
                   </div>
                 )}
 
                 {step === STEPS.ARRIVAL_TIME && (
-                  <div className="space-y-8 flex flex-col h-full">
-                    <div className="space-y-6 flex-1">
+                  <div className="space-y-8 flex flex-col h-full p-6">
+                    <div className="space-y-6 flex-1 overflow-y-auto custom-scrollbar pr-2">
                       <div className="text-center space-y-2">
                         <h3 className="text-white font-serif text-xl tracking-wide">{t.reservation.arrivalTime.title}</h3>
                         <p className="text-gray-400 text-xs uppercase tracking-widest">{t.reservation.arrivalTime.subtitle}</p>
@@ -613,72 +617,76 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                 )}
 
                 {step === STEPS.CONTACT && (
-                  <div className="space-y-8 flex flex-col h-full">
-                    <div className="space-y-6 flex-1">
-                      <div className="text-center space-y-2">
-                        <h3 className="text-white font-serif text-xl tracking-wide">{t.reservation.contact.title}</h3>
-                        <p className="text-gray-400 text-xs uppercase tracking-widest">{t.reservation.contact.subtitle}</p>
-                      </div>
+                  <div className="flex flex-col h-full">
+                    <div className="flex-1 overflow-y-auto custom-scrollbar p-6 space-y-8">
+                      <div className="space-y-6">
+                        <div className="text-center space-y-2">
+                          <h3 className="text-white font-serif text-xl tracking-wide">{t.reservation.contact.title}</h3>
+                          <p className="text-gray-400 text-xs uppercase tracking-widest">{t.reservation.contact.subtitle}</p>
+                        </div>
 
-                      <div className="space-y-4">
-                        <div className="space-y-1">
-                          <label className="text-alpha-gold text-[10px] tracking-[0.2em] uppercase font-bold ml-1">{t.reservation.contact.nameLabel}</label>
-                          <div className="relative group">
-                            <User className="absolute left-4 top-1/2 -translate-y-1/2 text-alpha-gold/50 z-10 pointer-events-none" size={20} />
-                            <input 
-                              type="text"
-                              placeholder={t.reservation.contact.namePlaceholder}
-                              value={formData.name}
-                              onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
-                              className="w-full bg-black/40 backdrop-blur-md border border-white/10 rounded-xl py-4 pl-12 pr-4 text-white focus:outline-none focus:border-alpha-gold/50 transition-all"
-                            />
+                        <div className="space-y-4">
+                          <div className="space-y-1">
+                            <label className="text-alpha-gold text-[10px] tracking-[0.2em] uppercase font-bold ml-1">{t.reservation.contact.nameLabel}</label>
+                            <div className="relative group">
+                              <User className="absolute left-4 top-1/2 -translate-y-1/2 text-alpha-gold/50 z-10 pointer-events-none" size={20} />
+                              <input 
+                                type="text"
+                                placeholder={t.reservation.contact.namePlaceholder}
+                                value={formData.name}
+                                onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
+                                className="w-full bg-black/40 backdrop-blur-md border border-white/10 rounded-xl py-4 pl-12 pr-4 text-white focus:outline-none focus:border-alpha-gold/50 transition-all"
+                              />
+                            </div>
+                          </div>
+
+                          <div className="space-y-1">
+                            <label className="text-alpha-gold text-[10px] tracking-[0.2em] uppercase font-bold ml-1">{t.reservation.contact.emailLabel}</label>
+                            <div className="relative group">
+                              <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-alpha-gold/50 z-10 pointer-events-none" size={20} />
+                              <input 
+                                type="email"
+                                placeholder={t.reservation.contact.emailPlaceholder}
+                                value={formData.email}
+                                onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
+                                className="w-full bg-black/40 backdrop-blur-md border border-white/10 rounded-xl py-4 pl-12 pr-4 text-white focus:outline-none focus:border-alpha-gold/50 transition-all"
+                              />
+                            </div>
+                          </div>
+
+                          <div className="space-y-1">
+                            <label className="text-alpha-gold text-[10px] tracking-[0.2em] uppercase font-bold ml-1">{t.reservation.contact.whatsappLabel}</label>
+                            <div className="relative group">
+                              <MessageSquare className="absolute left-4 top-1/2 -translate-y-1/2 text-alpha-gold/50 z-10 pointer-events-none" size={20} />
+                              <input 
+                                type="tel"
+                                placeholder={t.reservation.contact.whatsappPlaceholder}
+                                value={formData.whatsapp}
+                                onChange={(e) => setFormData(prev => ({ ...prev, whatsapp: e.target.value }))}
+                                className="w-full bg-black/40 backdrop-blur-md border border-white/10 rounded-xl py-4 pl-12 pr-4 text-white focus:outline-none focus:border-alpha-gold/50 transition-all"
+                              />
+                            </div>
                           </div>
                         </div>
 
-                        <div className="space-y-1">
-                          <label className="text-alpha-gold text-[10px] tracking-[0.2em] uppercase font-bold ml-1">{t.reservation.contact.emailLabel}</label>
-                          <div className="relative group">
-                            <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-alpha-gold/50 z-10 pointer-events-none" size={20} />
-                            <input 
-                              type="email"
-                              placeholder={t.reservation.contact.emailPlaceholder}
-                              value={formData.email}
-                              onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
-                              className="w-full bg-black/40 backdrop-blur-md border border-white/10 rounded-xl py-4 pl-12 pr-4 text-white focus:outline-none focus:border-alpha-gold/50 transition-all"
-                            />
-                          </div>
+                        <div className="p-4 rounded-xl bg-alpha-gold/5 border border-alpha-gold/20 flex items-start space-x-3">
+                          <Info className="text-alpha-gold shrink-0 mt-0.5" size={16} />
+                          <p className="text-[10px] text-gray-400 leading-relaxed uppercase tracking-wider">
+                            {t.reservation.contact.disclaimer}
+                          </p>
                         </div>
-
-                        <div className="space-y-1">
-                          <label className="text-alpha-gold text-[10px] tracking-[0.2em] uppercase font-bold ml-1">{t.reservation.contact.whatsappLabel}</label>
-                          <div className="relative group">
-                            <MessageSquare className="absolute left-4 top-1/2 -translate-y-1/2 text-alpha-gold/50 z-10 pointer-events-none" size={20} />
-                            <input 
-                              type="tel"
-                              placeholder={t.reservation.contact.whatsappPlaceholder}
-                              value={formData.whatsapp}
-                              onChange={(e) => setFormData(prev => ({ ...prev, whatsapp: e.target.value }))}
-                              className="w-full bg-black/40 backdrop-blur-md border border-white/10 rounded-xl py-4 pl-12 pr-4 text-white focus:outline-none focus:border-alpha-gold/50 transition-all"
-                            />
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="p-4 rounded-xl bg-alpha-gold/5 border border-alpha-gold/20 flex items-start space-x-3">
-                        <Info className="text-alpha-gold shrink-0 mt-0.5" size={16} />
-                        <p className="text-[10px] text-gray-400 leading-relaxed uppercase tracking-wider">
-                          {t.reservation.contact.disclaimer}
-                        </p>
                       </div>
                     </div>
 
-                    <Button 
-                      disabled={!formData.name || !formData.whatsapp || !formData.email}
-                      onClick={handleReservation}
-                      className="w-full bg-alpha-gold text-obsidian font-bold tracking-[0.2em] py-4 md:py-6 disabled:opacity-30 mt-auto shrink-0 relative z-10 mb-4"
-                    >
-                      {t.reservation.contact.finish}
-                    </Button>
+                    <div className="p-6 pt-0 mt-auto shrink-0 relative z-10">
+                      <Button 
+                        disabled={!formData.name || !formData.whatsapp || !formData.email}
+                        onClick={handleReservation}
+                        className="w-full bg-alpha-gold text-obsidian font-bold tracking-[0.2em] py-4 md:py-6 disabled:opacity-30"
+                      >
+                        {t.reservation.contact.finish}
+                      </Button>
+                    </div>
                   </div>
                 )}
               </motion.div>
