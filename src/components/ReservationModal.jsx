@@ -609,75 +609,78 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                                 <option value="2">{t.reservation.guests.adults2}</option>
                                 <option value="3">{t.reservation.guests.adults3}</option>
                                 <option value="4">{t.reservation.guests.adults4}</option>
-                                <option value="5">{t.reservation.guests.adults5Plus}</option>
                               </select>
                             )}
                           </div>
                         </div>
 
-                        <div className="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-6">
-                          <div className="flex items-center justify-between">
-                            <div>
-                              <p className="text-white font-semibold text-sm">{t.reservation.guests.hasChildren}</p>
-                              <p className="text-gray-400 text-[10px] tracking-wider uppercase mt-1">{t.reservation.guests.childrenCourtesy}</p>
+                        {formData.type !== 'Recepção VIP & Homenagens' && (
+                          <div className="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-6">
+                            <div className="flex items-center justify-between">
+                              <div>
+                                <p className="text-white font-semibold text-sm">{t.reservation.guests.hasChildren}</p>
+                                <p className="text-gray-400 text-[10px] tracking-wider uppercase mt-1">{t.reservation.guests.childrenCourtesy}</p>
+                              </div>
+                              <div className="flex items-center gap-2">
+                                {formData.hasChildren && <span className="text-alpha-gold text-[10px] font-bold uppercase">Sim</span>}
+                                <button 
+                                  onClick={() => setFormData(prev => ({ ...prev, hasChildren: !prev.hasChildren }))}
+                                  className={`w-12 h-6 rounded-full transition-all relative ${formData.hasChildren ? 'bg-alpha-gold' : 'bg-white/10'}`}
+                                >
+                                  <motion.div 
+                                    animate={{ x: formData.hasChildren ? 26 : 4 }}
+                                    className="absolute top-1 w-4 h-4 rounded-full bg-white shadow-sm"
+                                  />
+                                </button>
+                              </div>
                             </div>
-                            <div className="flex items-center gap-2">
-                              {formData.hasChildren && <span className="text-alpha-gold text-[10px] font-bold uppercase">Sim</span>}
-                              <button 
-                                onClick={() => setFormData(prev => ({ ...prev, hasChildren: !prev.hasChildren }))}
-                                className={`w-12 h-6 rounded-full transition-all relative ${formData.hasChildren ? 'bg-alpha-gold' : 'bg-white/10'}`}
+
+                            {formData.hasChildren && (
+                              <motion.div 
+                                initial={{ opacity: 0, height: 0 }}
+                                animate={{ opacity: 1, height: 'auto' }}
+                                className="space-y-6"
                               >
-                                <motion.div 
-                                  animate={{ x: formData.hasChildren ? 26 : 4 }}
-                                  className="absolute top-1 w-4 h-4 rounded-full bg-white shadow-sm"
-                                />
-                              </button>
-                            </div>
+                                <div className="space-y-1">
+                                  <label className="text-alpha-gold text-[10px] tracking-[0.2em] uppercase font-bold">{t.reservation.guests.childrenCount}</label>
+                                  <input 
+                                    type="number"
+                                    min="1"
+                                    value={formData.childCount}
+                                    onChange={(e) => setFormData(prev => ({ ...prev, childCount: e.target.value }))}
+                                    className="w-full bg-black/40 backdrop-blur-md border border-white/10 rounded-xl py-4 px-4 text-white focus:outline-none focus:border-alpha-gold/50 transition-all"
+                                  />
+                                </div>
+
+                                <div className="flex items-center justify-between p-4 rounded-xl bg-white/5 border border-white/10">
+                                  <div>
+                                    <p className="text-white font-semibold text-xs">
+                                      {formData.type === 'Grupos e Eventos' 
+                                        ? t.reservation.guests.allOver5 
+                                        : (parseInt(formData.childCount) > 1 ? t.reservation.guests.allOver5 : t.reservation.guests.oneChildOver5)
+                                      }
+                                    </p>
+                                  </div>
+                                  <div className="flex items-center gap-2">
+                                    {formData.allChildrenOver5 && <span className="text-alpha-gold text-[10px] font-bold uppercase">Sim</span>}
+                                    <button 
+                                      onClick={() => setFormData(prev => ({ ...prev, allChildrenOver5: !prev.allChildrenOver5 }))}
+                                      className={`w-12 h-6 rounded-full transition-all relative ${formData.allChildrenOver5 ? 'bg-alpha-gold' : 'bg-white/10'}`}
+                                    >
+                                      <motion.div 
+                                        animate={{ x: formData.allChildrenOver5 ? 26 : 4 }}
+                                        className="absolute top-1 w-4 h-4 rounded-full bg-white shadow-sm"
+                                      />
+                                    </button>
+                                  </div>
+                                </div>
+                                <p className="text-gray-500 text-[10px] italic">{t.reservation.guests.childrenWarning}</p>
+                              </motion.div>
+                            )}
                           </div>
-
-                          {formData.hasChildren && (
-                            <motion.div 
-                              initial={{ opacity: 0, height: 0 }}
-                              animate={{ opacity: 1, height: 'auto' }}
-                              className="space-y-6"
-                            >
-                              <div className="space-y-1">
-                                <label className="text-alpha-gold text-[10px] tracking-[0.2em] uppercase font-bold">{t.reservation.guests.childrenCount}</label>
-                                <input 
-                                  type="number"
-                                  min="1"
-                                  value={formData.childCount}
-                                  onChange={(e) => setFormData(prev => ({ ...prev, childCount: e.target.value }))}
-                                  className="w-full bg-black/40 backdrop-blur-md border border-white/10 rounded-xl py-4 px-4 text-white focus:outline-none focus:border-alpha-gold/50 transition-all"
-                                />
-                              </div>
-
-                              <div className="flex items-center justify-between p-4 rounded-xl bg-white/5 border border-white/10">
-                                <div>
-                                  <p className="text-white font-semibold text-xs">
-                                    {formData.type === 'Grupos e Eventos' 
-                                      ? t.reservation.guests.allOver5 
-                                      : (parseInt(formData.childCount) > 1 ? t.reservation.guests.allOver5 : t.reservation.guests.oneChildOver5)
-                                    }
-                                  </p>
-                                </div>
-                                <div className="flex items-center gap-2">
-                                  {formData.allChildrenOver5 && <span className="text-alpha-gold text-[10px] font-bold uppercase">Sim</span>}
-                                  <button 
-                                    onClick={() => setFormData(prev => ({ ...prev, allChildrenOver5: !prev.allChildrenOver5 }))}
-                                    className={`w-12 h-6 rounded-full transition-all relative ${formData.allChildrenOver5 ? 'bg-alpha-gold' : 'bg-white/10'}`}
-                                  >
-                                    <motion.div 
-                                      animate={{ x: formData.allChildrenOver5 ? 26 : 4 }}
-                                      className="absolute top-1 w-4 h-4 rounded-full bg-white shadow-sm"
-                                    />
-                                  </button>
-                                </div>
-                              </div>
-                              <p className="text-gray-500 text-[10px] italic">{t.reservation.guests.childrenWarning}</p>
-                            </motion.div>
-                          )}
-                        </div>
+                        )}
+                      </div>
+                    </div>
                       </div>
                     </div>
 
