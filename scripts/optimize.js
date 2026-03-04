@@ -2,47 +2,31 @@ const sharp = require('sharp');
 const fs = require('fs');
 const path = require('path');
 
-const targetDirs = ['public', 'src/assets'];
+const assetsDir = path.join(__dirname, '..', 'public');
 
-async function optimizeImages(dir) {
-  if (!fs.existsSync(dir)) return;
-  
-  const files = fs.readdirSync(dir);
-  
+const optimizeImages = async (dir) => {
+  const files = await fs.promises.readdir(dir, { withFileTypes: true });
+
   for (const file of files) {
-    const filePath = path.join(dir, file);
-    const stats = fs.statSync(filePath);
-    
-    if (stats.isDirectory()) {
-      await optimizeImages(filePath);
-    } else if (/\.(png|jpg|jpeg)$/i.test(file)) {
-      const ext = path.extname(file);
-      const name = path.basename(file, ext);
-      const webpPath = path.join(dir, `${name}.webp`);
-      
-      console.log(`Optimizing: ${filePath} -> ${webpPath}`);
-      
+    const fullPath = path.join(dir, file.name);
+    if (file.isDirectory()) {
+      await optimizeImages(fullPath);
+    } else if (/\.(jpe?g|png)$/i.test(file.name)) {
+      const webpPath = fullPath.replace(/\.(jpe?g|png)$/i, '.webp');
       try {
-        await sharp(filePath)
+        await sharp(fullPath)
           .webp({ quality: 80 })
           .toFile(webpPath);
-        
-        // Delete original file after conversion
-        fs.unlinkSync(filePath);
-        console.log(`Deleted original: ${filePath}`);
-      } catch (err) {
-        console.error(`Error optimizing ${file}:`, err);
+        console.log(`Optimized and converted ${fullPath} to ${webpPath}`);
+        await fs.promises.unlink(fullPath);
+        console.log(`Deleted original file: ${fullPath}`);
+      } catch (error) {
+        console.error(`Failed to process ${fullPath}:`, error);
       }
     }
   }
-}
+};
 
-async function run() {
-  for (const dir of targetDirs) {
-    const absoluteDir = path.resolve(__dirname, '..', dir);
-    console.log(`Scanning directory: ${absoluteDir}`);
-    await optimizeImages(absoluteDir);
-  }
-}
-
-run().then(() => console.log('Optimization complete.'));
+optimizeImages(assetsDir)
+  .then(() => console.log('Image optimization complete.'))
+  .catch(err => console.error('Image optimization failed:', err));

@@ -59,7 +59,7 @@ const amenities = [
 const Amenities = ({ onOpenReservation }) => {
   const { t } = useLanguage();
   return (
-    <section id="amenities" className="relative py-20 sm:py-32 bg-cover bg-center bg-fixed" style={{ backgroundImage: "url('/backgroundalfa.jpg')" }}>
+    <section id="amenities" className="relative py-20 sm:py-32 bg-cover bg-center bg-fixed" style={{ backgroundImage: "url('/backgroundalfa.webp')" }}>
       <div className="absolute inset-0 bg-obsidian/80 backdrop-blur-sm z-0"></div>
       <div className="relative z-10 max-w-7xl mx-auto px-6">
         <div className="text-center mb-12 md:mb-16 fade-in-section">

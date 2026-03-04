@@ -66,7 +66,37 @@
 
   body {
     @apply bg-obsidian text-white overflow-x-hidden;
-    overscroll-behavior: none; /* Prevent scroll bounce */
+    overscroll-behavior-y: none; /* Prevent scroll bounce */
+    touch-action: pan-y; /* Allow vertical scroll, prevent pull-to-refresh */
+    user-select: none; /* CSS Shield */
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    background: var(--obsidian);
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.5));
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  /* Allow selection on inputs and textareas */
+  input, textarea {
+    user-select: auto;
+  }
+
+  /* Disable pointer events on images */
+  img {
+    pointer-events: none;
   }
 }
 

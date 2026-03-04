@@ -30,12 +30,12 @@ const STEPS = {
 };
 
 const roomData = [
-  { id: 2, title: 'Suíte Casal', image: '/quartos/Suíte Casal.png' },
-  { id: 6, title: 'Suíte Duplo Solteiro', image: '/quartos/Suíte Duplo Solteiro.png' },
-  { id: 3, title: 'Suíte Triplo Casal', image: '/quartos/Suíte Triplo Casal.png' },
-  { id: 7, title: 'Suíte Triplo Solteiro', image: '/quartos/Suíte Triplo Solteiro.png' },
-  { id: 4, title: 'Suíte Quádruplo', image: '/quartos/Suíte Quádruplo.png' },
-  { id: 5, title: 'Suíte Adaptável', image: '/quartos/Suíte Adaptável.png' }
+  { id: 2, title: 'Suíte Casal', image: '/quartos/Suíte Casal.webp' },
+  { id: 6, title: 'Suíte Duplo Solteiro', image: '/quartos/Suíte Duplo Solteiro.webp' },
+  { id: 3, title: 'Suíte Triplo Casal', image: '/quartos/Suíte Triplo Casal.webp' },
+  { id: 7, title: 'Suíte Triplo Solteiro', image: '/quartos/Suíte Triplo Solteiro.webp' },
+  { id: 4, title: 'Suíte Quádruplo', image: '/quartos/Suíte Quádruplo.webp' },
+  { id: 5, title: 'Suíte Adaptável', image: '/quartos/Suíte Adaptável.webp' }
 ];
 
 const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {

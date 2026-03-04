@@ -14,7 +14,7 @@ const Hero = ({ onOpenReservation }) => {
   };
 
   return (
-    <section className="relative h-screen w-full overflow-hidden bg-cover bg-center bg-fixed" style={{ backgroundImage: "url('/backgroundalfa.jpg')" }}>
+    <section className="relative h-screen w-full overflow-hidden bg-cover bg-center bg-fixed" style={{ backgroundImage: "url('/backgroundalfa.webp')" }}>
       {/* Background Video */}
       <div className="absolute inset-0 z-0">
         <video
@@ -22,6 +22,7 @@ const Hero = ({ onOpenReservation }) => {
           loop
           muted
           playsInline
+          fetchPriority="high"
           className="w-full h-full object-cover"
         >
           <source src="/background video.mp4" type="video/mp4" />

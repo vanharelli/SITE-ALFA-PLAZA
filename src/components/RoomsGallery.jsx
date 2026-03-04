@@ -10,15 +10,15 @@ import {
 import { useLanguage } from '../context/LanguageContext';
 
 const roomImages = {
-  2: '/quartos/Suíte Casal.png',
-  6: '/quartos/Suíte Duplo Solteiro.png',
-  3: '/quartos/Suíte Triplo Casal.png',
-  7: '/quartos/Suíte Triplo Solteiro.png',
-  4: '/quartos/Suíte Quádruplo.png',
+  2: '/quartos/Suíte Casal.webp',
+  6: '/quartos/Suíte Duplo Solteiro.webp',
+  3: '/quartos/Suíte Triplo Casal.webp',
+  7: '/quartos/Suíte Triplo Solteiro.webp',
+  4: '/quartos/Suíte Quádruplo.webp',
   5: [
-    '/quartos/Suíte Adaptável.png',
-    '/quartos/Banheiro Adaptável.jpeg',
-    '/quartos/Banheiro Adaptável 1.jpeg'
+    '/quartos/Suíte Adaptável.webp',
+    '/quartos/Banheiro Adaptável.webp',
+    '/quartos/Banheiro Adaptável 1.webp'
   ]
 };
 
@@ -41,7 +41,9 @@ const RoomImageCarousel = ({ images, title }) => {
         src={images} 
         alt={title}
         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-        fetchPriority="high"
+        fetchPriority="low"
+        loading="lazy"
+        decoding="async"
       />
     );
   }
@@ -53,6 +55,9 @@ const RoomImageCarousel = ({ images, title }) => {
           key={idx}
           src={img}
           alt={`${title} - Imagem ${idx + 1}`}
+          fetchPriority={idx === 0 ? "high" : "low"}
+          loading={idx === 0 ? "eager" : "lazy"}
+          decoding={idx === 0 ? "sync" : "async"}
           className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
             idx === currentIndex ? 'opacity-100' : 'opacity-0'
           }`}
@@ -82,7 +87,7 @@ const RoomsGallery = ({ onOpenReservation }) => {
   }));
 
   return (
-    <section id="rooms" className="relative py-20 sm:py-32 bg-cover bg-center bg-fixed" style={{ backgroundImage: "url('/backgroundalfa.jpg')" }}>
+    <section id="rooms" className="relative py-20 sm:py-32 bg-cover bg-center bg-fixed" style={{ backgroundImage: "url('/backgroundalfa.webp')" }}>
       <div className="absolute inset-0 bg-obsidian/70 backdrop-blur-sm z-0"></div>
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">

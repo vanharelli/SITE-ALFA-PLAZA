@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MapPin, Phone, Clock, Star, Quote, X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { MapPin, Phone, Clock, Star, Quote, X, ChevronLeft, ChevronRight, Plane, Shield, Flag, Landmark, FileText, Building2, Trophy, Mic } from 'lucide-react';
 import { Button } from './ui/button';
 import {
   Carousel,
@@ -13,19 +13,19 @@ import { useLanguage } from '../context/LanguageContext';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const hotelImages = [
-  '/hotel/1.jpeg',
-  '/hotel/2.jpeg',
-  '/hotel/3.jpeg',
-  '/hotel/4.jpg',
+  '/hotel/1.webp',
+  '/hotel/2.webp',
+  '/hotel/3.webp',
+  '/hotel/4.webp',
   '/hotel/5.webp',
   '/hotel/6.webp',
   '/hotel/7.webp',
   '/hotel/8.webp',
-  '/hotel/9.jpeg',
-  '/hotel/10.jpeg',
-  '/hotel/11.jpeg',
-  '/hotel/12.jpeg',
-  '/hotel/13.jpeg'
+  '/hotel/9.webp',
+  '/hotel/10.webp',
+  '/hotel/11.webp',
+  '/hotel/12.webp',
+  '/hotel/13.webp'
 ];
 
 const testimonials = [
@@ -74,7 +74,7 @@ const Location = ({ onOpenReservation }) => {
   };
 
   return (
-    <section id="location" className="relative py-20 sm:py-32 bg-cover bg-center bg-fixed" style={{ backgroundImage: "url('/backgroundalfa.jpg')" }}>
+    <section id="location" className="relative py-20 sm:py-32 bg-cover bg-center bg-fixed" style={{ backgroundImage: "url('/backgroundalfa.webp')" }}>
       <div className="absolute inset-0 bg-obsidian/80 backdrop-blur-sm z-0"></div>
 
       {/* Expanded Gallery Modal */}
@@ -193,6 +193,9 @@ const Location = ({ onOpenReservation }) => {
                           <img 
                             src={image}
                             alt={`Alfa Plaza Hotel - Imagem ${index + 1}`}
+                            fetchPriority={index === 0 ? "high" : "low"}
+                            loading={index === 0 ? "eager" : "lazy"}
+                            decoding={index === 0 ? "sync" : "async"}
                             className="w-full h-full object-contain md:object-cover object-center transition-transform duration-700 hover:scale-105"
                           />
                           <div className="absolute inset-x-0 bottom-0 h-24 md:h-32 bg-gradient-to-t from-obsidian/90 via-obsidian/50 to-transparent pointer-events-none z-10"></div>
@@ -302,17 +305,81 @@ const Location = ({ onOpenReservation }) => {
 
         {/* Nearby Points of Interest */}
         <div className="mt-20 fade-in-section">
-          <h3 className="font-serif text-3xl text-white text-center mb-12 tracking-widest">
-            {t.location.pointsOfInterestTitle.split(' ').slice(0, 2).join(' ')} <span className="text-alpha-gold">{t.location.pointsOfInterestTitle.split(' ').slice(2).join(' ')}</span>
+          <h3 className="font-serif text-3xl text-white text-center mb-12 tracking-widest uppercase">
+            PONTOS DE <span className="text-alpha-gold">INTERESSE</span>
           </h3>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {t.location.pointsOfInterest.map((point, index) => (
+          <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 px-6">
+            {[
+              { 
+                name: 'Aeroporto Internacional (BSB)', 
+                distance: '7,0 km', 
+                icon: Plane,
+                description: 'Principal terminal aéreo da capital federal.'
+              },
+              { 
+                name: 'Polícia Federal (Imigração)', 
+                distance: '10,5 km', 
+                icon: Shield,
+                description: 'Setor de passaportes e imigração.'
+              },
+              { 
+                name: 'Setor de Embaixadas Sul', 
+                distance: '12,5 km', 
+                icon: Flag,
+                description: 'Concentração de missões diplomáticas.'
+              },
+              { 
+                name: 'Embaixada dos EUA', 
+                distance: '13,0 km', 
+                icon: Landmark,
+                description: 'Representação diplomática dos Estados Unidos.'
+              },
+              { 
+                name: 'CASV (Visto Americano)', 
+                distance: '14,5 km', 
+                icon: FileText,
+                description: 'Centro de Atendimento ao Solicitante de Visto.'
+              },
+              { 
+                name: 'Esplanada dos Ministérios', 
+                distance: '16,0 km', 
+                icon: Building2,
+                description: 'Coração político e administrativo do Brasil.'
+              },
+              { 
+                name: 'Estádio Nacional (Arena BRB)', 
+                distance: '15,0 km', 
+                icon: Trophy,
+                description: 'Palco de grandes eventos esportivos e shows.'
+              },
+              { 
+                name: 'Centro de Convenções Ulysses', 
+                distance: '15,5 km', 
+                icon: Mic,
+                description: 'O maior centro de convenções de Brasília.'
+              }
+            ].map((point, index) => (
               <div 
                 key={index}
-                className="text-center p-6 bg-obsidian-light/40 backdrop-blur-xl border border-alpha-gold/20 hover:border-alpha-gold/60 transition-all duration-300"
+                className="group flex flex-col items-center text-center p-8 bg-black/40 backdrop-blur-xl border border-white/5 hover:border-alpha-gold/60 transition-all duration-500 rounded-2xl hover:-translate-y-2"
               >
-                <p className="text-alpha-gold font-serif text-2xl mb-2">{point.distance}</p>
-                <p className="text-gray-400 text-sm tracking-wide">{point.name}</p>
+                <div className="w-16 h-16 bg-white/5 border border-alpha-gold/30 rounded-full flex items-center justify-center mb-6 group-hover:bg-alpha-gold/10 transition-colors">
+                  <point.icon className="text-alpha-gold group-hover:scale-110 transition-transform" size={28} strokeWidth={1.5} />
+                </div>
+                
+                <h4 className="text-white font-serif text-lg tracking-wide mb-2 uppercase leading-tight min-h-[3rem] flex items-center">
+                  {point.name}
+                </h4>
+                
+                <p className="text-gray-400 text-xs font-light tracking-wide leading-relaxed mb-4 flex-grow">
+                  {point.description}
+                </p>
+                
+                <div className="pt-4 border-t border-white/10 w-full">
+                  <span className="text-alpha-gold font-serif text-xl tracking-widest">
+                    {point.distance}
+                  </span>
+                </div>
               </div>
             ))}
           </div>
