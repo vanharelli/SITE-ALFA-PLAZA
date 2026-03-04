@@ -14,7 +14,8 @@ import {
   Users2,
   CalendarCheck2,
   ChevronRight,
-  Info
+  Info,
+  ChevronDown
 } from 'lucide-react';
 import { Button } from './ui/button';
 import { useLanguage } from '../context/LanguageContext';
@@ -388,12 +389,12 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                 )}
 
                 {step === STEPS.RULES && (
-                  <div className="space-y-6 flex flex-col h-full p-6">
-                    <div className="flex-1 space-y-4 overflow-y-auto custom-scrollbar pr-2">
+                  <div className="flex flex-col h-full">
+                    <div className="flex-1 overflow-y-auto custom-scrollbar p-6 space-y-4">
                       <h3 className="text-white font-serif text-xl text-center tracking-wide">
                         {formData.type === 'Reserva Faturada' ? t.reservation.rules.corporateTitle : t.reservation.rules.partnershipTitle}
                       </h3>
-                      <div className="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-4">
+                      <div className="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-4 relative">
                         {formData.type === 'Reserva Faturada' ? (
                           <>
                             {t.reservation.rules.corporate.map((rule, index) => (
@@ -411,18 +412,23 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                             ))}
                           </>
                         )}
+                        <div className="flex justify-center pt-2">
+                          <ChevronDown className="text-alpha-gold animate-bounce opacity-50" size={20} />
+                        </div>
                       </div>
                     </div>
-                    <Button 
-                      onClick={() => {
-                        const email = formData.type === 'Reserva Faturada' ? 'reservas@alfaplazahotel.com.br' : 'administrativo@alfaplazahotel.com.br';
-                        const subject = formData.type === 'Reserva Faturada' ? 'Solicitação de Reserva Faturada' : 'Interesse em Parceria Comercial';
-                        window.open(`mailto:${email}?subject=${encodeURIComponent(subject)}`, '_blank');
-                      }}
-                      className="w-full bg-alpha-gold text-obsidian font-bold tracking-widest py-4 md:py-6 mt-auto shrink-0"
-                    >
-                      {t.reservation.rules.sendEmail}
-                    </Button>
+                    <div className="p-6 pt-0 mt-auto shrink-0 relative z-10">
+                      <Button 
+                        onClick={() => {
+                          const email = formData.type === 'Reserva Faturada' ? 'reservas@alfaplazahotel.com.br' : 'administrativo@alfaplazahotel.com.br';
+                          const subject = formData.type === 'Reserva Faturada' ? 'Solicitação de Reserva Faturada' : 'Interesse em Parceria Comercial';
+                          window.open(`mailto:${email}?subject=${encodeURIComponent(subject)}`, '_blank');
+                        }}
+                        className="w-full bg-alpha-gold text-obsidian font-bold tracking-widest py-4 md:py-6"
+                      >
+                        {t.reservation.rules.sendEmail}
+                      </Button>
+                    </div>
                   </div>
                 )}
 
