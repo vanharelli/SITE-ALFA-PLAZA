@@ -220,6 +220,7 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
       id: 'welcome-vip',
       title: 'Boas-Vindas VIP',
       icon: Star,
+      image: '/Boas vindas vip.jpg',
       focus: 'Recepção de alto padrão no apartamento para ocasiões únicas.',
       setup: 'Cartão nominal escrito à mão, águas premium e macarons/trufas artesanais.'
     },
@@ -227,6 +228,7 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
       id: 'boutique-exp',
       title: 'Lounge Privativo',
       icon: Gem,
+      image: '/Louge privativo.jpg',
       focus: 'Recepção sofisticada para casais ou executivos.',
       setup: 'Tábua de frios, meia garrafa de vinho e arranjo floral minimalista.'
     },
@@ -234,6 +236,7 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
       id: 'guest-honor',
       title: 'Convidado de Honra',
       icon: Crown,
+      image: '/hotel/1.webp', // Using a placeholder as specific image wasn't found
       focus: 'Comemorações marcantes e hóspedes VIP.',
       setup: 'Bandeja de frutas frescas e chocolates, garrafa de vinho ou espumante, roupões para uso na estadia e café da manhã servido no quarto.'
     }
@@ -433,8 +436,18 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                       {experiences.map((exp) => (
                         <div 
                           key={exp.id}
-                          className="min-w-[280px] w-[80%] snap-center bg-white/5 border border-alpha-gold/30 rounded-2xl p-6 flex flex-col shadow-2xl relative overflow-hidden shrink-0"
+                          className="min-w-[280px] w-[80%] snap-center bg-zinc-950 border border-alpha-gold/30 rounded-2xl p-6 flex flex-col shadow-2xl relative overflow-hidden shrink-0 group"
                         >
+                          {/* Background Image */}
+                          <div className="absolute inset-0">
+                            <img 
+                              src={exp.image} 
+                              alt={exp.title} 
+                              className="w-full h-full object-cover opacity-40 group-hover:scale-110 transition-transform duration-700"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-black/40" />
+                          </div>
+
                           <div className="absolute top-0 right-0 p-4 opacity-10">
                             <exp.icon size={80} className="text-alpha-gold" />
                           </div>
