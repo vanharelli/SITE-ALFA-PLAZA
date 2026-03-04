@@ -603,7 +603,7 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                               <select 
                                 value={formData.adults}
                                 onChange={(e) => setFormData(prev => ({ ...prev, adults: e.target.value }))}
-                                className="w-full bg-black/40 backdrop-blur-md border border-white/10 rounded-xl py-4 pl-12 pr-4 text-white focus:outline-none focus:border-alpha-gold/50 transition-all appearance-none relative z-10"
+                                className="w-full bg-black/40 backdrop-blur-md border border-white/10 rounded-xl py-4 pl-12 pr-4 text-white focus:outline-none focus:border-alpha-gold/50 transition-all appearance-none relative z-10 [&>option]:bg-zinc-900 [&>option]:text-white"
                               >
                                 <option value="1">{t.reservation.guests.adult1}</option>
                                 <option value="2">{t.reservation.guests.adults2}</option>
