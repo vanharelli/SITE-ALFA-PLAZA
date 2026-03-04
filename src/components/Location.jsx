@@ -61,7 +61,7 @@ const testimonials = [
   { name: "Dra. Mônica Zanchetta", role: "Booking.com", text: "Recomendo pela combinação de conforto, profissionalismo e ambiente agradável durante toda a estadia." }
 ];
 
-const Location = () => {
+const Location = ({ onOpenReservation }) => {
   const { t } = useLanguage();
   const [selectedImageIndex, setSelectedImageIndex] = useState(null);
 
@@ -290,15 +290,12 @@ const Location = () => {
 
             {/* CTA Section */}
             <div id="contact" className="pt-4 max-w-md mx-auto w-full">
-              <a 
-                href="https://wa.me/5561982062229"
-                target="_blank"
-                rel="noopener noreferrer"
+              <Button 
+                onClick={onOpenReservation}
+                className="w-full bg-alpha-gold text-obsidian font-semibold tracking-widest hover:bg-alpha-gold/90 transition-all hover:scale-105 py-6"
               >
-                <Button className="w-full bg-alpha-gold text-obsidian font-semibold tracking-widest hover:bg-alpha-gold/90 transition-all hover:scale-105 py-6">
-                  {t.header.bookButton}
-                </Button>
-              </a>
+                {t.header.bookButton}
+              </Button>
             </div>
           </div>
         </div>

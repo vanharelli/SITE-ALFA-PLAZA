@@ -3,7 +3,7 @@ import { Button } from './ui/button';
 import { ChevronDown } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
-const Hero = () => {
+const Hero = ({ onOpenReservation }) => {
   const { t } = useLanguage();
 
   const scrollToRooms = () => {
@@ -37,18 +37,12 @@ const Hero = () => {
 
             {/* CTA Button */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8 w-full max-w-md mx-auto sm:max-w-none">
-              <a 
-                href="https://wa.me/5561982062229"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full sm:w-auto"
+              <Button 
+                onClick={onOpenReservation}
+                className="w-full sm:w-auto px-10 py-7 bg-alpha-gold text-obsidian font-semibold tracking-widest text-base hover:bg-alpha-gold/90 transition-all hover:scale-105 hover:shadow-2xl hover:shadow-alpha-gold/20"
               >
-                <Button 
-                  className="w-full sm:w-auto px-10 py-7 bg-alpha-gold text-obsidian font-semibold tracking-widest text-base hover:bg-alpha-gold/90 transition-all hover:scale-105 hover:shadow-2xl hover:shadow-alpha-gold/20"
-                >
-                  {t.hero.cta}
-                </Button>
-              </a>
+                {t.hero.cta}
+              </Button>
             </div>
             
             <div className="flex flex-col items-center mt-6 space-y-2 animate-pulse">

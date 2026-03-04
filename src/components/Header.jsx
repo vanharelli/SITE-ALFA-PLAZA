@@ -5,7 +5,7 @@ import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetDescription } from 
 import { useLanguage } from '../context/LanguageContext';
 import * as VisuallyHidden from '@radix-ui/react-visually-hidden';
 
-const Header = () => {
+const Header = ({ onOpenReservation }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [logoError, setLogoError] = useState(false);
   const { language, changeLanguage, t } = useLanguage();
@@ -64,7 +64,7 @@ const Header = () => {
               </div>
             ) : null}
             <div>
-              <h1 className="font-serif text-xl tracking-widest text-white">
+              <h1 className="font-serif text-xs md:text-xl tracking-widest text-white">
                 ALFA <span className="text-alpha-gold">PLAZA</span>
               </h1>
               <p className="text-white text-xs tracking-wider">HOTEL</p>
@@ -78,18 +78,12 @@ const Header = () => {
 
           {/* Desktop Navigation (Hidden on Mobile) */}
           <nav className="hidden md:flex items-center">
-            <a 
-              href="https://wa.me/5561982062229"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block"
+            <Button 
+              onClick={onOpenReservation}
+              className="bg-alpha-gold text-obsidian font-semibold tracking-wider hover:bg-alpha-gold/90 transition-all hover:scale-105 px-6 py-2"
             >
-              <Button 
-                className="bg-alpha-gold text-obsidian font-semibold tracking-wider hover:bg-alpha-gold/90 transition-all hover:scale-105 px-6 py-2"
-              >
-                {t.header.bookButton}
-              </Button>
-            </a>
+              {t.header.bookButton}
+            </Button>
           </nav>
 
           {/* Mobile Actions: Language Switcher */}

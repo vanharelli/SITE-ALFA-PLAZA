@@ -46,7 +46,7 @@ const amenities = [
   }
 ];
 
-const Amenities = () => {
+const Amenities = ({ onOpenReservation }) => {
   const { t } = useLanguage();
   return (
     <section id="amenities" className="relative py-20 sm:py-32 bg-cover bg-center bg-fixed" style={{ backgroundImage: "url('/backgroundalfa.jpg')" }}>
@@ -83,18 +83,12 @@ const Amenities = () => {
 
         {/* Action Button */}
         <div className="flex justify-center fade-in-section relative z-10">
-          <a 
-            href="https://wa.me/5561982062229"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block"
+          <Button 
+            onClick={onOpenReservation}
+            className="bg-alpha-gold text-obsidian font-bold tracking-[0.2em] uppercase px-10 py-6 text-lg hover:bg-alpha-gold/90 transition-all hover:scale-105 shadow-xl shadow-alpha-gold/20"
           >
-            <Button 
-              className="bg-alpha-gold text-obsidian font-bold tracking-[0.2em] uppercase px-10 py-6 text-lg hover:bg-alpha-gold/90 transition-all hover:scale-105 shadow-xl shadow-alpha-gold/20"
-            >
-              {t.header.bookButton}
-            </Button>
-          </a>
+            {t.header.bookButton}
+          </Button>
         </div>
       </div>
     </section>

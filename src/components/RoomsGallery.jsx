@@ -73,7 +73,7 @@ const RoomImageCarousel = ({ images, title }) => {
   );
 };
 
-const RoomsGallery = () => {
+const RoomsGallery = ({ onOpenReservation }) => {
   const { t } = useLanguage();
   const rooms = [2, 6, 3, 7, 4, 5].map(id => ({
     id,
@@ -135,16 +135,12 @@ const RoomsGallery = () => {
                       </div>
 
                       <div className="mt-auto">
-                        <a 
-                          href={`https://wa.me/5561982062229?text=Olá, gostaria de saber mais sobre a ${room.title}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="block w-full"
+                        <Button 
+                          onClick={() => onOpenReservation(room)}
+                          className="w-full bg-alpha-gold text-obsidian font-semibold tracking-wider hover:bg-alpha-gold/90 transition-all text-xs"
                         >
-                          <Button className="w-full bg-alpha-gold text-obsidian font-semibold tracking-wider hover:bg-alpha-gold/90 transition-all text-xs">
-                            {t.rooms.checkAvailability}
-                          </Button>
-                        </a>
+                          {t.rooms.checkAvailability}
+                        </Button>
                       </div>
                     </div>
                   </div>
