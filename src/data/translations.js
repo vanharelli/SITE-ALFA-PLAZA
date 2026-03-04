@@ -126,7 +126,7 @@ export const translations = {
         emailPlaceholder: "seu@email.com",
         whatsappLabel: "WhatsApp",
         whatsappPlaceholder: "(00) 00000-0000",
-        disclaimer: "Ao clicar em finalizar, você será redirecionado para o WhatsApp do nosso setor de reservas para validação final.",
+        disclaimer: "Ao clicar em finalizar, você será redirecionado para o WhatsApp do nosso setor de reservas para validação final. Quando abrir o WhatsApp, basta enviar a mensagem gerada automaticamente para o número do hotel.",
         finish: "FINALIZAR E ENVIAR"
       },
       rules: {
@@ -280,7 +280,7 @@ export const translations = {
         emailPlaceholder: "your@email.com",
         whatsappLabel: "WhatsApp",
         whatsappPlaceholder: "(00) 00000-0000",
-        disclaimer: "By clicking finish, you will be redirected to our reservation sector WhatsApp for final validation.",
+        disclaimer: "By clicking finish, you will be redirected to our reservation sector WhatsApp for final validation. When WhatsApp opens, simply send the automatically generated message to the hotel number.",
         finish: "FINISH AND SEND"
       },
       rules: {
@@ -434,7 +434,7 @@ export const translations = {
         emailPlaceholder: "su@email.com",
         whatsappLabel: "WhatsApp",
         whatsappPlaceholder: "(00) 00000-0000",
-        disclaimer: "Al hacer clic en finalizar, será redirigido al WhatsApp de nuestro sector de reservas para validación final.",
+        disclaimer: "Al hacer clic en finalizar, será redirigido al WhatsApp de nuestro sector de reservas para validación final. Al abrir WhatsApp, simplemente envíe el mensaje generado automáticamente al número del hotel.",
         finish: "FINALIZAR Y ENVIAR"
       },
       rules: {
