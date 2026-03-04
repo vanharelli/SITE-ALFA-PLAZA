@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   X, 
-  ChevronLeft, 
-  Calendar, 
+  ChevronLeft,
+  Calendar as CalendarIcon,
   Users, 
   Clock, 
   User, 
@@ -22,6 +22,10 @@ import {
   Crown
 } from 'lucide-react';
 import { Button } from './ui/button';
+import { Calendar } from './ui/calendar';
+import { Popover, PopoverContent, PopoverTrigger } from './ui/popover';
+import { format } from 'date-fns';
+import { ptBR, es, enUS } from 'date-fns/locale';
 import { useLanguage } from '../context/LanguageContext';
 
 const STEPS = {
@@ -534,15 +538,41 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                         <div className="space-y-1">
                           <label className="text-alpha-gold text-[10px] tracking-[0.2em] uppercase font-bold ml-1">{t.reservation.dates.checkIn}</label>
                           <div className="relative group">
-                            <Calendar className="absolute left-4 top-1/2 -translate-y-1/2 text-alpha-gold/50 group-focus-within:text-alpha-gold transition-colors z-10 pointer-events-none" size={20} />
+                            <CalendarIcon className="absolute left-4 top-1/2 -translate-y-1/2 text-alpha-gold/50 group-focus-within:text-alpha-gold transition-colors z-10 pointer-events-none" size={20} />
                             <div className="relative">
-                              <input 
-                                type="date"
-                                lang={language === 'pt' ? 'pt-BR' : language === 'es' ? 'es-ES' : 'en-US'}
-                                value={formData.checkIn}
-                                onChange={(e) => setFormData(prev => ({ ...prev, checkIn: e.target.value }))}
-                                className="w-full bg-black/40 backdrop-blur-md border border-white/10 rounded-xl py-4 pl-12 pr-4 text-white focus:outline-none focus:border-alpha-gold/50 transition-all appearance-none [color-scheme:dark]"
-                              />
+                              <Popover>
+                                <PopoverTrigger asChild>
+                                  <button
+                                    className={`w-full bg-black/40 backdrop-blur-md border border-white/10 rounded-xl py-4 pl-12 pr-4 text-left focus:outline-none focus:border-alpha-gold/50 transition-all ${!formData.checkIn && "text-gray-400"}`}
+                                  >
+                                    {formData.checkIn ? (
+                                      <span className="text-white">
+                                        {format(new Date(formData.checkIn + 'T12:00:00'), "dd 'de' MMMM 'de' yyyy", { locale: language === 'pt' ? ptBR : language === 'es' ? es : enUS })}
+                                      </span>
+                                    ) : (
+                                      <span>{t.reservation.dates.selectDate || "Selecione uma data"}</span>
+                                    )}
+                                  </button>
+                                </PopoverTrigger>
+                                <PopoverContent className="w-auto p-0 bg-zinc-950 border-white/10 text-white z-[10001]" align="start">
+                                  <Calendar
+                                    mode="single"
+                                    selected={formData.checkIn ? new Date(formData.checkIn + 'T12:00:00') : undefined}
+                                    onSelect={(date) => setFormData(prev => ({ ...prev, checkIn: date ? format(date, 'yyyy-MM-dd') : '' }))}
+                                    initialFocus
+                                    locale={language === 'pt' ? ptBR : language === 'es' ? es : enUS}
+                                    className="rounded-md border-white/10"
+                                    classNames={{
+                                      day_selected: "bg-alpha-gold text-obsidian hover:bg-alpha-gold hover:text-obsidian focus:bg-alpha-gold focus:text-obsidian",
+                                      day_today: "bg-white/10 text-white",
+                                      day: "text-white hover:bg-white/10 hover:text-white rounded-md",
+                                      head_cell: "text-gray-400",
+                                      caption_label: "text-white font-serif",
+                                      nav_button: "text-white hover:bg-white/10 hover:text-white"
+                                    }}
+                                  />
+                                </PopoverContent>
+                              </Popover>
                             </div>
                           </div>
                         </div>
@@ -550,15 +580,41 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                         <div className="space-y-1">
                           <label className="text-alpha-gold text-[10px] tracking-[0.2em] uppercase font-bold ml-1">{t.reservation.dates.checkOut}</label>
                           <div className="relative group">
-                            <Calendar className="absolute left-4 top-1/2 -translate-y-1/2 text-alpha-gold/50 group-focus-within:text-alpha-gold transition-colors z-10 pointer-events-none" size={20} />
+                            <CalendarIcon className="absolute left-4 top-1/2 -translate-y-1/2 text-alpha-gold/50 group-focus-within:text-alpha-gold transition-colors z-10 pointer-events-none" size={20} />
                             <div className="relative">
-                              <input 
-                                type="date"
-                                lang={language === 'pt' ? 'pt-BR' : language === 'es' ? 'es-ES' : 'en-US'}
-                                value={formData.checkOut}
-                                onChange={(e) => setFormData(prev => ({ ...prev, checkOut: e.target.value }))}
-                                className="w-full bg-black/40 backdrop-blur-md border border-white/10 rounded-xl py-4 pl-12 pr-4 text-white focus:outline-none focus:border-alpha-gold/50 transition-all appearance-none [color-scheme:dark]"
-                              />
+                              <Popover>
+                                <PopoverTrigger asChild>
+                                  <button
+                                    className={`w-full bg-black/40 backdrop-blur-md border border-white/10 rounded-xl py-4 pl-12 pr-4 text-left focus:outline-none focus:border-alpha-gold/50 transition-all ${!formData.checkOut && "text-gray-400"}`}
+                                  >
+                                    {formData.checkOut ? (
+                                      <span className="text-white">
+                                        {format(new Date(formData.checkOut + 'T12:00:00'), "dd 'de' MMMM 'de' yyyy", { locale: language === 'pt' ? ptBR : language === 'es' ? es : enUS })}
+                                      </span>
+                                    ) : (
+                                      <span>{t.reservation.dates.selectDate || "Selecione uma data"}</span>
+                                    )}
+                                  </button>
+                                </PopoverTrigger>
+                                <PopoverContent className="w-auto p-0 bg-zinc-950 border-white/10 text-white z-[10001]" align="start">
+                                  <Calendar
+                                    mode="single"
+                                    selected={formData.checkOut ? new Date(formData.checkOut + 'T12:00:00') : undefined}
+                                    onSelect={(date) => setFormData(prev => ({ ...prev, checkOut: date ? format(date, 'yyyy-MM-dd') : '' }))}
+                                    initialFocus
+                                    locale={language === 'pt' ? ptBR : language === 'es' ? es : enUS}
+                                    className="rounded-md border-white/10"
+                                    classNames={{
+                                      day_selected: "bg-alpha-gold text-obsidian hover:bg-alpha-gold hover:text-obsidian focus:bg-alpha-gold focus:text-obsidian",
+                                      day_today: "bg-white/10 text-white",
+                                      day: "text-white hover:bg-white/10 hover:text-white rounded-md",
+                                      head_cell: "text-gray-400",
+                                      caption_label: "text-white font-serif",
+                                      nav_button: "text-white hover:bg-white/10 hover:text-white"
+                                    }}
+                                  />
+                                </PopoverContent>
+                              </Popover>
                             </div>
                           </div>
                         </div>
