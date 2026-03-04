@@ -129,6 +129,7 @@ const RoomsGallery = ({ onOpenReservation }) => {
                       <div className="grid grid-cols-2 gap-y-3 gap-x-4 mb-6">
                         {room.features.map((feature, idx) => (
                           <div key={idx} className="flex items-center space-x-2">
+                            <div className="w-1.5 h-1.5 rounded-full bg-alpha-gold shrink-0"></div>
                             <span className="text-gray-300 text-xs tracking-wide">{feature}</span>
                           </div>
                         ))}

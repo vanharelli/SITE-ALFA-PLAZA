@@ -15,6 +15,18 @@ const Hero = ({ onOpenReservation }) => {
 
   return (
     <section className="relative h-screen w-full overflow-hidden bg-cover bg-center bg-fixed" style={{ backgroundImage: "url('/backgroundalfa.jpg')" }}>
+      {/* Background Video */}
+      <div className="absolute inset-0 z-0">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full h-full object-cover"
+        >
+          <source src="/background video.mp4" type="video/mp4" />
+        </video>
+      </div>
       {/* Overlay */}
       <div className="absolute inset-0 bg-obsidian/60 backdrop-blur-sm z-10"></div>
 

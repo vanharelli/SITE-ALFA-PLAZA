@@ -47,11 +47,11 @@ const Header = ({ onOpenReservation }) => {
   );
 
   return (
-    <header className={`fixed top-0 w-full z-50 transition-all duration-500 ${
-      isScrolled ? 'bg-black/80 backdrop-blur-md shadow-lg border-b border-alpha-gold/30' : 'bg-transparent border-b border-transparent'
-    }`}>
-      <div className="max-w-7xl mx-auto px-6 py-4">
-        <div className="flex items-center justify-between">
+    <header className={`fixed top-0 w-full z-50 overflow-hidden transition-colors duration-300 ${ 
+      isScrolled ? 'bg-black/80 shadow-lg border-b border-alpha-gold/30' : 'bg-transparent border-b border-transparent'
+    } backdrop-blur-md`}>
+      <div className="max-w-7xl mx-auto px-6 h-16 md:h-20 flex items-center">
+        <div className="flex items-center justify-between w-full">
           <div className="flex items-center space-x-3">
             {!logoError ? (
               <div className="logo-module">

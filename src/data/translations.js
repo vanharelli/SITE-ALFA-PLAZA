@@ -17,32 +17,32 @@ export const translations = {
         2: {
           title: "Suíte Casal",
           description: "Conforto sofisticado com vista privilegiada",
-          features: ["King Size", "Frigobar", "Varanda (Opcional)", "Banheira", "TV a cabo"]
+          features: ["Cama de Casal", "Frigobar", "Wi-Fi", "Mesa de Trabalho", "TV a cabo"]
         },
         6: {
           title: "Suíte Duplo Solteiro",
           description: "Perfeito para viagens a trabalho ou com amigos",
-          features: ["2 Camas Solteiro", "Frigobar", "Wi-Fi Rápido", "Mesa de Trabalho", "TV a cabo"]
+          features: ["2 Camas Solteiro", "Frigobar", "Wi-Fi", "Mesa de Trabalho", "TV a cabo"]
         },
         3: {
           title: "Suíte Triplo Casal",
           description: "O ápice da exclusividade e requinte",
-          features: ["Suite Dupla", "Frigobar", "Vista Panorâmica", "Jacuzzi Privativa", "TV a cabo"]
+          features: ["1 Cama de Casal e 1 de Solteiro", "Frigobar", "Wi-Fi", "Mesa de Trabalho", "TV a cabo"]
         },
         7: {
           title: "Suíte Triplo Solteiro",
           description: "Espaço e conforto para grupos e colegas de trabalho",
-          features: ["3 Camas Solteiro", "Frigobar", "Varanda", "TV a cabo"]
+          features: ["3 Camas Solteiro", "Frigobar", "Wi-Fi", "Mesa de Trabalho", "TV a cabo"]
         },
         4: {
           title: "Suíte Quádruplo",
           description: "Espaço ideal para família ou pequenos grupos, com conforto completo",
-          features: ["4 hóspedes", "Frigobar", "2 Camas de Casal", "Smart TV", "TV a cabo"]
+          features: ["1 Cama de Casal e 2 de Solteiro", "Frigobar", "Wi-Fi", "Mesa de Trabalho", "TV a cabo"]
         },
         5: {
           title: "Suíte Adaptável",
           description: "Acessibilidade, praticidade e conforto, com estrutura pensada para PCD",
-          features: ["Acessível (PCD)", "Frigobar", "Banheiro adaptado", "Barras de apoio", "TV a cabo"]
+          features: ["Acessível (PCD)", "Frigobar", "Wi-Fi", "Mesa de Trabalho", "TV a cabo"]
         }
       }
     },
@@ -91,32 +91,32 @@ export const translations = {
         2: {
           title: "Couple Suite",
           description: "Sophisticated comfort with a privileged view",
-          features: ["King Size", "Minibar", "Balcony (Optional)", "Bathtub", "Cable TV"]
+          features: ["Double Bed", "Minibar", "Wi-Fi", "Work Desk", "Cable TV"]
         },
         6: {
           title: "Double Single Suite",
           description: "Perfect for business trips or friends",
-          features: ["2 Single Beds", "Minibar", "Fast Wi-Fi", "Work Desk", "Cable TV"]
+          features: ["2 Single Beds", "Minibar", "Wi-Fi", "Work Desk", "Cable TV"]
         },
         3: {
           title: "Triple Couple Suite",
           description: "The pinnacle of exclusivity and refinement",
-          features: ["Double Suite", "Minibar", "Panoramic View", "Private Jacuzzi", "Cable TV"]
+          features: ["1 Double Bed and 1 Single Bed", "Minibar", "Wi-Fi", "Work Desk", "Cable TV"]
         },
         7: {
           title: "Triple Single Suite",
           description: "Space and comfort for groups and colleagues",
-          features: ["3 Single Beds", "Minibar", "Balcony", "Cable TV"]
+          features: ["3 Single Beds", "Minibar", "Wi-Fi", "Work Desk", "Cable TV"]
         },
         4: {
           title: "Quadruple Suite",
           description: "Ideal space for family or small groups, with complete comfort",
-          features: ["4 guests", "Minibar", "2 Double Beds", "Smart TV", "Cable TV"]
+          features: ["1 Double Bed and 2 Single Beds", "Minibar", "Wi-Fi", "Work Desk", "Cable TV"]
         },
         5: {
           title: "Accessible Suite",
           description: "Accessibility, practicality and comfort, with structure designed for PWD",
-          features: ["Accessible (PWD)", "Minibar", "Adapted Bathroom", "Support Bars", "Cable TV"]
+          features: ["Accessible (PWD)", "Minibar", "Wi-Fi", "Work Desk", "Cable TV"]
         }
       }
     },
@@ -165,32 +165,32 @@ export const translations = {
         2: {
           title: "Suite Matrimonial",
           description: "Confort sofisticado con vista privilegiada",
-          features: ["King Size", "Frigobar", "Balcón (Opcional)", "Bañera", "TV por cable"]
+          features: ["Cama de Matrimonio", "Frigobar", "Wi-Fi", "Escritorio", "TV por cable"]
         },
         6: {
           title: "Suite Doble Soltero",
           description: "Perfecto para viajes de trabajo o con amigos",
-          features: ["2 Camas Individuales", "Frigobar", "Wi-Fi Rápido", "Escritorio", "TV por cable"]
+          features: ["2 Camas Individuales", "Frigobar", "Wi-Fi", "Escritorio", "TV por cable"]
         },
         3: {
           title: "Suite Triple Matrimonial",
           description: "La cúspide de la exclusividad y el refinamiento",
-          features: ["Suite Doble", "Frigobar", "Vista Panorámica", "Jacuzzi Privado", "TV por cable"]
+          features: ["1 Cama de Matrimonio y 1 Individual", "Frigobar", "Wi-Fi", "Escritorio", "TV por cable"]
         },
         7: {
           title: "Suite Triple Soltero",
           description: "Espacio y confort para grupos y colegas de trabajo",
-          features: ["3 Camas Individuales", "Frigobar", "Balcón", "Minibar", "TV por cable"]
+          features: ["3 Camas Individuales", "Frigobar", "Wi-Fi", "Escritorio", "TV por cable"]
         },
         4: {
           title: "Suite Cuádruple",
           description: "Espacio ideal para familia o pequeños grupos, con confort completo",
-          features: ["4 huéspedes", "Frigobar", "2 Camas Dobles", "Smart TV", "TV por cable"]
+          features: ["1 Cama de Matrimonio y 2 Individuales", "Frigobar", "Wi-Fi", "Escritorio", "TV por cable"]
         },
         5: {
           title: "Suite Adaptable",
           description: "Accesibilidad, practicidad y confort, con estructura pensada para PMR",
-          features: ["Accesible (PMR)", "Frigobar", "Baño adaptado", "Barras de apoyo", "TV por cable"]
+          features: ["Accesible (PMR)", "Frigobar", "Wi-Fi", "Escritorio", "TV por cable"]
         }
       }
     },
