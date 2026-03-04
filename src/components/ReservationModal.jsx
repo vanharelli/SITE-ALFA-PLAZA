@@ -681,8 +681,6 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                         )}
                       </div>
                     </div>
-                      </div>
-                    </div>
 
                     <div className="p-6 pt-0 mt-auto shrink-0 relative z-20">
                       <Button 
