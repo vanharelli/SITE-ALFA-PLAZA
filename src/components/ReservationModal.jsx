@@ -332,7 +332,7 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                         </div>
                         <div>
                           <p className="text-white font-semibold tracking-wide text-sm">Celebrações & Romance</p>
-                          <p className="text-gray-400 text-[10px]">Decoração exclusiva e recepção premium para momentos inesquecíveis.</p>
+                          <p className="text-gray-400 text-[10px]">Decoração exclusiva e momentos inesquecíveis.</p>
                         </div>
                       </button>
                     </div>
