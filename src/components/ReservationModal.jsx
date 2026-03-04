@@ -315,14 +315,14 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                           setFormData(prev => ({ ...prev, type: 'Reserva Individual' }));
                           wrapSetStep(STEPS.SUITE_SELECTION);
                         }}
-                        className="group p-4 rounded-2xl border border-alpha-gold/20 bg-white/5 hover:bg-alpha-gold/10 hover:border-alpha-gold/50 transition-all flex flex-col items-center justify-center text-center h-full gap-3"
+                        className="group p-3 rounded-2xl border border-alpha-gold/20 bg-white/5 hover:bg-alpha-gold/10 hover:border-alpha-gold/50 transition-all flex flex-col items-center justify-center text-center h-full gap-2"
                       >
-                        <div className="w-12 h-12 rounded-xl bg-alpha-gold/20 flex items-center justify-center text-alpha-gold group-hover:scale-110 transition-transform">
-                          <CalendarCheck2 size={24} />
+                        <div className="w-10 h-10 rounded-xl bg-alpha-gold/20 flex items-center justify-center text-alpha-gold group-hover:scale-110 transition-transform">
+                          <CalendarCheck2 size={20} />
                         </div>
                         <div>
-                          <p className="text-white font-semibold tracking-wide text-sm">{t.reservation.hub.bookNow}</p>
-                          <p className="text-gray-400 text-[10px]">{t.reservation.hub.bookNowDesc}</p>
+                          <p className="text-white font-semibold tracking-wide text-xs">{t.reservation.hub.bookNow}</p>
+                          <p className="text-gray-400 text-[9px]">{t.reservation.hub.bookNowDesc}</p>
                         </div>
                       </button>
 
@@ -331,14 +331,14 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                           setFormData(prev => ({ ...prev, type: 'Reserva Faturada' }));
                           wrapSetStep(STEPS.RULES);
                         }}
-                        className="group p-4 rounded-2xl border border-white/10 bg-white/5 hover:bg-white/10 transition-all flex flex-col items-center justify-center text-center h-full gap-3"
+                        className="group p-3 rounded-2xl border border-white/10 bg-white/5 hover:bg-white/10 transition-all flex flex-col items-center justify-center text-center h-full gap-2"
                       >
-                        <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center text-blue-400 group-hover:scale-110 transition-transform">
-                          <Building2 size={24} />
+                        <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-blue-400 group-hover:scale-110 transition-transform">
+                          <Building2 size={20} />
                         </div>
                         <div>
-                          <p className="text-white font-semibold tracking-wide text-sm">{t.reservation.hub.corporate}</p>
-                          <p className="text-gray-400 text-[10px]">{t.reservation.hub.corporateDesc}</p>
+                          <p className="text-white font-semibold tracking-wide text-xs">{t.reservation.hub.corporate}</p>
+                          <p className="text-gray-400 text-[9px]">{t.reservation.hub.corporateDesc}</p>
                         </div>
                       </button>
 
@@ -347,14 +347,14 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                           setFormData(prev => ({ ...prev, type: 'Grupos e Eventos' }));
                           wrapSetStep(STEPS.SUITE_SELECTION);
                         }}
-                        className="group p-4 rounded-2xl border border-white/10 bg-white/5 hover:bg-white/10 transition-all flex flex-col items-center justify-center text-center h-full gap-3"
+                        className="group p-3 rounded-2xl border border-white/10 bg-white/5 hover:bg-white/10 transition-all flex flex-col items-center justify-center text-center h-full gap-2"
                       >
-                        <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center text-purple-400 group-hover:scale-110 transition-transform">
-                          <Users2 size={24} />
+                        <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-purple-400 group-hover:scale-110 transition-transform">
+                          <Users2 size={20} />
                         </div>
                         <div>
-                          <p className="text-white font-semibold tracking-wide text-sm">{t.reservation.hub.groups}</p>
-                          <p className="text-gray-400 text-[10px]">{t.reservation.hub.groupsDesc}</p>
+                          <p className="text-white font-semibold tracking-wide text-xs">{t.reservation.hub.groups}</p>
+                          <p className="text-gray-400 text-[9px]">{t.reservation.hub.groupsDesc}</p>
                         </div>
                       </button>
 
@@ -363,14 +363,14 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                           setFormData(prev => ({ ...prev, type: 'Recepção VIP & Homenagens' }));
                           wrapSetStep(STEPS.EXPERIENCES);
                         }}
-                        className="group p-4 rounded-2xl border border-white/10 bg-white/5 hover:bg-white/10 transition-all flex flex-col items-center justify-center text-center h-full gap-3"
+                        className="group p-3 rounded-2xl border border-white/10 bg-white/5 hover:bg-white/10 transition-all flex flex-col items-center justify-center text-center h-full gap-2"
                       >
-                        <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center text-red-400 group-hover:scale-110 transition-transform">
-                          <Heart size={24} />
+                        <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-red-400 group-hover:scale-110 transition-transform">
+                          <Heart size={20} />
                         </div>
                         <div>
-                          <p className="text-white font-semibold tracking-wide text-sm">Recepção VIP & Homenagens</p>
-                          <p className="text-gray-400 text-[10px]">Detalhes de alto padrão no apartamento para elevar a experiência de quem você valoriza.</p>
+                          <p className="text-white font-semibold tracking-wide text-xs">Recepção VIP & Homenagens</p>
+                          <p className="text-gray-400 text-[9px]">Detalhes de alto padrão no apartamento para elevar a experiência de quem você valoriza.</p>
                         </div>
                       </button>
                     </div>
