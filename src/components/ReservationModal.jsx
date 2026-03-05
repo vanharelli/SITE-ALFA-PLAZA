@@ -205,31 +205,31 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
   const handleReservation = () => {
     const suitesText = formData.type === 'Grupos e Eventos' 
       ? formData.suites.map(s => s.title).join(', ')
-      : (formData.suite?.title || 'Não especificada');
+      : (formData.suite?.title || t.whatsapp.unspecified);
 
     const childrenText = formData.hasChildren 
-      ? `${formData.childCount} crianças (${formData.allChildrenOver5 ? 'Todas acima de 5 anos' : 'Inclui menores de 5 anos'})`
-      : 'Nenhuma';
+      ? `${formData.childCount} ${t.whatsapp.children} (${formData.allChildrenOver5 ? t.whatsapp.allOver5 : t.whatsapp.includesUnder5})`
+      : t.whatsapp.none;
 
-    let message = `🏢 *RESERVA - ALFA PLAZA HOTEL*\n` +
+    let message = `🏢 *${t.whatsapp.title}*\n` +
       `__________________________________\n\n` +
-      `👤 *Cliente:* ${formData.name}\n` +
+      `👤 *${t.whatsapp.client}:* ${formData.name}\n` +
       `📱 *WhatsApp:* ${formData.whatsapp}\n` +
       `✉️ *E-mail:* ${formData.email}\n` +
       `__________________________________\n\n` +
-      `🛏️ *Categoria:* ${suitesText}\n`;
+      `🛏️ *${t.whatsapp.category}:* ${suitesText}\n`;
 
     if (formData.experiencePackage) {
-      message += `💎 *Recepção VIP:* ${formData.experiencePackage}\n`;
+      message += `💎 *${t.whatsapp.vip}:* ${formData.experiencePackage}\n`;
     }
 
-    message += `👥 *Pessoas:* ${formData.adults}\n` +
-      `🧒 *Crianças:* ${childrenText}\n` +
+    message += `👥 *${t.whatsapp.people}:* ${formData.adults}\n` +
+      `🧒 *${t.whatsapp.children}:* ${childrenText}\n` +
       `__________________________________\n\n` +
-      `📅 *Datas:* ${format(new Date(formData.checkIn + 'T12:00:00'), 'dd/MM/yyyy')} a ${format(new Date(formData.checkOut + 'T12:00:00'), 'dd/MM/yyyy')}\n` +
-      `🕒 *Chegada prevista:* ${formData.arrivalTime}\n` +
+      `📅 *${t.whatsapp.dates}:* ${format(new Date(formData.checkIn + 'T12:00:00'), 'dd/MM/yyyy')} a ${format(new Date(formData.checkOut + 'T12:00:00'), 'dd/MM/yyyy')}\n` +
+      `🕒 *${t.whatsapp.arrival}:* ${formData.arrivalTime}\n` +
       `__________________________________\n\n` +
-      `_Aguarde um momento. Nossa equipe de recepção iniciará o seu atendimento em instantes._`;
+      `_${t.whatsapp.waitMessage}_`;
 
     const encodedMessage = encodeURIComponent(message);
     window.open(`https://wa.me/556132639131?text=${encodedMessage}`, '_blank');
@@ -526,7 +526,7 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                             }}
                             className="w-full bg-alpha-gold text-obsidian font-bold tracking-widest py-4 mt-auto relative z-10"
                           >
-                            SELECIONAR
+                            {t.common.select}
                           </Button>
                         </div>
                       ))}
@@ -688,7 +688,7 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                                 <p className="text-gray-400 text-[10px] tracking-wider uppercase mt-1">{t.reservation.guests.childrenCourtesy}</p>
                               </div>
                               <div className="flex items-center gap-2">
-                                {formData.hasChildren && <span className="text-alpha-gold text-[10px] font-bold uppercase">Sim</span>}
+                                {formData.hasChildren && <span className="text-alpha-gold text-[10px] font-bold uppercase">{t.common.yes}</span>}
                                 <button 
                                   onClick={() => setFormData(prev => ({ ...prev, hasChildren: !prev.hasChildren }))}
                                   className={`w-12 h-6 rounded-full transition-all relative ${formData.hasChildren ? 'bg-alpha-gold' : 'bg-white/10'}`}
@@ -728,7 +728,7 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                                     </p>
                                   </div>
                                   <div className="flex items-center gap-2">
-                                    {formData.allChildrenOver5 && <span className="text-alpha-gold text-[10px] font-bold uppercase">Sim</span>}
+                                    {formData.allChildrenOver5 && <span className="text-alpha-gold text-[10px] font-bold uppercase">{t.common.yes}</span>}
                                     <button 
                                       onClick={() => setFormData(prev => ({ ...prev, allChildrenOver5: !prev.allChildrenOver5 }))}
                                       className={`w-12 h-6 rounded-full transition-all relative ${formData.allChildrenOver5 ? 'bg-alpha-gold' : 'bg-white/10'}`}

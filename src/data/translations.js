@@ -1,5 +1,10 @@
 export const translations = {
   pt: {
+    common: {
+      yes: "SIM",
+      select: "SELECIONAR",
+      loading: "Carregando..."
+    },
     header: {
       bookButton: "RESERVAR AGORA"
     },
@@ -59,10 +64,51 @@ export const translations = {
         serviceHours: "24 horas por dia, 7 dias por semana"
       },
       pointsOfInterest: [
-        { name: "Aeroporto JK", distance: "7 km" },
-        { name: "Esplanada", distance: "14 km" },
-        { name: "Park Shopping", distance: "6 km" },
-        { name: "Rodoviária Interestadual", distance: "6 km" }
+        { 
+          name: 'Aeroporto Internacional (BSB)', 
+          distance: '7,0 km (Aprox. 12 min)', 
+          description: 'Principal terminal aéreo da capital federal.'
+        },
+        { 
+          name: 'Polícia Federal (Imigração)', 
+          distance: '10,5 km (Aprox. 15 min)', 
+          description: 'Setor de passaportes e imigração.'
+        },
+        { 
+          name: 'Setor de Embaixadas Sul', 
+          distance: '12,5 km (Aprox. 18 min)', 
+          description: 'Concentração de missões diplomáticas.'
+        },
+        { 
+          name: 'Embaixada dos EUA', 
+          distance: '13,0 km (Aprox. 20 min)', 
+          description: 'Representação diplomática dos Estados Unidos.'
+        },
+        { 
+          name: 'CASV (Visto Americano)', 
+          distance: '14,5 km (Aprox. 22 min)', 
+          description: 'Centro de Atendimento ao Solicitante de Visto.'
+        },
+        { 
+          name: 'Esplanada dos Ministérios', 
+          distance: '16,0 km (Aprox. 25 min)', 
+          description: 'Coração político e administrativo do Brasil.'
+        },
+        { 
+          name: 'Estádio Nacional (Arena BRB)', 
+          distance: '15,0 km (Aprox. 23 min)', 
+          description: 'Palco de grandes eventos esportivos e shows.'
+        },
+        {
+          name: 'ParkShopping Brasília',
+          distance: '6,0 km (Aprox. 10 min)',
+          description: 'O principal shopping do DF.'
+        },
+        {
+          name: 'Rodoviária Interestadual',
+          distance: '6,5 km (Aprox. 11 min)',
+          description: 'Ponto de chegada e partida terrestre da capital.'
+        }
       ]
     },
     footer: {
@@ -169,10 +215,30 @@ export const translations = {
           focus: 'Comemorações marcantes e hóspedes VIP.',
           setup: 'Bandeja de frutas frescas e chocolates, garrafa de vinho ou espumante, roupões para uso na estadia e café da manhã servido no quarto.'
         }
+      },
+      whatsapp: {
+        title: "RESERVA - ALFA PLAZA HOTEL",
+        client: "Cliente",
+        category: "Categoria",
+        vip: "Recepção VIP",
+        people: "Pessoas",
+        children: "Crianças",
+        dates: "Datas",
+        arrival: "Chegada prevista",
+        waitMessage: "Aguarde um momento. Nossa equipe de recepção iniciará o seu atendimento em instantes.",
+        none: "Nenhuma",
+        allOver5: "Todas acima de 5 anos",
+        includesUnder5: "Inclui menores de 5 anos",
+        unspecified: "Não especificada"
       }
     }
   },
   en: {
+    common: {
+      yes: "YES",
+      select: "SELECT",
+      loading: "Loading..."
+    },
     header: {
       bookButton: "BOOK NOW"
     },
@@ -232,10 +298,51 @@ export const translations = {
         serviceHours: "24 hours a day, 7 days a week"
       },
       pointsOfInterest: [
-        { name: "JK Airport", distance: "7 km" },
-        { name: "Esplanade", distance: "14 km" },
-        { name: "Park Shopping", distance: "6 km" },
-        { name: "Interstate Bus Station", distance: "6 km" }
+        { 
+          name: 'International Airport (BSB)', 
+          distance: '7.0 km (Approx. 12 min)', 
+          description: 'Main air terminal of the federal capital.'
+        },
+        { 
+          name: 'Federal Police (Immigration)', 
+          distance: '10.5 km (Approx. 15 min)', 
+          description: 'Passport and immigration sector.'
+        },
+        { 
+          name: 'South Embassy Sector', 
+          distance: '12.5 km (Approx. 18 min)', 
+          description: 'Concentration of diplomatic missions.'
+        },
+        { 
+          name: 'US Embassy', 
+          distance: '13.0 km (Approx. 20 min)', 
+          description: 'Diplomatic representation of the United States.'
+        },
+        { 
+          name: 'CASV (American Visa)', 
+          distance: '14.5 km (Approx. 22 min)', 
+          description: 'Applicant Service Center for Visas.'
+        },
+        { 
+          name: 'Ministries Esplanade', 
+          distance: '16.0 km (Approx. 25 min)', 
+          description: 'Political and administrative heart of Brazil.'
+        },
+        { 
+          name: 'National Stadium (Arena BRB)', 
+          distance: '15.0 km (Approx. 23 min)', 
+          description: 'Stage for major sporting events and shows.'
+        },
+        {
+          name: 'ParkShopping Brasília',
+          distance: '6.0 km (Approx. 10 min)',
+          description: 'The main shopping mall in the Federal District.'
+        },
+        {
+          name: 'Interstate Bus Terminal',
+          distance: '6.5 km (Approx. 11 min)',
+          description: 'Main ground arrival and departure point of the capital.'
+        }
       ]
     },
     footer: {
@@ -341,10 +448,30 @@ export const translations = {
           focus: 'Milestone celebrations and VIP guests.',
           setup: 'Tray of fresh fruits and chocolates, bottle of wine or sparkling wine, robes for use during stay, and breakfast served in the room.'
         }
+      },
+      whatsapp: {
+        title: "RESERVATION - ALFA PLAZA HOTEL",
+        client: "Client",
+        category: "Category",
+        vip: "VIP Reception",
+        people: "People",
+        children: "Children",
+        dates: "Dates",
+        arrival: "Estimated Arrival",
+        waitMessage: "Please wait a moment. Our reception team will start your service shortly.",
+        none: "None",
+        allOver5: "All over 5 years old",
+        includesUnder5: "Includes children under 5",
+        unspecified: "Unspecified"
       }
     }
   },
   es: {
+    common: {
+      yes: "SÍ",
+      select: "SELECCIONAR",
+      loading: "Cargando..."
+    },
     header: {
       bookButton: "RESERVAR AHORA"
     },
@@ -404,10 +531,51 @@ export const translations = {
         serviceHours: "24 horas al día, 7 días a la semana"
       },
       pointsOfInterest: [
-        { name: "Aeropuerto JK", distance: "7 km" },
-        { name: "Explanada", distance: "14 km" },
-        { name: "Park Shopping", distance: "6 km" },
-        { name: "Estación de Autobuses Interestatal", distance: "6 km" }
+        { 
+          name: 'Aeropuerto Internacional (BSB)', 
+          distance: '7,0 km (Aprox. 12 min)', 
+          description: 'Principal terminal aérea de la capital federal.'
+        },
+        { 
+          name: 'Policía Federal (Inmigración)', 
+          distance: '10,5 km (Aprox. 15 min)', 
+          description: 'Sector de pasaportes e inmigración.'
+        },
+        { 
+          name: 'Sector de Embajadas Sur', 
+          distance: '12,5 km (Aprox. 18 min)', 
+          description: 'Concentración de misiones diplomáticas.'
+        },
+        { 
+          name: 'Embajada de EE.UU.', 
+          distance: '13,0 km (Aprox. 20 min)', 
+          description: 'Representación diplomática de los Estados Unidos.'
+        },
+        { 
+          name: 'CASV (Visa Americana)', 
+          distance: '14,5 km (Aprox. 22 min)', 
+          description: 'Centro de Atención al Solicitante de Visa.'
+        },
+        { 
+          name: 'Explanada de los Ministerios', 
+          distance: '16,0 km (Aprox. 25 min)', 
+          description: 'Corazón político y administrativo de Brasil.'
+        },
+        { 
+          name: 'Estadio Nacional (Arena BRB)', 
+          distance: '15,0 km (Aprox. 23 min)', 
+          description: 'Escenario de grandes eventos deportivos y espectáculos.'
+        },
+        {
+          name: 'ParkShopping Brasília',
+          distance: '6,0 km (Aprox. 10 min)',
+          description: 'El principal centro comercial del DF.'
+        },
+        {
+          name: 'Estación de Autobuses Interestatal',
+          distance: '6,5 km (Aprox. 11 min)',
+          description: 'Punto de llegada y partida terrestre de la capital.'
+        }
       ]
     },
     footer: {
@@ -513,6 +681,21 @@ export const translations = {
           focus: 'Celebraciones importantes e invitados VIP.',
           setup: 'Bandeja de frutas frescas y chocolates, botella de vino o espumoso, batas para uso durante la estancia y desayuno servido en la habitación.'
         }
+      },
+      whatsapp: {
+        title: "RESERVA - ALFA PLAZA HOTEL",
+        client: "Cliente",
+        category: "Categoría",
+        vip: "Recepción VIP",
+        people: "Personas",
+        children: "Niños",
+        dates: "Fechas",
+        arrival: "Llegada Prevista",
+        waitMessage: "Espere un momento. Nuestro equipo de recepción iniciará su atención en instantes.",
+        none: "Ninguno",
+        allOver5: "Todos mayores de 5 años",
+        includesUnder5: "Incluye menores de 5 años",
+        unspecified: "No especificada"
       }
     }
   }
