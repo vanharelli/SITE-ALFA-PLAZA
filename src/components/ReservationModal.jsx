@@ -633,7 +633,7 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                         <ChevronDown className="text-alpha-gold animate-bounce opacity-50" size={20} />
                       </div>
                       <Button 
-                        disabled={!formData.checkIn || !formData.checkOut}
+                        disabled={dateInput.checkIn.length !== 10 || dateInput.checkOut.length !== 10 || !formData.checkIn || !formData.checkOut}
                         onClick={() => wrapSetStep(STEPS.GUESTS)}
                         className="w-full bg-alpha-gold text-obsidian font-bold tracking-widest py-4 md:py-6 disabled:opacity-30"
                       >
