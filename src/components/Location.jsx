@@ -320,86 +320,96 @@ const Location = ({ onOpenReservation }) => {
           <h3 className="font-serif text-3xl text-white text-center mb-12 tracking-widest uppercase">
             PONTOS DE <span className="text-alpha-gold">INTERESSE</span>
           </h3>
-          <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 px-6">
-            {[
-              { 
-                name: 'Aeroporto Internacional (BSB)', 
-                distance: '7,0 km (Aprox. 12 min)', 
-                icon: Plane,
-                description: 'Principal terminal aéreo da capital federal.'
-              },
-              { 
-                name: 'Polícia Federal (Imigração)', 
-                distance: '10,5 km (Aprox. 15 min)', 
-                icon: Shield,
-                description: 'Setor de passaportes e imigração.'
-              },
-              { 
-                name: 'Setor de Embaixadas Sul', 
-                distance: '12,5 km (Aprox. 18 min)', 
-                icon: Flag,
-                description: 'Concentração de missões diplomáticas.'
-              },
-              { 
-                name: 'Embaixada dos EUA', 
-                distance: '13,0 km (Aprox. 20 min)', 
-                icon: Landmark,
-                description: 'Representação diplomática dos Estados Unidos.'
-              },
-              { 
-                name: 'CASV (Visto Americano)', 
-                distance: '14,5 km (Aprox. 22 min)', 
-                icon: FileText,
-                description: 'Centro de Atendimento ao Solicitante de Visto.'
-              },
-              { 
-                name: 'Esplanada dos Ministérios', 
-                distance: '16,0 km (Aprox. 25 min)', 
-                icon: Building2,
-                description: 'Coração político e administrativo do Brasil.'
-              },
-              { 
-                name: 'Estádio Nacional (Arena BRB)', 
-                distance: '15,0 km (Aprox. 23 min)', 
-                icon: Trophy,
-                description: 'Palco de grandes eventos esportivos e shows.'
-              },
-              {
-                name: 'ParkShopping Brasília',
-                distance: '6,0 km (Aprox. 10 min)',
-                icon: ShoppingBag,
-                description: 'O principal shopping do DF.'
-              },
-              {
-                name: 'Rodoviária Interestadual',
-                distance: '6,5 km (Aprox. 11 min)',
-                icon: Bus,
-                description: 'Ponto de chegada e partida terrestre da capital.'
-              }
-            ].map((point, index) => (
-              <div 
-                key={index}
-                className="group flex flex-col items-center text-center p-8 bg-black/40 backdrop-blur-xl border border-white/5 hover:border-alpha-gold/60 transition-all duration-500 rounded-2xl hover:-translate-y-2"
-              >
-                <div className="w-16 h-16 bg-white/5 border border-alpha-gold/30 rounded-full flex items-center justify-center mb-6 group-hover:bg-alpha-gold/10 transition-colors">
-                  <point.icon className="text-alpha-gold group-hover:scale-110 transition-transform" size={28} strokeWidth={1.5} />
-                </div>
-                
-                <h4 className="text-white font-serif text-lg tracking-wide mb-2 uppercase leading-tight min-h-[3rem] flex items-center">
-                  {point.name}
-                </h4>
-                
-                <p className="text-gray-400 text-xs font-light tracking-wide leading-relaxed mb-4 flex-grow">
-                  {point.description}
-                </p>
-                
-                <div className="pt-4 border-t border-white/10 w-full">
-                  <span className="text-alpha-gold font-serif text-xl tracking-widest">
-                    {point.distance}
-                  </span>
-                </div>
+          <div className="max-w-6xl mx-auto px-6 relative">
+            <Carousel
+              opts={{
+                align: "start",
+                loop: true,
+              }}
+              plugins={[
+                Autoplay({
+                  delay: 3000,
+                  stopOnInteraction: false
+                }),
+              ]}
+              className="w-full"
+            >
+              <CarouselContent className="-ml-4">
+                {[
+                  { 
+                    name: 'Aeroporto Internacional (BSB)', 
+                    distance: '7,0 km (Aprox. 12 min)', 
+                    icon: Plane,
+                    description: 'Principal terminal aéreo da capital federal.'
+                  },
+                  { 
+                    name: 'Polícia Federal (Imigração)', 
+                    distance: '10,5 km (Aprox. 15 min)', 
+                    icon: Shield,
+                    description: 'Setor de passaportes e imigração.'
+                  },
+                  { 
+                    name: 'Setor de Embaixadas Sul', 
+                    distance: '12,5 km (Aprox. 18 min)', 
+                    icon: Flag,
+                    description: 'Concentração de missões diplomáticas.'
+                  },
+                  { 
+                    name: 'Embaixada dos EUA', 
+                    distance: '13,0 km (Aprox. 20 min)', 
+                    icon: Landmark,
+                    description: 'Representação diplomática dos Estados Unidos.'
+                  },
+                  { 
+                    name: 'CASV (Visto Americano)', 
+                    distance: '14,5 km (Aprox. 22 min)', 
+                    icon: FileText,
+                    description: 'Centro de Atendimento ao Solicitante de Visto.'
+                  },
+                  { 
+                    name: 'Esplanada dos Ministérios', 
+                    distance: '16,0 km (Aprox. 25 min)', 
+                    icon: Building2,
+                    description: 'Coração político e administrativo do Brasil.'
+                  },
+                  { 
+                    name: 'Estádio Nacional (Arena BRB)', 
+                    distance: '15,0 km (Aprox. 23 min)', 
+                    icon: Trophy,
+                    description: 'Palco de grandes eventos esportivos e shows.'
+                  },
+                  {
+                    name: 'ParkShopping Brasília',
+                    distance: '6,0 km (Aprox. 10 min)',
+                    icon: ShoppingBag,
+                    description: 'O principal shopping do DF.'
+                  },
+                  {
+                    name: 'Rodoviária Interestadual',
+                    distance: '6,5 km (Aprox. 11 min)',
+                    icon: Bus,
+                    description: 'Ponto de chegada e partida terrestre da capital.'
+                  }
+                ].map((point, index) => (
+                  <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-1/4">
+                    <div 
+                      className="group flex flex-col items-center text-center p-8 bg-black/40 backdrop-blur-xl border border-white/5 hover:border-alpha-gold/60 transition-all duration-500 rounded-2xl hover:-translate-y-2 h-full"
+                    >
+                      <div className="w-16 h-16 bg-white/5 border border-alpha-gold/30 rounded-full flex items-center justify-center mb-6 group-hover:bg-alpha-gold/10 transition-colors shrink-0">
+                        <point.icon className="text-alpha-gold group-hover:scale-110 transition-transform" size={28} strokeWidth={1.5} />
+                      </div>
+                      <h4 className="text-white font-serif text-lg tracking-wide mb-2 min-h-[56px] flex items-center justify-center">{point.name}</h4>
+                      <p className="text-alpha-gold text-xs font-bold tracking-wider uppercase mb-3">{point.distance}</p>
+                      <p className="text-gray-400 text-sm leading-relaxed">{point.description}</p>
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <div className="hidden md:block">
+                <CarouselPrevious className="carousel-btn-glass -left-12 border-none bg-black/30 hover:bg-black/50 text-white shadow-none" />
+                <CarouselNext className="carousel-btn-glass -right-12 border-none bg-black/30 hover:bg-black/50 text-white shadow-none" />
               </div>
-            ))}
+            </Carousel>
           </div>
         </div>
       </div>
