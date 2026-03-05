@@ -279,27 +279,27 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
   const experiences = [
     {
       id: 'welcome-vip',
-      title: 'Boas-Vindas VIP',
+      title: t.reservation.experiences['welcome-vip'].title,
       icon: Star,
       image: '/Boas vindas vip.jpg',
-      focus: 'Recepção de alto padrão no apartamento para ocasiões únicas.',
-      setup: 'Cartão nominal escrito à mão, águas premium e macarons/trufas artesanais.'
+      focus: t.reservation.experiences['welcome-vip'].focus,
+      setup: t.reservation.experiences['welcome-vip'].setup
     },
     {
       id: 'boutique-exp',
-      title: 'Lounge Privativo',
+      title: t.reservation.experiences['boutique-exp'].title,
       icon: Gem,
       image: '/Louge privativo.jpg',
-      focus: 'Recepção sofisticada para casais ou executivos.',
-      setup: 'Tábua de frios, meia garrafa de vinho e arranjo floral minimalista.'
+      focus: t.reservation.experiences['boutique-exp'].focus,
+      setup: t.reservation.experiences['boutique-exp'].setup
     },
     {
       id: 'guest-honor',
-      title: 'Convidado de Honra',
+      title: t.reservation.experiences['guest-honor'].title,
       icon: Crown,
       image: '/convidado de honra.jpg',
-      focus: 'Comemorações marcantes e hóspedes VIP.',
-      setup: 'Bandeja de frutas frescas e chocolates, garrafa de vinho ou espumante, roupões para uso na estadia e café da manhã servido no quarto.'
+      focus: t.reservation.experiences['guest-honor'].focus,
+      setup: t.reservation.experiences['guest-honor'].setup
     }
   ];
 
@@ -433,8 +433,8 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                           <Heart size={20} />
                         </div>
                         <div>
-                          <p className="text-white font-semibold tracking-wide text-xs">Recepção VIP & Homenagens</p>
-                          <p className="text-gray-400 text-[9px] line-clamp-2">Recepção de alto padrão no apartamento para ocasiões únicas.</p>
+                          <p className="text-white font-semibold tracking-wide text-xs">{t.reservation.types.celebrations}</p>
+                          <p className="text-gray-400 text-[9px] line-clamp-2">{t.reservation.experiences['welcome-vip'].focus}</p>
                         </div>
                       </button>
                     </div>

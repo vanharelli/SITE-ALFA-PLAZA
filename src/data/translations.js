@@ -150,7 +150,25 @@ export const translations = {
         individual: "Reserva",
         corporate: "Reserva Faturada",
         groups: "Grupos e Eventos",
-        partnership: "Parceria Comercial"
+        partnership: "Parceria Comercial",
+        celebrations: "Recepção VIP & Homenagens"
+      },
+      experiences: {
+        'welcome-vip': {
+          title: 'Boas-Vindas VIP',
+          focus: 'Recepção de alto padrão no apartamento para ocasiões únicas.',
+          setup: 'Cartão nominal escrito à mão, águas premium e macarons/trufas artesanais.'
+        },
+        'boutique-exp': {
+          title: 'Lounge Privativo',
+          focus: 'Recepção sofisticada para casais ou executivos.',
+          setup: 'Tábua de frios, meia garrafa de vinho e arranjo floral minimalista.'
+        },
+        'guest-honor': {
+          title: 'Convidado de Honra',
+          focus: 'Comemorações marcantes e hóspedes VIP.',
+          setup: 'Bandeja de frutas frescas e chocolates, garrafa de vinho ou espumante, roupões para uso na estadia e café da manhã servido no quarto.'
+        }
       }
     }
   },
@@ -304,7 +322,25 @@ export const translations = {
         individual: "Individual Reservation",
         corporate: "Billed Reservation",
         groups: "Groups and Events",
-        partnership: "Commercial Partnership"
+        partnership: "Commercial Partnership",
+        celebrations: "VIP Reception & Tributes"
+      },
+      experiences: {
+        'welcome-vip': {
+          title: 'VIP Welcome',
+          focus: 'High-standard in-room reception for unique occasions.',
+          setup: 'Handwritten name card, premium water, and artisanal macarons/truffles.'
+        },
+        'boutique-exp': {
+          title: 'Private Lounge',
+          focus: 'Sophisticated reception for couples or executives.',
+          setup: 'Cold cuts board, half bottle of wine, and minimalist floral arrangement.'
+        },
+        'guest-honor': {
+          title: 'Guest of Honor',
+          focus: 'Milestone celebrations and VIP guests.',
+          setup: 'Tray of fresh fruits and chocolates, bottle of wine or sparkling wine, robes for use during stay, and breakfast served in the room.'
+        }
       }
     }
   },
@@ -458,7 +494,25 @@ export const translations = {
         individual: "Reserva Individual",
         corporate: "Reserva Facturada",
         groups: "Grupos y Eventos",
-        partnership: "Asociación Comercial"
+        partnership: "Asociación Comercial",
+        celebrations: "Recepción VIP y Homenajes"
+      },
+      experiences: {
+        'welcome-vip': {
+          title: 'Bienvenida VIP',
+          focus: 'Recepción de alto nivel en la habitación para ocasiones únicas.',
+          setup: 'Tarjeta con nombre escrita a mano, agua premium y macarons/trufas artesanales.'
+        },
+        'boutique-exp': {
+          title: 'Lounge Privado',
+          focus: 'Recepción sofisticada para parejas o ejecutivos.',
+          setup: 'Tabla de embutidos, media botella de vino y arreglo floral minimalista.'
+        },
+        'guest-honor': {
+          title: 'Invitado de Honor',
+          focus: 'Celebraciones importantes e invitados VIP.',
+          setup: 'Bandeja de frutas frescas y chocolates, botella de vino o espumoso, batas para uso durante la estancia y desayuno servido en la habitación.'
+        }
       }
     }
   }

@@ -62,7 +62,7 @@ const testimonials = [
 ];
 
 const Location = ({ onOpenReservation }) => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [selectedImageIndex, setSelectedImageIndex] = useState(null);
 
   const nextImage = () => {
@@ -71,6 +71,12 @@ const Location = ({ onOpenReservation }) => {
 
   const prevImage = () => {
     setSelectedImageIndex((prev) => (prev - 1 + hotelImages.length) % hotelImages.length);
+  };
+
+  // Map icons to point IDs
+  const getPointIcon = (index) => {
+    const icons = [Plane, Shield, Flag, Landmark, FileText, Building2, Trophy, ShoppingBag, Bus];
+    return icons[index] || MapPin;
   };
 
   return (
@@ -335,75 +341,23 @@ const Location = ({ onOpenReservation }) => {
               className="w-full"
             >
               <CarouselContent className="-ml-4">
-                {[
-                  { 
-                    name: 'Aeroporto Internacional (BSB)', 
-                    distance: '7,0 km (Aprox. 12 min)', 
-                    icon: Plane,
-                    description: 'Principal terminal aéreo da capital federal.'
-                  },
-                  { 
-                    name: 'Polícia Federal (Imigração)', 
-                    distance: '10,5 km (Aprox. 15 min)', 
-                    icon: Shield,
-                    description: 'Setor de passaportes e imigração.'
-                  },
-                  { 
-                    name: 'Setor de Embaixadas Sul', 
-                    distance: '12,5 km (Aprox. 18 min)', 
-                    icon: Flag,
-                    description: 'Concentração de missões diplomáticas.'
-                  },
-                  { 
-                    name: 'Embaixada dos EUA', 
-                    distance: '13,0 km (Aprox. 20 min)', 
-                    icon: Landmark,
-                    description: 'Representação diplomática dos Estados Unidos.'
-                  },
-                  { 
-                    name: 'CASV (Visto Americano)', 
-                    distance: '14,5 km (Aprox. 22 min)', 
-                    icon: FileText,
-                    description: 'Centro de Atendimento ao Solicitante de Visto.'
-                  },
-                  { 
-                    name: 'Esplanada dos Ministérios', 
-                    distance: '16,0 km (Aprox. 25 min)', 
-                    icon: Building2,
-                    description: 'Coração político e administrativo do Brasil.'
-                  },
-                  { 
-                    name: 'Estádio Nacional (Arena BRB)', 
-                    distance: '15,0 km (Aprox. 23 min)', 
-                    icon: Trophy,
-                    description: 'Palco de grandes eventos esportivos e shows.'
-                  },
-                  {
-                    name: 'ParkShopping Brasília',
-                    distance: '6,0 km (Aprox. 10 min)',
-                    icon: ShoppingBag,
-                    description: 'O principal shopping do DF.'
-                  },
-                  {
-                    name: 'Rodoviária Interestadual',
-                    distance: '6,5 km (Aprox. 11 min)',
-                    icon: Bus,
-                    description: 'Ponto de chegada e partida terrestre da capital.'
-                  }
-                ].map((point, index) => (
-                  <CarouselItem key={index} className="pl-4 md:basis-1/3 lg:basis-1/5">
-                    <div 
-                      className="group flex flex-col items-center text-center p-6 bg-black/40 backdrop-blur-xl border border-white/5 hover:border-alpha-gold/60 transition-all duration-500 rounded-xl hover:-translate-y-2 h-full"
-                    >
-                      <div className="w-12 h-12 bg-white/5 border border-alpha-gold/30 rounded-full flex items-center justify-center mb-4 group-hover:bg-alpha-gold/10 transition-colors shrink-0">
-                        <point.icon className="text-alpha-gold group-hover:scale-110 transition-transform" size={24} strokeWidth={1.5} />
+                {t.location.pointsOfInterest.map((point, index) => {
+                  const Icon = getPointIcon(index);
+                  return (
+                    <CarouselItem key={index} className="pl-4 md:basis-1/3 lg:basis-1/5">
+                      <div 
+                        className="group flex flex-col items-center text-center p-6 bg-black/40 backdrop-blur-xl border border-white/5 hover:border-alpha-gold/60 transition-all duration-500 rounded-xl hover:-translate-y-2 h-full"
+                      >
+                        <div className="w-12 h-12 bg-white/5 border border-alpha-gold/30 rounded-full flex items-center justify-center mb-4 group-hover:bg-alpha-gold/10 transition-colors shrink-0">
+                          <Icon className="text-alpha-gold group-hover:scale-110 transition-transform" size={24} strokeWidth={1.5} />
+                        </div>
+                        <h4 className="text-white font-serif text-base tracking-wide mb-2 min-h-[48px] flex items-center justify-center">{point.name}</h4>
+                        <p className="text-alpha-gold text-[10px] font-bold tracking-wider uppercase mb-2">{point.distance}</p>
+                        <p className="text-gray-400 text-xs leading-relaxed">{point.description}</p>
                       </div>
-                      <h4 className="text-white font-serif text-base tracking-wide mb-2 min-h-[48px] flex items-center justify-center">{point.name}</h4>
-                      <p className="text-alpha-gold text-[10px] font-bold tracking-wider uppercase mb-2">{point.distance}</p>
-                      <p className="text-gray-400 text-xs leading-relaxed">{point.description}</p>
-                    </div>
-                  </CarouselItem>
-                ))}
+                    </CarouselItem>
+                  );
+                })}
               </CarouselContent>
               <div className="hidden md:block">
                 <CarouselPrevious className="carousel-btn-glass -left-12 border-none bg-black/30 hover:bg-black/50 text-white shadow-none" />
