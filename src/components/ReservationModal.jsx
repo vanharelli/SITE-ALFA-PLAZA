@@ -24,7 +24,7 @@ import {
 import { Button } from './ui/button';
 import { Calendar } from './ui/calendar';
 import { Popover, PopoverContent, PopoverTrigger } from './ui/popover';
-import { format } from 'date-fns';
+import { format, parse, isValid } from 'date-fns';
 import { ptBR, es, enUS } from 'date-fns/locale';
 import { useLanguage } from '../context/LanguageContext';
 
@@ -69,6 +69,37 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
     type: 'Reserva Individual',
     experiencePackage: ''
   });
+
+  const [dateInput, setDateInput] = useState({
+    checkIn: '',
+    checkOut: ''
+  });
+
+  const handleDateSelect = (date, field) => {
+    if (!date) return;
+    const isoDate = format(date, 'yyyy-MM-dd');
+    setFormData(prev => ({ ...prev, [field]: isoDate }));
+    setDateInput(prev => ({ ...prev, [field]: format(date, 'dd/MM/yyyy') }));
+  };
+
+  const handleDateInputChange = (e, field) => {
+    const value = e.target.value;
+    // Allow digits and slash only
+    if (value && !/^[\d/]*$/.test(value)) return;
+    
+    // Simple slash insertion logic could be added here, but keeping it raw for now to be safe
+    setDateInput(prev => ({ ...prev, [field]: value }));
+
+    // Try to parse dd/MM/yyyy
+    if (value.length === 10) {
+      const parsedDate = parse(value, 'dd/MM/yyyy', new Date());
+      if (isValid(parsedDate)) {
+        setFormData(prev => ({ ...prev, [field]: format(parsedDate, 'yyyy-MM-dd') }));
+      }
+    } else if (value === '') {
+      setFormData(prev => ({ ...prev, [field]: '' }));
+    }
+  };
 
   const typeMapping = {
     'Reserva Individual': 'individual',
@@ -542,23 +573,22 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                             <div className="relative">
                               <Popover>
                                 <PopoverTrigger asChild>
-                                  <button
-                                    className={`w-full bg-black/40 backdrop-blur-md border border-white/10 rounded-xl py-4 pl-12 pr-4 text-left focus:outline-none focus:border-alpha-gold/50 transition-all ${!formData.checkIn && "text-gray-400"}`}
-                                  >
-                                    {formData.checkIn ? (
-                                      <span className="text-white capitalize">
-                                        {format(new Date(formData.checkIn + 'T12:00:00'), "dd 'de' MMMM 'de' yyyy", { locale: (language === 'pt' || language === 'pt-BR') ? ptBR : language === 'es' ? es : enUS })}
-                                      </span>
-                                    ) : (
-                                      <span>{t.reservation.dates.selectDate || "Selecione uma data"}</span>
-                                    )}
-                                  </button>
+                                  <div className="relative">
+                                    <input
+                                      type="text"
+                                      placeholder="DD/MM/AAAA"
+                                      value={dateInput.checkIn}
+                                      onChange={(e) => handleDateInputChange(e, 'checkIn')}
+                                      className="w-full bg-black/40 backdrop-blur-md border border-white/10 rounded-xl py-4 pl-12 pr-4 text-white focus:outline-none focus:border-alpha-gold/50 transition-all placeholder:text-white/20"
+                                      maxLength={10}
+                                    />
+                                  </div>
                                 </PopoverTrigger>
                                 <PopoverContent className="w-auto p-0 bg-zinc-950 border-white/10 text-white z-[10001]" align="start">
                                   <Calendar
                                     mode="single"
                                     selected={formData.checkIn ? new Date(formData.checkIn + 'T12:00:00') : undefined}
-                                    onSelect={(date) => setFormData(prev => ({ ...prev, checkIn: date ? format(date, 'yyyy-MM-dd') : '' }))}
+                                    onSelect={(date) => handleDateSelect(date, 'checkIn')}
                                     initialFocus
                                     locale={(language === 'pt' || language === 'pt-BR') ? ptBR : language === 'es' ? es : enUS}
                                     className="rounded-md border-white/10"
@@ -584,23 +614,22 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                             <div className="relative">
                               <Popover>
                                 <PopoverTrigger asChild>
-                                  <button
-                                    className={`w-full bg-black/40 backdrop-blur-md border border-white/10 rounded-xl py-4 pl-12 pr-4 text-left focus:outline-none focus:border-alpha-gold/50 transition-all ${!formData.checkOut && "text-gray-400"}`}
-                                  >
-                                    {formData.checkOut ? (
-                                      <span className="text-white capitalize">
-                                        {format(new Date(formData.checkOut + 'T12:00:00'), "dd 'de' MMMM 'de' yyyy", { locale: (language === 'pt' || language === 'pt-BR') ? ptBR : language === 'es' ? es : enUS })}
-                                      </span>
-                                    ) : (
-                                      <span>{t.reservation.dates.selectDate || "Selecione uma data"}</span>
-                                    )}
-                                  </button>
+                                  <div className="relative">
+                                    <input
+                                      type="text"
+                                      placeholder="DD/MM/AAAA"
+                                      value={dateInput.checkOut}
+                                      onChange={(e) => handleDateInputChange(e, 'checkOut')}
+                                      className="w-full bg-black/40 backdrop-blur-md border border-white/10 rounded-xl py-4 pl-12 pr-4 text-white focus:outline-none focus:border-alpha-gold/50 transition-all placeholder:text-white/20"
+                                      maxLength={10}
+                                    />
+                                  </div>
                                 </PopoverTrigger>
                                 <PopoverContent className="w-auto p-0 bg-zinc-950 border-white/10 text-white z-[10001]" align="start">
                                   <Calendar
                                     mode="single"
                                     selected={formData.checkOut ? new Date(formData.checkOut + 'T12:00:00') : undefined}
-                                    onSelect={(date) => setFormData(prev => ({ ...prev, checkOut: date ? format(date, 'yyyy-MM-dd') : '' }))}
+                                    onSelect={(date) => handleDateSelect(date, 'checkOut')}
                                     initialFocus
                                     locale={(language === 'pt' || language === 'pt-BR') ? ptBR : language === 'es' ? es : enUS}
                                     className="rounded-md border-white/10"
