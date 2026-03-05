@@ -148,6 +148,7 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
         setFormData(prev => ({ ...prev, experiencePackage: '' }));
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen, initialSuite]);
 
   // Prevent body scroll when modal is open
