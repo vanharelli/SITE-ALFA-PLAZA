@@ -320,7 +320,7 @@ const Location = ({ onOpenReservation }) => {
           <h3 className="font-serif text-3xl text-white text-center mb-12 tracking-widest uppercase">
             PONTOS DE <span className="text-alpha-gold">INTERESSE</span>
           </h3>
-          <div className="max-w-6xl mx-auto px-6 relative">
+          <div className="max-w-6xl mx-auto px-6 relative py-12">
             <Carousel
               opts={{
                 align: "start",
