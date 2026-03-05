@@ -73,11 +73,24 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
   });
 
   const handleDateInputChange = (e, field) => {
-    const value = e.target.value;
-    // Allow digits and slash only
-    if (value && !/^[\d/]*$/.test(value)) return;
+    let value = e.target.value;
     
-    // Simple slash insertion logic could be added here, but keeping it raw for now to be safe
+    // Remove non-digit characters
+    value = value.replace(/\D/g, '');
+    
+    // Add slashes automatically
+    if (value.length > 2) {
+      value = value.slice(0, 2) + '/' + value.slice(2);
+    }
+    if (value.length > 5) {
+      value = value.slice(0, 5) + '/' + value.slice(5);
+    }
+    
+    // Limit length
+    if (value.length > 10) {
+      value = value.slice(0, 10);
+    }
+
     setDateInput(prev => ({ ...prev, [field]: value }));
 
     // Try to parse dd/MM/yyyy
@@ -101,6 +114,24 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
 
   useEffect(() => {
     if (isOpen) {
+      // Initialize date inputs from formData if they exist
+      if (formData.checkIn) {
+        try {
+          const date = new Date(formData.checkIn + 'T12:00:00');
+          if (isValid(date)) {
+            setDateInput(prev => ({ ...prev, checkIn: format(date, 'dd/MM/yyyy') }));
+          }
+        } catch (e) {}
+      }
+      if (formData.checkOut) {
+        try {
+          const date = new Date(formData.checkOut + 'T12:00:00');
+          if (isValid(date)) {
+            setDateInput(prev => ({ ...prev, checkOut: format(date, 'dd/MM/yyyy') }));
+          }
+        } catch (e) {}
+      }
+
       if (initialSuite) {
         setFormData(prev => ({ 
           ...prev, 
