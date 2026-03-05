@@ -50,7 +50,7 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
   const [step, setStep] = useState(STEPS.HUB);
   const [history, setHistory] = useState([]);
   const [formData, setFormData] = useState({
-    suite: initialSuite,
+    suite: initialSuite ? { ...initialSuite, image: Array.isArray(initialSuite.image) ? initialSuite.image[0] : initialSuite.image } : null,
     suites: initialSuite ? [initialSuite] : [],
     checkIn: '',
     checkOut: '',
@@ -133,10 +133,14 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
       }
 
       if (initialSuite) {
+        const suiteWithImage = { 
+          ...initialSuite, 
+          image: Array.isArray(initialSuite.image) ? initialSuite.image[0] : initialSuite.image 
+        };
         setFormData(prev => ({ 
           ...prev, 
-          suite: initialSuite, 
-          suites: [initialSuite],
+          suite: suiteWithImage, 
+          suites: [suiteWithImage],
           type: 'Reserva Individual',
           experiencePackage: ''
         }));
