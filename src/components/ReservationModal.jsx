@@ -546,8 +546,8 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                                     className={`w-full bg-black/40 backdrop-blur-md border border-white/10 rounded-xl py-4 pl-12 pr-4 text-left focus:outline-none focus:border-alpha-gold/50 transition-all ${!formData.checkIn && "text-gray-400"}`}
                                   >
                                     {formData.checkIn ? (
-                                      <span className="text-white">
-                                        {format(new Date(formData.checkIn + 'T12:00:00'), "dd 'de' MMMM 'de' yyyy", { locale: language === 'pt' ? ptBR : language === 'es' ? es : enUS })}
+                                      <span className="text-white capitalize">
+                                        {format(new Date(formData.checkIn + 'T12:00:00'), "dd 'de' MMMM 'de' yyyy", { locale: (language === 'pt' || language === 'pt-BR') ? ptBR : language === 'es' ? es : enUS })}
                                       </span>
                                     ) : (
                                       <span>{t.reservation.dates.selectDate || "Selecione uma data"}</span>
@@ -560,7 +560,7 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                                     selected={formData.checkIn ? new Date(formData.checkIn + 'T12:00:00') : undefined}
                                     onSelect={(date) => setFormData(prev => ({ ...prev, checkIn: date ? format(date, 'yyyy-MM-dd') : '' }))}
                                     initialFocus
-                                    locale={language === 'pt' ? ptBR : language === 'es' ? es : enUS}
+                                    locale={(language === 'pt' || language === 'pt-BR') ? ptBR : language === 'es' ? es : enUS}
                                     className="rounded-md border-white/10"
                                     classNames={{
                                       day_selected: "bg-alpha-gold text-obsidian hover:bg-alpha-gold hover:text-obsidian focus:bg-alpha-gold focus:text-obsidian",
@@ -588,8 +588,8 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                                     className={`w-full bg-black/40 backdrop-blur-md border border-white/10 rounded-xl py-4 pl-12 pr-4 text-left focus:outline-none focus:border-alpha-gold/50 transition-all ${!formData.checkOut && "text-gray-400"}`}
                                   >
                                     {formData.checkOut ? (
-                                      <span className="text-white">
-                                        {format(new Date(formData.checkOut + 'T12:00:00'), "dd 'de' MMMM 'de' yyyy", { locale: language === 'pt' ? ptBR : language === 'es' ? es : enUS })}
+                                      <span className="text-white capitalize">
+                                        {format(new Date(formData.checkOut + 'T12:00:00'), "dd 'de' MMMM 'de' yyyy", { locale: (language === 'pt' || language === 'pt-BR') ? ptBR : language === 'es' ? es : enUS })}
                                       </span>
                                     ) : (
                                       <span>{t.reservation.dates.selectDate || "Selecione uma data"}</span>
@@ -602,7 +602,7 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                                     selected={formData.checkOut ? new Date(formData.checkOut + 'T12:00:00') : undefined}
                                     onSelect={(date) => setFormData(prev => ({ ...prev, checkOut: date ? format(date, 'yyyy-MM-dd') : '' }))}
                                     initialFocus
-                                    locale={language === 'pt' ? ptBR : language === 'es' ? es : enUS}
+                                    locale={(language === 'pt' || language === 'pt-BR') ? ptBR : language === 'es' ? es : enUS}
                                     className="rounded-md border-white/10"
                                     classNames={{
                                       day_selected: "bg-alpha-gold text-obsidian hover:bg-alpha-gold hover:text-obsidian focus:bg-alpha-gold focus:text-obsidian",
