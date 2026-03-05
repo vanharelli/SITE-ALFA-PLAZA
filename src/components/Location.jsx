@@ -391,16 +391,16 @@ const Location = ({ onOpenReservation }) => {
                     description: 'Ponto de chegada e partida terrestre da capital.'
                   }
                 ].map((point, index) => (
-                  <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-1/4">
+                  <CarouselItem key={index} className="pl-4 md:basis-1/3 lg:basis-1/5">
                     <div 
-                      className="group flex flex-col items-center text-center p-8 bg-black/40 backdrop-blur-xl border border-white/5 hover:border-alpha-gold/60 transition-all duration-500 rounded-2xl hover:-translate-y-2 h-full"
+                      className="group flex flex-col items-center text-center p-6 bg-black/40 backdrop-blur-xl border border-white/5 hover:border-alpha-gold/60 transition-all duration-500 rounded-xl hover:-translate-y-2 h-full"
                     >
-                      <div className="w-16 h-16 bg-white/5 border border-alpha-gold/30 rounded-full flex items-center justify-center mb-6 group-hover:bg-alpha-gold/10 transition-colors shrink-0">
-                        <point.icon className="text-alpha-gold group-hover:scale-110 transition-transform" size={28} strokeWidth={1.5} />
+                      <div className="w-12 h-12 bg-white/5 border border-alpha-gold/30 rounded-full flex items-center justify-center mb-4 group-hover:bg-alpha-gold/10 transition-colors shrink-0">
+                        <point.icon className="text-alpha-gold group-hover:scale-110 transition-transform" size={24} strokeWidth={1.5} />
                       </div>
-                      <h4 className="text-white font-serif text-lg tracking-wide mb-2 min-h-[56px] flex items-center justify-center">{point.name}</h4>
-                      <p className="text-alpha-gold text-xs font-bold tracking-wider uppercase mb-3">{point.distance}</p>
-                      <p className="text-gray-400 text-sm leading-relaxed">{point.description}</p>
+                      <h4 className="text-white font-serif text-base tracking-wide mb-2 min-h-[48px] flex items-center justify-center">{point.name}</h4>
+                      <p className="text-alpha-gold text-[10px] font-bold tracking-wider uppercase mb-2">{point.distance}</p>
+                      <p className="text-gray-400 text-xs leading-relaxed">{point.description}</p>
                     </div>
                   </CarouselItem>
                 ))}
