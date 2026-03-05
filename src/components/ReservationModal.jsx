@@ -226,7 +226,7 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
     message += `👥 *Pessoas:* ${formData.adults}\n` +
       `🧒 *Crianças:* ${childrenText}\n` +
       `__________________________________\n\n` +
-      `📅 *Datas:* ${formData.checkIn} a ${formData.checkOut}\n` +
+      `📅 *Datas:* ${format(new Date(formData.checkIn + 'T12:00:00'), 'dd/MM/yyyy')} a ${format(new Date(formData.checkOut + 'T12:00:00'), 'dd/MM/yyyy')}\n` +
       `🕒 *Chegada prevista:* ${formData.arrivalTime}\n` +
       `__________________________________\n\n` +
       `_Aguarde um momento. Nossa equipe de recepção iniciará o seu atendimento em instantes._`;
