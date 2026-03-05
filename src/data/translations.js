@@ -20,22 +20,22 @@ export const translations = {
           features: ["Cama de Casal", "Frigobar", "Wi-Fi", "Mesa de Trabalho", "TV a cabo"]
         },
         6: {
-          title: "Suíte Duplo Solteiro",
+          title: "Suíte Dupla Solteiro",
           description: "Perfeito para viagens a trabalho ou com amigos",
           features: ["2 Camas Solteiro", "Frigobar", "Wi-Fi", "Mesa de Trabalho", "TV a cabo"]
         },
         3: {
-          title: "Suíte Triplo Casal",
+          title: "Suíte Tripla Casal",
           description: "O ápice da exclusividade e requinte",
           features: ["1 Cama de Casal e 1 de Solteiro", "Frigobar", "Wi-Fi", "Mesa de Trabalho", "TV a cabo"]
         },
         7: {
-          title: "Suíte Triplo Solteiro",
+          title: "Suíte Tripla Solteiro",
           description: "Espaço e conforto para grupos e colegas de trabalho",
           features: ["3 Camas Solteiro", "Frigobar", "Wi-Fi", "Mesa de Trabalho", "TV a cabo"]
         },
         4: {
-          title: "Suíte Quádruplo",
+          title: "Suíte Quádrupla",
           description: "Espaço ideal para família ou pequenos grupos, com conforto completo",
           features: ["1 Cama de Casal e 2 de Solteiro", "Frigobar", "Wi-Fi", "Mesa de Trabalho", "TV a cabo"]
         },
@@ -161,7 +161,7 @@ export const translations = {
     hero: {
       subtitle: "Sophistication and quality at your disposal.",
       cta: "BOOK NOW",
-      promo: "Get up to 20% Discount by booking through our official website."
+      promo: "Get up to 20% discount by booking through our official website."
     },
     rooms: {
       sectionTitle: "ACCOMMODATIONS",
@@ -170,17 +170,17 @@ export const translations = {
       checkAvailability: "CHECK AVAILABILITY",
       items: {
         2: {
-          title: "Couple Suite",
+          title: "Double Suite",
           description: "Sophisticated comfort with a privileged view",
           features: ["Double Bed", "Minibar", "Wi-Fi", "Work Desk", "Cable TV"]
         },
         6: {
-          title: "Double Single Suite",
+          title: "Twin Suite",
           description: "Perfect for business trips or friends",
           features: ["2 Single Beds", "Minibar", "Wi-Fi", "Work Desk", "Cable TV"]
         },
         3: {
-          title: "Triple Couple Suite",
+          title: "Triple Suite (Double + Single)",
           description: "The pinnacle of exclusivity and refinement",
           features: ["1 Double Bed and 1 Single Bed", "Minibar", "Wi-Fi", "Work Desk", "Cable TV"]
         },
@@ -260,10 +260,10 @@ export const translations = {
         adults4: "4 Adults",
         adults5Plus: "5+ Adults",
         hasChildren: "Traveling with children?",
-        childrenCourtesy: "Children up to 5 years old stay for free.",
+        childrenCourtesy: "Complimentary stay for children under 5.",
         childrenCount: "How many children?",
         allOver5: "All over 5 years old?",
-        childrenWarning: "*Children over 5 years old have a different rate.",
+        childrenWarning: "*Standard rates apply for children over 5.",
         nextStep: "NEXT STEP"
       },
       arrivalTime: {
@@ -288,10 +288,10 @@ export const translations = {
         partnershipTitle: "Commercial Expansion",
         corporate: [
           "• Credit approval analysis is conditioned on the existence of an active pre-reservation in the system.",
-          "• Billing exclusive for companies with approved corporate registration.",
+          "• Direct billing available exclusively for companies with approved corporate registration.",
           "• Payment term: 15 or 30 days after check-out date.",
-          "• Necessary to send formal authorization on letterhead and copy of updated CNPJ Card.",
-          "• Prior confirmation of no-show guarantee is mandatory."
+          "• Formal authorization on letterhead and copy of updated CNPJ Card required.",
+          "• Prior confirmation of no-show guarantee is required."
         ],
         partnership: [
           "• Special conditions for agencies and operators.",
@@ -315,7 +315,7 @@ export const translations = {
     hero: {
       subtitle: "Sofisticación y calidad a su disposición.",
       cta: "RESERVAR AHORA",
-      promo: "Obtenga hasta un 20% de Descuento reservando a través de nuestro sitio web oficial."
+      promo: "Obtenga hasta un 20% de descuento reservando a través de nuestro sitio web oficial."
     },
     rooms: {
       sectionTitle: "ALOJAMIENTOS",
@@ -329,17 +329,17 @@ export const translations = {
           features: ["Cama de Matrimonio", "Frigobar", "Wi-Fi", "Escritorio", "TV por cable"]
         },
         6: {
-          title: "Suite Doble Soltero",
+          title: "Suite Doble Twin",
           description: "Perfecto para viajes de trabajo o con amigos",
           features: ["2 Camas Individuales", "Frigobar", "Wi-Fi", "Escritorio", "TV por cable"]
         },
         3: {
-          title: "Suite Triple Matrimonial",
+          title: "Suite Triple (Matrimonial + Individual)",
           description: "La cúspide de la exclusividad y el refinamiento",
           features: ["1 Cama de Matrimonio y 1 Individual", "Frigobar", "Wi-Fi", "Escritorio", "TV por cable"]
         },
         7: {
-          title: "Suite Triple Soltero",
+          title: "Suite Triple Individual",
           description: "Espacio y confort para grupos y colegas de trabajo",
           features: ["3 Camas Individuales", "Frigobar", "Wi-Fi", "Escritorio", "TV por cable"]
         },
@@ -387,7 +387,7 @@ export const translations = {
       hub: {
         bookNow: "Reservar Ahora",
         bookNowDesc: "Individual o Familia",
-        corporate: "Reserva Facturada",
+        corporate: "Pago Directo",
         corporateDesc: "Exclusivo para Empresas",
         groups: "Grupos y Eventos",
         groupsDesc: "Solicitar Cotización Especial",
@@ -414,10 +414,10 @@ export const translations = {
         adults4: "4 Adultos",
         adults5Plus: "5+ Adultos",
         hasChildren: "¿Viajando con niños?",
-        childrenCourtesy: "Niños hasta 5 años se alojan gratis.",
+        childrenCourtesy: "Alojamiento gratuito para niños de hasta 5 años.",
         childrenCount: "¿Cuántos niños?",
         allOver5: "¿Todos mayores de 5 años?",
-        childrenWarning: "*Niños mayores de 5 años tienen tarifa diferenciada.",
+        childrenWarning: "*Se aplican tarifas estándar para niños mayores de 5 años.",
         nextStep: "PRÓXIMO PASO"
       },
       arrivalTime: {
@@ -441,10 +441,10 @@ export const translations = {
         corporateTitle: "Directrices Corporativas",
         partnershipTitle: "Expansión Comercial",
         corporate: [
-          "• El análisis de aprobación de crédito está condicionado a la existencia de una pre-reserva activa en el sistema.",
+          "• El análisis de crédito está sujeto a la existencia de una pre-reserva activa en el sistema.",
           "• Facturación exclusiva para empresas con registro corporativo aprobado.",
           "• Plazo de pago: 15 o 30 días después de la fecha de check-out.",
-          "• Necesario envío de autorización formal en papel con membrete y copia de la Tarjeta CNPJ actualizada.",
+          "• Se requiere autorización formal en papel con membrete y copia de la Tarjeta CNPJ actualizada.",
           "• Es obligatoria la confirmación previa de garantía de no-show."
         ],
         partnership: [
