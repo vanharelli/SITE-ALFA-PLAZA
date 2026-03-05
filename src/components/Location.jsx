@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MapPin, Phone, Clock, Star, Quote, X, ChevronLeft, ChevronRight, Plane, Shield, Flag, Landmark, FileText, Building2, Trophy, Mic } from 'lucide-react';
+import { MapPin, Phone, Clock, Star, Quote, X, ChevronLeft, ChevronRight, Plane, Shield, Flag, Landmark, FileText, Building2, Trophy, Mic, ShoppingBag, Bus } from 'lucide-react';
 import { Button } from './ui/button';
 import {
   Carousel,
@@ -324,51 +324,57 @@ const Location = ({ onOpenReservation }) => {
             {[
               { 
                 name: 'Aeroporto Internacional (BSB)', 
-                distance: '7,0 km', 
+                distance: '7,0 km (Aprox. 12 min)', 
                 icon: Plane,
                 description: 'Principal terminal aéreo da capital federal.'
               },
               { 
                 name: 'Polícia Federal (Imigração)', 
-                distance: '10,5 km', 
+                distance: '10,5 km (Aprox. 15 min)', 
                 icon: Shield,
                 description: 'Setor de passaportes e imigração.'
               },
               { 
                 name: 'Setor de Embaixadas Sul', 
-                distance: '12,5 km', 
+                distance: '12,5 km (Aprox. 18 min)', 
                 icon: Flag,
                 description: 'Concentração de missões diplomáticas.'
               },
               { 
                 name: 'Embaixada dos EUA', 
-                distance: '13,0 km', 
+                distance: '13,0 km (Aprox. 20 min)', 
                 icon: Landmark,
                 description: 'Representação diplomática dos Estados Unidos.'
               },
               { 
                 name: 'CASV (Visto Americano)', 
-                distance: '14,5 km', 
+                distance: '14,5 km (Aprox. 22 min)', 
                 icon: FileText,
                 description: 'Centro de Atendimento ao Solicitante de Visto.'
               },
               { 
                 name: 'Esplanada dos Ministérios', 
-                distance: '16,0 km', 
+                distance: '16,0 km (Aprox. 25 min)', 
                 icon: Building2,
                 description: 'Coração político e administrativo do Brasil.'
               },
               { 
                 name: 'Estádio Nacional (Arena BRB)', 
-                distance: '15,0 km', 
+                distance: '15,0 km (Aprox. 23 min)', 
                 icon: Trophy,
                 description: 'Palco de grandes eventos esportivos e shows.'
               },
-              { 
-                name: 'Centro de Convenções Ulysses', 
-                distance: '15,5 km', 
-                icon: Mic,
-                description: 'O maior centro de convenções de Brasília.'
+              {
+                name: 'ParkShopping Brasília',
+                distance: '6,0 km (Aprox. 10 min)',
+                icon: ShoppingBag,
+                description: 'O principal shopping do DF.'
+              },
+              {
+                name: 'Rodoviária Interestadual',
+                distance: '6,5 km (Aprox. 11 min)',
+                icon: Bus,
+                description: 'Ponto de chegada e partida terrestre da capital.'
               }
             ].map((point, index) => (
               <div 
