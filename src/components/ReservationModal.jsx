@@ -242,42 +242,44 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
   };
 
   const handleReservation = () => {
+    const w = t.reservation.whatsapp;
+    
     const suitesText = formData.type === 'Grupos e Eventos' 
       ? formData.suites.map(s => s.title).join(', ')
-      : (formData.suite?.title || t.whatsapp.unspecified);
+      : (formData.suite?.title || w.unspecified);
 
     const childrenText = formData.hasChildren 
-      ? `${formData.childCount} ${t.whatsapp.children} (${formData.allChildrenOver5 ? t.whatsapp.allOver5 : t.whatsapp.includesUnder5})`
-      : t.whatsapp.none;
+      ? `${formData.childCount} ${w.children} (${formData.allChildrenOver5 ? w.allOver5 : w.includesUnder5})`
+      : w.none;
 
     const reservationType = t.reservation.types[typeMapping[formData.type]] || formData.type;
 
     const datesText = (formData.checkIn && formData.checkOut)
       ? `${format(new Date(formData.checkIn + 'T12:00:00'), 'dd/MM/yyyy', { locale: getDateLocale() })} a ${format(new Date(formData.checkOut + 'T12:00:00'), 'dd/MM/yyyy', { locale: getDateLocale() })}`
-      : t.whatsapp.unspecified;
+      : w.unspecified;
 
-    const arrivalText = formData.arrivalTime || t.whatsapp.unspecified;
+    const arrivalText = formData.arrivalTime || w.unspecified;
 
-    let message = `🏢 *${t.whatsapp.title}*\n` +
+    let message = `🏢 *${w.title}*\n` +
       `__________________________________\n\n` +
-      `👤 *${t.whatsapp.client}:* ${formData.name}\n` +
+      `👤 *${w.client}:* ${formData.name}\n` +
       `📱 *WhatsApp:* ${formData.whatsapp}\n` +
       `✉️ *E-mail:* ${formData.email}\n` +
       `__________________________________\n\n` +
-      `📋 *${t.whatsapp.type}:* ${reservationType}\n` +
-      `🛏️ *${t.whatsapp.category}:* ${suitesText}\n`;
+      `📋 *${w.type}:* ${reservationType}\n` +
+      `🛏️ *${w.category}:* ${suitesText}\n`;
 
     if (formData.experiencePackage) {
-      message += `💎 *${t.whatsapp.vip}:* ${formData.experiencePackage}\n`;
+      message += `💎 *${w.vip}:* ${formData.experiencePackage}\n`;
     }
 
-    message += `👥 *${t.whatsapp.people}:* ${formData.adults}\n` +
-      `🧒 *${t.whatsapp.children}:* ${childrenText}\n` +
+    message += `👥 *${w.people}:* ${formData.adults}\n` +
+      `🧒 *${w.children}:* ${childrenText}\n` +
       `__________________________________\n\n` +
-      `📅 *${t.whatsapp.dates}:* ${datesText}\n` +
-      `🕒 *${t.whatsapp.arrival}:* ${arrivalText}\n` +
+      `📅 *${w.dates}:* ${datesText}\n` +
+      `🕒 *${w.arrival}:* ${arrivalText}\n` +
       `__________________________________\n\n` +
-      `_${t.whatsapp.waitMessage}_`;
+      `_${w.waitMessage}_`;
 
     const encodedMessage = encodeURIComponent(message);
     window.open(`https://wa.me/556132639131?text=${encodedMessage}`, '_blank');
@@ -758,10 +760,10 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                                 onChange={(e) => setFormData(prev => ({ ...prev, adults: e.target.value }))}
                                 className="w-full bg-black/40 backdrop-blur-md border border-white/10 rounded-xl py-4 pl-12 pr-4 text-white focus:outline-none focus:border-alpha-gold/50 transition-all appearance-none relative z-10 [&>option]:bg-zinc-900 [&>option]:text-white"
                               >
-                                <option value="1">{t.reservation.guests.adult1}</option>
-                                <option value="2">{t.reservation.guests.adults2}</option>
-                                <option value="3">{t.reservation.guests.adults3}</option>
-                                <option value="4">{t.reservation.guests.adults4}</option>
+                                <option value="1" className="bg-zinc-900 text-white">{t.reservation.guests.adult1}</option>
+                                <option value="2" className="bg-zinc-900 text-white">{t.reservation.guests.adults2}</option>
+                                <option value="3" className="bg-zinc-900 text-white">{t.reservation.guests.adults3}</option>
+                                <option value="4" className="bg-zinc-900 text-white">{t.reservation.guests.adults4}</option>
                               </select>
                             )}
                           </div>
