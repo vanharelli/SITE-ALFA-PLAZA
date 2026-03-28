@@ -3,7 +3,8 @@ export const translations = {
     common: {
       yes: "SIM",
       select: "SELECIONAR",
-      loading: "Carregando..."
+      loading: "Carregando...",
+      continue: "CONTINUAR"
     },
     header: {
       bookButton: "RESERVAR AGORA"
@@ -219,6 +220,7 @@ export const translations = {
       whatsapp: {
         title: "RESERVA - ALFA PLAZA HOTEL",
         client: "Cliente",
+        type: "Tipo de Reserva",
         category: "Categoria",
         vip: "Recepção VIP",
         people: "Pessoas",
@@ -237,7 +239,8 @@ export const translations = {
     common: {
       yes: "YES",
       select: "SELECT",
-      loading: "Loading..."
+      loading: "Loading...",
+      continue: "CONTINUE"
     },
     header: {
       bookButton: "BOOK NOW"
@@ -452,6 +455,7 @@ export const translations = {
       whatsapp: {
         title: "RESERVATION - ALFA PLAZA HOTEL",
         client: "Client",
+        type: "Reservation Type",
         category: "Category",
         vip: "VIP Reception",
         people: "People",
@@ -470,7 +474,8 @@ export const translations = {
     common: {
       yes: "SÍ",
       select: "SELECCIONAR",
-      loading: "Cargando..."
+      loading: "Cargando...",
+      continue: "CONTINUAR"
     },
     header: {
       bookButton: "RESERVAR AHORA"
@@ -685,6 +690,7 @@ export const translations = {
       whatsapp: {
         title: "RESERVA - ALFA PLAZA HOTEL",
         client: "Cliente",
+        type: "Tipo de Reserva",
         category: "Categoría",
         vip: "Recepción VIP",
         people: "Personas",

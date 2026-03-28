@@ -22,7 +22,10 @@ import {
   Crown
 } from 'lucide-react';
 import { Button } from './ui/button';
-import { format, parse, isValid } from 'date-fns';
+import { Calendar } from './ui/calendar';
+import { Popover, PopoverContent, PopoverTrigger } from './ui/popover';
+import { format, parse, isValid, addDays } from 'date-fns';
+import { ptBR, enUS, es } from 'date-fns/locale';
 import { useLanguage } from '../context/LanguageContext';
 
 const STEPS = {
@@ -49,6 +52,15 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
   const { t, language } = useLanguage();
   const [step, setStep] = useState(STEPS.HUB);
   const [history, setHistory] = useState([]);
+
+  const getDateLocale = () => {
+    switch (language) {
+      case 'en': return enUS;
+      case 'es': return es;
+      default: return ptBR;
+    }
+  };
+
   const [formData, setFormData] = useState({
     suite: initialSuite ? { ...initialSuite, image: Array.isArray(initialSuite.image) ? initialSuite.image[0] : initialSuite.image } : null,
     suites: initialSuite ? [initialSuite] : [],
@@ -95,13 +107,22 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
 
     // Try to parse dd/MM/yyyy
     if (value.length === 10) {
-      const parsedDate = parse(value, 'dd/MM/yyyy', new Date());
+      const parsedDate = parse(value, 'dd/MM/yyyy', new Date(), { locale: getDateLocale() });
       if (isValid(parsedDate)) {
         setFormData(prev => ({ ...prev, [field]: format(parsedDate, 'yyyy-MM-dd') }));
       }
     } else if (value === '') {
       setFormData(prev => ({ ...prev, [field]: '' }));
     }
+  };
+
+  const handleCalendarSelect = (date, field) => {
+    if (!date) return;
+    const formattedDate = format(date, 'yyyy-MM-dd');
+    const inputFormatted = format(date, 'dd/MM/yyyy', { locale: getDateLocale() });
+    
+    setFormData(prev => ({ ...prev, [field]: formattedDate }));
+    setDateInput(prev => ({ ...prev, [field]: inputFormatted }));
   };
 
   const typeMapping = {
@@ -119,7 +140,7 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
         try {
           const date = new Date(formData.checkIn + 'T12:00:00');
           if (isValid(date)) {
-            setDateInput(prev => ({ ...prev, checkIn: format(date, 'dd/MM/yyyy') }));
+            setDateInput(prev => ({ ...prev, checkIn: format(date, 'dd/MM/yyyy', { locale: getDateLocale() }) }));
           }
         } catch (e) {}
       }
@@ -127,7 +148,7 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
         try {
           const date = new Date(formData.checkOut + 'T12:00:00');
           if (isValid(date)) {
-            setDateInput(prev => ({ ...prev, checkOut: format(date, 'dd/MM/yyyy') }));
+            setDateInput(prev => ({ ...prev, checkOut: format(date, 'dd/MM/yyyy', { locale: getDateLocale() }) }));
           }
         } catch (e) {}
       }
@@ -211,12 +232,21 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
       ? `${formData.childCount} ${t.whatsapp.children} (${formData.allChildrenOver5 ? t.whatsapp.allOver5 : t.whatsapp.includesUnder5})`
       : t.whatsapp.none;
 
+    const reservationType = t.reservation.types[typeMapping[formData.type]] || formData.type;
+
+    const datesText = (formData.checkIn && formData.checkOut)
+      ? `${format(new Date(formData.checkIn + 'T12:00:00'), 'dd/MM/yyyy', { locale: getDateLocale() })} a ${format(new Date(formData.checkOut + 'T12:00:00'), 'dd/MM/yyyy', { locale: getDateLocale() })}`
+      : t.whatsapp.unspecified;
+
+    const arrivalText = formData.arrivalTime || t.whatsapp.unspecified;
+
     let message = `🏢 *${t.whatsapp.title}*\n` +
       `__________________________________\n\n` +
       `👤 *${t.whatsapp.client}:* ${formData.name}\n` +
       `📱 *WhatsApp:* ${formData.whatsapp}\n` +
       `✉️ *E-mail:* ${formData.email}\n` +
       `__________________________________\n\n` +
+      `📋 *${t.whatsapp.type}:* ${reservationType}\n` +
       `🛏️ *${t.whatsapp.category}:* ${suitesText}\n`;
 
     if (formData.experiencePackage) {
@@ -226,8 +256,8 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
     message += `👥 *${t.whatsapp.people}:* ${formData.adults}\n` +
       `🧒 *${t.whatsapp.children}:* ${childrenText}\n` +
       `__________________________________\n\n` +
-      `📅 *${t.whatsapp.dates}:* ${format(new Date(formData.checkIn + 'T12:00:00'), 'dd/MM/yyyy')} a ${format(new Date(formData.checkOut + 'T12:00:00'), 'dd/MM/yyyy')}\n` +
-      `🕒 *${t.whatsapp.arrival}:* ${formData.arrivalTime}\n` +
+      `📅 *${t.whatsapp.dates}:* ${datesText}\n` +
+      `🕒 *${t.whatsapp.arrival}:* ${arrivalText}\n` +
       `__________________________________\n\n` +
       `_${t.whatsapp.waitMessage}_`;
 
@@ -373,13 +403,13 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
               >
                 {step === STEPS.HUB && (
                   <div className="space-y-4 flex-1 flex flex-col justify-center p-6">
-                    <div className="grid grid-cols-2 gap-3 h-full">
+                    <div className="grid grid-cols-2 gap-3 h-full overflow-y-auto custom-scrollbar pr-1">
                       <button 
                         onClick={() => {
                           setFormData(prev => ({ ...prev, type: 'Reserva Individual' }));
                           wrapSetStep(STEPS.SUITE_SELECTION);
                         }}
-                        className="group p-3 rounded-2xl border border-alpha-gold/20 bg-white/5 hover:bg-alpha-gold/10 hover:border-alpha-gold/50 transition-all flex flex-col items-center justify-center text-center gap-2 h-full"
+                        className="group p-3 rounded-2xl border border-alpha-gold/20 bg-white/5 hover:bg-alpha-gold/10 hover:border-alpha-gold/50 transition-all flex flex-col items-center justify-center text-center gap-2 min-h-[110px]"
                       >
                         <div className="w-10 h-10 rounded-xl bg-alpha-gold/20 flex items-center justify-center text-alpha-gold group-hover:scale-110 transition-transform shrink-0">
                           <CalendarCheck2 size={20} />
@@ -395,7 +425,7 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                           setFormData(prev => ({ ...prev, type: 'Reserva Faturada' }));
                           wrapSetStep(STEPS.RULES);
                         }}
-                        className="group p-3 rounded-2xl border border-white/10 bg-white/5 hover:bg-white/10 transition-all flex flex-col items-center justify-center text-center gap-2 h-full"
+                        className="group p-3 rounded-2xl border border-white/10 bg-white/5 hover:bg-white/10 transition-all flex flex-col items-center justify-center text-center gap-2 min-h-[110px]"
                       >
                         <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-blue-400 group-hover:scale-110 transition-transform shrink-0">
                           <Building2 size={20} />
@@ -411,7 +441,7 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                           setFormData(prev => ({ ...prev, type: 'Grupos e Eventos' }));
                           wrapSetStep(STEPS.SUITE_SELECTION);
                         }}
-                        className="group p-3 rounded-2xl border border-white/10 bg-white/5 hover:bg-white/10 transition-all flex flex-col items-center justify-center text-center gap-2 h-full"
+                        className="group p-3 rounded-2xl border border-white/10 bg-white/5 hover:bg-white/10 transition-all flex flex-col items-center justify-center text-center gap-2 min-h-[110px]"
                       >
                         <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-purple-400 group-hover:scale-110 transition-transform shrink-0">
                           <Users2 size={20} />
@@ -427,7 +457,7 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                           setFormData(prev => ({ ...prev, type: 'Recepção VIP & Homenagens' }));
                           wrapSetStep(STEPS.EXPERIENCES);
                         }}
-                        className="group p-3 rounded-2xl border border-white/10 bg-white/5 hover:bg-white/10 transition-all flex flex-col items-center justify-center text-center gap-2 h-full"
+                        className="group p-3 rounded-2xl border border-white/10 bg-white/5 hover:bg-white/10 transition-all flex flex-col items-center justify-center text-center gap-2 min-h-[110px]"
                       >
                         <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-red-400 group-hover:scale-110 transition-transform shrink-0">
                           <Heart size={20} />
@@ -435,6 +465,22 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                         <div>
                           <p className="text-white font-semibold tracking-wide text-xs">{t.reservation.types.celebrations}</p>
                           <p className="text-gray-400 text-[9px] line-clamp-2">{t.reservation.experiences['welcome-vip'].focus}</p>
+                        </div>
+                      </button>
+
+                      <button 
+                        onClick={() => {
+                          setFormData(prev => ({ ...prev, type: 'Parceria Comercial' }));
+                          wrapSetStep(STEPS.RULES);
+                        }}
+                        className="group p-3 rounded-2xl border border-white/10 bg-white/5 hover:bg-white/10 transition-all flex flex-col items-center justify-center text-center gap-2 min-h-[110px] col-span-2"
+                      >
+                        <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-green-400 group-hover:scale-110 transition-transform shrink-0">
+                          <Flag size={20} />
+                        </div>
+                        <div>
+                          <p className="text-white font-semibold tracking-wide text-xs">{t.reservation.hub.partnership}</p>
+                          <p className="text-gray-400 text-[9px] line-clamp-2">{t.reservation.hub.partnershipDesc}</p>
                         </div>
                       </button>
                     </div>
@@ -566,13 +612,15 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                       </div>
                       <Button 
                         onClick={() => {
-                          const email = formData.type === 'Reserva Faturada' ? 'reservas@alfaplazahotel.com.br' : 'administrativo@alfaplazahotel.com.br';
-                          const subject = formData.type === 'Reserva Faturada' ? 'Solicitação de Reserva Faturada' : 'Interesse em Parceria Comercial';
-                          window.open(`mailto:${email}?subject=${encodeURIComponent(subject)}`, '_blank');
+                          if (formData.type === 'Reserva Faturada') {
+                            wrapSetStep(STEPS.SUITE_SELECTION);
+                          } else {
+                            wrapSetStep(STEPS.CONTACT);
+                          }
                         }}
                         className="w-full bg-alpha-gold text-obsidian font-bold tracking-widest py-4 md:py-6"
                       >
-                        {t.reservation.rules.sendEmail}
+                        {t.common.continue} <ArrowRight className="ml-2" size={20} />
                       </Button>
                     </div>
                   </div>
@@ -594,36 +642,63 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                       <div className="space-y-6">
                         <div className="space-y-1">
                           <label className="text-alpha-gold text-[10px] tracking-[0.2em] uppercase font-bold ml-1">{t.reservation.dates.checkIn}</label>
-                          <div className="relative group">
-                            <CalendarIcon className="absolute left-4 top-1/2 -translate-y-1/2 text-alpha-gold/50 group-focus-within:text-alpha-gold transition-colors z-10 pointer-events-none" size={20} />
-                            <div className="relative">
-                              <input
-                                type="text"
-                                placeholder="DD/MM/AAAA"
-                                value={dateInput.checkIn}
-                                onChange={(e) => handleDateInputChange(e, 'checkIn')}
-                                className="w-full bg-black/40 backdrop-blur-md border border-white/10 rounded-xl py-4 pl-12 pr-4 text-white focus:outline-none focus:border-alpha-gold/50 transition-all placeholder:text-white/20"
-                                maxLength={10}
+                          <Popover>
+                            <PopoverTrigger asChild>
+                              <div className="relative group cursor-pointer">
+                                <CalendarIcon className="absolute left-4 top-1/2 -translate-y-1/2 text-alpha-gold/50 group-focus-within:text-alpha-gold transition-colors z-10 pointer-events-none" size={20} />
+                                <input
+                                  type="text"
+                                  placeholder="DD/MM/AAAA"
+                                  value={dateInput.checkIn}
+                                  readOnly
+                                  className="w-full bg-black/40 backdrop-blur-md border border-white/10 rounded-xl py-4 pl-12 pr-4 text-white focus:outline-none focus:border-alpha-gold/50 transition-all placeholder:text-white/20 cursor-pointer"
+                                />
+                              </div>
+                            </PopoverTrigger>
+                            <PopoverContent className="w-auto p-0 bg-zinc-950 border-alpha-gold/30" align="start">
+                              <Calendar
+                                mode="single"
+                                selected={formData.checkIn ? new Date(formData.checkIn + 'T12:00:00') : undefined}
+                                onSelect={(date) => handleCalendarSelect(date, 'checkIn')}
+                                initialFocus
+                                locale={getDateLocale()}
+                                disabled={(date) => date < new Date().setHours(0,0,0,0)}
+                                className="bg-zinc-950 text-white"
                               />
-                            </div>
-                          </div>
+                            </PopoverContent>
+                          </Popover>
                         </div>
 
                         <div className="space-y-1">
                           <label className="text-alpha-gold text-[10px] tracking-[0.2em] uppercase font-bold ml-1">{t.reservation.dates.checkOut}</label>
-                          <div className="relative group">
-                            <CalendarIcon className="absolute left-4 top-1/2 -translate-y-1/2 text-alpha-gold/50 group-focus-within:text-alpha-gold transition-colors z-10 pointer-events-none" size={20} />
-                            <div className="relative">
-                              <input
-                                type="text"
-                                placeholder="DD/MM/AAAA"
-                                value={dateInput.checkOut}
-                                onChange={(e) => handleDateInputChange(e, 'checkOut')}
-                                className="w-full bg-black/40 backdrop-blur-md border border-white/10 rounded-xl py-4 pl-12 pr-4 text-white focus:outline-none focus:border-alpha-gold/50 transition-all placeholder:text-white/20"
-                                maxLength={10}
+                          <Popover>
+                            <PopoverTrigger asChild>
+                              <div className="relative group cursor-pointer">
+                                <CalendarIcon className="absolute left-4 top-1/2 -translate-y-1/2 text-alpha-gold/50 group-focus-within:text-alpha-gold transition-colors z-10 pointer-events-none" size={20} />
+                                <input
+                                  type="text"
+                                  placeholder="DD/MM/AAAA"
+                                  value={dateInput.checkOut}
+                                  readOnly
+                                  className="w-full bg-black/40 backdrop-blur-md border border-white/10 rounded-xl py-4 pl-12 pr-4 text-white focus:outline-none focus:border-alpha-gold/50 transition-all placeholder:text-white/20 cursor-pointer"
+                                />
+                              </div>
+                            </PopoverTrigger>
+                            <PopoverContent className="w-auto p-0 bg-zinc-950 border-alpha-gold/30" align="start">
+                              <Calendar
+                                mode="single"
+                                selected={formData.checkOut ? new Date(formData.checkOut + 'T12:00:00') : undefined}
+                                onSelect={(date) => handleCalendarSelect(date, 'checkOut')}
+                                initialFocus
+                                locale={getDateLocale()}
+                                disabled={(date) => {
+                                  const minDate = formData.checkIn ? addDays(new Date(formData.checkIn + 'T12:00:00'), 1) : new Date();
+                                  return date < minDate.setHours(0,0,0,0);
+                                }}
+                                className="bg-zinc-950 text-white"
                               />
-                            </div>
-                          </div>
+                            </PopoverContent>
+                          </Popover>
                         </div>
                       </div>
                     </div>

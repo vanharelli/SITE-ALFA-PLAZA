@@ -163,7 +163,7 @@ const RoomsGallery = ({ onOpenReservation }) => {
         {/* Additional Info */}
         <div className="mt-16 text-center fade-in-section">
           <p className="text-gray-400 text-sm tracking-wide">
-            *Tarifas sujeitas à disponibilidade e período de reserva
+            {t.rooms.disclaimer}
           </p>
         </div>
       </div>
