@@ -124,6 +124,13 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
     
     setFormData(prev => ({ ...prev, [field]: formattedDate }));
     setDateInput(prev => ({ ...prev, [field]: inputFormatted }));
+    
+    // Close current popover and open the other one if needed
+    if (field === 'checkIn') {
+      setPopoverOpen(prev => ({ ...prev, checkIn: false, checkOut: true }));
+    } else {
+      setPopoverOpen(prev => ({ ...prev, checkOut: false }));
+    }
   };
 
   const typeMapping = {
@@ -296,6 +303,10 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
   };
 
   const [direction, setDirection] = useState(1);
+  const [popoverOpen, setPopoverOpen] = useState({
+    checkIn: false,
+    checkOut: false
+  });
 
   const wrapSetStep = (newStep) => {
     setDirection(1);
@@ -627,7 +638,10 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                       <div className="space-y-6">
                         <div className="space-y-1">
                           <label className="text-alpha-gold text-[10px] tracking-[0.2em] uppercase font-bold ml-1">{t.reservation.dates.checkIn}</label>
-                          <Popover>
+                          <Popover 
+                            open={popoverOpen.checkIn} 
+                            onOpenChange={(open) => setPopoverOpen(prev => ({ ...prev, checkIn: open }))}
+                          >
                             <PopoverTrigger asChild>
                               <div className="relative group cursor-pointer">
                                 <CalendarIcon className="absolute left-4 top-1/2 -translate-y-1/2 text-alpha-gold/50 group-focus-within:text-alpha-gold transition-colors z-10 pointer-events-none" size={20} />
@@ -656,7 +670,10 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
 
                         <div className="space-y-1">
                           <label className="text-alpha-gold text-[10px] tracking-[0.2em] uppercase font-bold ml-1">{t.reservation.dates.checkOut}</label>
-                          <Popover>
+                          <Popover 
+                            open={popoverOpen.checkOut} 
+                            onOpenChange={(open) => setPopoverOpen(prev => ({ ...prev, checkOut: open }))}
+                          >
                             <PopoverTrigger asChild>
                               <div className="relative group cursor-pointer">
                                 <CalendarIcon className="absolute left-4 top-1/2 -translate-y-1/2 text-alpha-gold/50 group-focus-within:text-alpha-gold transition-colors z-10 pointer-events-none" size={20} />
