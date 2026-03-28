@@ -242,6 +242,16 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
   };
 
   const handleReservation = () => {
+    // Safety check for translations
+    if (!t || !t.reservation || !t.reservation.whatsapp) {
+      console.error('Translation error: t.reservation.whatsapp is missing', t);
+      // Fallback message if translations are missing
+      const fallbackMessage = "🏢 *RESERVA - ALFA PLAZA HOTEL*\n__________________________________\n\n👤 *Cliente:* " + formData.name + "\n📱 *WhatsApp:* " + formData.whatsapp;
+      window.open(`https://wa.me/556132639131?text=${encodeURIComponent(fallbackMessage)}`, '_blank');
+      onClose();
+      return;
+    }
+
     const w = t.reservation.whatsapp;
     
     const suitesText = formData.type === 'Grupos e Eventos' 
@@ -760,10 +770,16 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                                 onChange={(e) => setFormData(prev => ({ ...prev, adults: e.target.value }))}
                                 className="w-full bg-black/40 backdrop-blur-md border border-white/10 rounded-xl py-4 pl-12 pr-4 text-white focus:outline-none focus:border-alpha-gold/50 transition-all appearance-none relative z-10 [&>option]:bg-zinc-900 [&>option]:text-white"
                               >
-                                <option value="1" className="bg-zinc-900 text-white">{t.reservation.guests.adult1}</option>
-                                <option value="2" className="bg-zinc-900 text-white">{t.reservation.guests.adults2}</option>
-                                <option value="3" className="bg-zinc-900 text-white">{t.reservation.guests.adults3}</option>
-                                <option value="4" className="bg-zinc-900 text-white">{t.reservation.guests.adults4}</option>
+                                {[
+                                  { val: "1", label: t.reservation.guests.adult1 },
+                                  { val: "2", label: t.reservation.guests.adults2 },
+                                  { val: "3", label: t.reservation.guests.adults3 },
+                                  { val: "4", label: t.reservation.guests.adults4 }
+                                ].map(opt => (
+                                  <option key={opt.val} value={opt.val} className="bg-zinc-900 text-white">
+                                    {opt.label}
+                                  </option>
+                                ))}
                               </select>
                             )}
                           </div>
