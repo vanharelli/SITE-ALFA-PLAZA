@@ -127,7 +127,11 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
     
     // Close current popover and open the other one if needed
     if (field === 'checkIn') {
-      setPopoverOpen(prev => ({ ...prev, checkIn: false, checkOut: true }));
+      setPopoverOpen(prev => ({ ...prev, checkIn: false }));
+      // Pequeno delay para abrir o checkout para evitar conflitos de renderização
+      setTimeout(() => {
+        setPopoverOpen(prev => ({ ...prev, checkOut: true }));
+      }, 100);
     } else {
       setPopoverOpen(prev => ({ ...prev, checkOut: false }));
     }
@@ -184,15 +188,21 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen, initialSuite]);
 
-  // Prevent body scroll when modal is open
+  /* Prevent body scroll when modal is open */
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
+      document.body.style.pointerEvents = 'auto';
+      document.body.style.userSelect = 'auto';
     } else {
       document.body.style.overflow = 'unset';
+      document.body.style.pointerEvents = 'unset';
+      document.body.style.userSelect = 'none';
     }
     return () => {
       document.body.style.overflow = 'unset';
+      document.body.style.pointerEvents = 'unset';
+      document.body.style.userSelect = 'none';
     };
   }, [isOpen]);
 
@@ -654,7 +664,7 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                                 />
                               </div>
                             </PopoverTrigger>
-                            <PopoverContent className="w-auto p-0 bg-zinc-950 border-alpha-gold/30" align="start">
+                            <PopoverContent className="w-auto p-0 bg-zinc-950 border-alpha-gold/30 z-[10001]" align="start" side="bottom" sideOffset={10}>
                               <Calendar
                                 mode="single"
                                 selected={formData.checkIn ? new Date(formData.checkIn + 'T12:00:00') : undefined}
@@ -662,7 +672,7 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                                 initialFocus
                                 locale={getDateLocale()}
                                 disabled={(date) => date < new Date().setHours(0,0,0,0)}
-                                className="bg-zinc-950 text-white"
+                                className="bg-zinc-950 text-white pointer-events-auto"
                               />
                             </PopoverContent>
                           </Popover>
@@ -686,7 +696,7 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                                 />
                               </div>
                             </PopoverTrigger>
-                            <PopoverContent className="w-auto p-0 bg-zinc-950 border-alpha-gold/30" align="start">
+                            <PopoverContent className="w-auto p-0 bg-zinc-950 border-alpha-gold/30 z-[10001]" align="start" side="bottom" sideOffset={10}>
                               <Calendar
                                 mode="single"
                                 selected={formData.checkOut ? new Date(formData.checkOut + 'T12:00:00') : undefined}
@@ -697,7 +707,7 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                                   const minDate = formData.checkIn ? addDays(new Date(formData.checkIn + 'T12:00:00'), 1) : new Date();
                                   return date < minDate.setHours(0,0,0,0);
                                 }}
-                                className="bg-zinc-950 text-white"
+                                className="bg-zinc-950 text-white pointer-events-auto"
                               />
                             </PopoverContent>
                           </Popover>
