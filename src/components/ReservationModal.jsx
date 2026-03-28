@@ -19,7 +19,8 @@ import {
   Heart,
   Star,
   Gem,
-  Crown
+  Crown,
+  Flag
 } from 'lucide-react';
 import { Button } from './ui/button';
 import { Calendar } from './ui/calendar';
@@ -465,22 +466,6 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                         <div>
                           <p className="text-white font-semibold tracking-wide text-xs">{t.reservation.types.celebrations}</p>
                           <p className="text-gray-400 text-[9px] line-clamp-2">{t.reservation.experiences['welcome-vip'].focus}</p>
-                        </div>
-                      </button>
-
-                      <button 
-                        onClick={() => {
-                          setFormData(prev => ({ ...prev, type: 'Parceria Comercial' }));
-                          wrapSetStep(STEPS.RULES);
-                        }}
-                        className="group p-3 rounded-2xl border border-white/10 bg-white/5 hover:bg-white/10 transition-all flex flex-col items-center justify-center text-center gap-2 min-h-[110px] col-span-2"
-                      >
-                        <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-green-400 group-hover:scale-110 transition-transform shrink-0">
-                          <Flag size={20} />
-                        </div>
-                        <div>
-                          <p className="text-white font-semibold tracking-wide text-xs">{t.reservation.hub.partnership}</p>
-                          <p className="text-gray-400 text-[9px] line-clamp-2">{t.reservation.hub.partnershipDesc}</p>
                         </div>
                       </button>
                     </div>
