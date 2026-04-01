@@ -51,7 +51,7 @@ const Header = ({ onOpenReservation }) => {
   return (
     <header 
       style={{ top: 0, left: 0, right: 0, position: 'fixed' }}
-      className={`z-[100] w-full overflow-hidden transition-all duration-300 transform-gpu select-none ${ 
+      className={`z-[100] w-full transition-all duration-300 transform-gpu select-none ${ 
         isScrolled ? 'bg-black/70 shadow-lg border-b border-alpha-gold/30 backdrop-blur-xl h-16 md:h-20' : 'bg-transparent border-b border-transparent h-16 md:h-20'
       }`}
     >
