@@ -55,13 +55,17 @@ const Footer = () => {
             {/* Social Media */}
             <div className="flex space-x-4">
               <a 
-                href="#" 
+                href="https://www.instagram.com/alfaplazahotel" 
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 border border-alpha-gold/30 flex items-center justify-center hover:bg-alpha-gold/10 hover:border-alpha-gold transition-all"
               >
                 <Instagram size={18} className="text-alpha-gold" />
               </a>
               <a 
-                href="#" 
+                href="https://www.facebook.com/profile.php?id=100081269830409" 
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 border border-alpha-gold/30 flex items-center justify-center hover:bg-alpha-gold/10 hover:border-alpha-gold transition-all"
               >
                 <Facebook size={18} className="text-alpha-gold" />
