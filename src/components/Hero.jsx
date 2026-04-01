@@ -65,7 +65,7 @@ const Hero = ({ onOpenReservation }) => {
               </Button>
             </div>
             
-            <div className="flex flex-col items-center mt-6 space-y-2 animate-pulse">
+            <div className="flex flex-col items-center mt-6 mb-10 space-y-2 animate-pulse">
               <p className="text-sm md:text-base text-gray-300 font-bold italic tracking-wide">
                 {t.hero.promo}
               </p>
