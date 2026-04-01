@@ -61,9 +61,9 @@ export const translations = {
       pointsOfInterestTitle: "PONTOS DE INTERESSE",
       contactLabels: {
         address: "Endereço",
-        phone: "Telefone",
-        service: "Atendimento",
-        serviceHours: "24 horas por dia, 7 dias por semana"
+        phone: "Recepção",
+        service: "Check-in",
+        serviceHours: "das 13:00 a 12:00"
       },
       pointsOfInterest: [
         { 
@@ -298,9 +298,9 @@ export const translations = {
       pointsOfInterestTitle: "POINTS OF INTEREST",
       contactLabels: {
         address: "Address",
-        phone: "Phone",
-        service: "Service",
-        serviceHours: "24 hours a day, 7 days a week"
+        phone: "Reception",
+        service: "Check-in",
+        serviceHours: "from 13:00 to 12:00"
       },
       pointsOfInterest: [
         { 
@@ -534,9 +534,9 @@ export const translations = {
       pointsOfInterestTitle: "PUNTOS DE INTERÉS",
       contactLabels: {
         address: "Dirección",
-        phone: "Teléfono",
-        service: "Atención",
-        serviceHours: "24 horas al día, 7 días a la semana"
+        phone: "Recepción",
+        service: "Check-in",
+        serviceHours: "de 13:00 a 12:00"
       },
       pointsOfInterest: [
         { 
