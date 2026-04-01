@@ -19,6 +19,7 @@ export const translations = {
       mainTitle: "NOSSAS SUÍTES",
       description: "Seis categorias de hospedagem, cuidadosamente estruturadas para atender diferentes perfis com o mesmo padrão de excelência.",
       checkAvailability: "VERIFICAR DISPONIBILIDADE",
+      disclaimer: "Tarifas sujeitas a alteração conforme disponibilidade e período da reserva.",
       items: {
         2: {
           title: "Suíte Casal",
@@ -255,6 +256,7 @@ export const translations = {
       mainTitle: "OUR SUITES",
       description: "Six categories of accommodation, carefully structured to meet different profiles with the same standard of excellence.",
       checkAvailability: "CHECK AVAILABILITY",
+      disclaimer: "Rates subject to change depending on availability and reservation period.",
       items: {
         2: {
           title: "Double Suite",
@@ -490,6 +492,7 @@ export const translations = {
       mainTitle: "NUESTRAS SUITES",
       description: "Seis categorías de alojamiento, cuidadosamente estructuradas para atender diferentes perfiles con el mismo estándar de excelencia.",
       checkAvailability: "VERIFICAR DISPONIBILIDAD",
+      disclaimer: "Tarifas sujetas a cambios según disponibilidad y período de reserva.",
       items: {
         2: {
           title: "Suite Matrimonial",
