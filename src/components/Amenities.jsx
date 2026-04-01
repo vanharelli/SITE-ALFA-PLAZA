@@ -1,5 +1,5 @@
 import React from 'react';
-import { Wifi, Coffee, Bell, Car, UserCheck, ArrowUpFromDot, ShieldCheck, Smartphone, Wind, Shirt } from 'lucide-react';
+import { Wifi, Coffee, Bell, Car, UserCheck, ArrowUpFromDot, ShieldCheck, Smartphone, Wind, Shirt, Utensils } from 'lucide-react';
 import { Button } from './ui/button';
 import { useLanguage } from '../context/LanguageContext';
 
@@ -8,6 +8,11 @@ const amenities = [
     icon: Wifi, 
     name: 'Wi-Fi Ultra-Rápido', 
     description: 'Conexão de alta velocidade em todos os ambientes' 
+  },
+  { 
+    icon: Utensils, 
+    name: 'Restaurante', 
+    description: 'Gastronomia refinada com pratos à la carte e opções executivas' 
   },
   { 
     icon: Coffee, 
