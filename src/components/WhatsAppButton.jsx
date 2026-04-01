@@ -19,9 +19,10 @@ const WhatsAppButton = () => {
     >
       <MessageCircle size={28} fill="currentColor" className="text-white" />
       
-      {/* Mensagem discreta */}
-      <span className="absolute right-full mr-4 bg-white/90 backdrop-blur-sm text-obsidian px-4 py-2 rounded-full text-xs font-bold opacity-0 group-hover:opacity-100 transition-all transform translate-x-4 group-hover:translate-x-0 whitespace-nowrap pointer-events-none shadow-xl border border-alpha-gold/20">
+      {/* Mensagem discreta - sempre visível no desktop, hover no mobile */}
+      <span className="absolute right-full mr-4 bg-white/90 backdrop-blur-sm text-obsidian px-4 py-2 rounded-full text-[10px] md:text-xs font-bold whitespace-nowrap pointer-events-none shadow-xl border border-alpha-gold/20 flex items-center animate-in fade-in slide-in-from-right-4 duration-500">
         Faça sua reserva agora
+        <div className="absolute -right-1 top-1/2 -translate-y-1/2 w-2 h-2 bg-white/90 rotate-45 border-r border-t border-alpha-gold/20"></div>
       </span>
       
       {/* Efeito de pulso mais suave */}
