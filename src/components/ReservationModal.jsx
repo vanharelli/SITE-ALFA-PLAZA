@@ -25,6 +25,13 @@ import {
 import { Button } from './ui/button';
 import { Calendar } from './ui/calendar';
 import { Popover, PopoverContent, PopoverTrigger } from './ui/popover';
+import { 
+  Select, 
+  SelectContent, 
+  SelectItem, 
+  SelectTrigger, 
+  SelectValue 
+} from './ui/select';
 import { format, parse, isValid, addDays } from 'date-fns';
 import { ptBR, enUS, es } from 'date-fns/locale';
 import { useLanguage } from '../context/LanguageContext';
@@ -684,7 +691,7 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                                 initialFocus
                                 locale={getDateLocale()}
                                 disabled={(date) => date < new Date().setHours(0,0,0,0)}
-                                className="bg-zinc-950 text-white pointer-events-auto"
+                                className="bg-zinc-950 text-alpha-gold pointer-events-auto"
                               />
                             </PopoverContent>
                           </Popover>
@@ -719,7 +726,7 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                                   const minDate = formData.checkIn ? addDays(new Date(formData.checkIn + 'T12:00:00'), 1) : new Date();
                                   return date < minDate.setHours(0,0,0,0);
                                 }}
-                                className="bg-zinc-950 text-white pointer-events-auto"
+                                className="bg-zinc-950 text-alpha-gold pointer-events-auto"
                               />
                             </PopoverContent>
                           </Popover>
@@ -765,22 +772,26 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                                 className="w-full bg-black/40 backdrop-blur-md border border-white/10 rounded-xl py-4 pl-12 pr-4 text-white focus:outline-none focus:border-alpha-gold/50 transition-all"
                               />
                             ) : (
-                              <select 
-                                value={formData.adults}
-                                onChange={(e) => setFormData(prev => ({ ...prev, adults: e.target.value }))}
-                                className="w-full bg-black/40 backdrop-blur-md border border-white/10 rounded-xl py-4 pl-12 pr-4 text-white focus:outline-none focus:border-alpha-gold/50 transition-all appearance-none relative z-10 [&>option]:bg-zinc-900 [&>option]:text-white"
+                              <Select 
+                                value={formData.adults} 
+                                onValueChange={(val) => setFormData(prev => ({ ...prev, adults: val }))}
                               >
-                                {[
-                                  { val: "1", label: t.reservation.guests.adult1 },
-                                  { val: "2", label: t.reservation.guests.adults2 },
-                                  { val: "3", label: t.reservation.guests.adults3 },
-                                  { val: "4", label: t.reservation.guests.adults4 }
-                                ].map(opt => (
-                                  <option key={opt.val} value={opt.val} className="bg-zinc-900 text-white">
-                                    {opt.label}
-                                  </option>
-                                ))}
-                              </select>
+                                <SelectTrigger className="w-full bg-black/40 backdrop-blur-md border border-white/10 rounded-xl py-6 pl-12 pr-4 text-white focus:outline-none focus:ring-1 focus:ring-alpha-gold/50 transition-all relative z-10 h-auto">
+                                  <SelectValue placeholder={t.reservation.guests.adult1} />
+                                </SelectTrigger>
+                                <SelectContent>
+                                  {[
+                                    { val: "1", label: t.reservation.guests.adult1 },
+                                    { val: "2", label: t.reservation.guests.adults2 },
+                                    { val: "3", label: t.reservation.guests.adults3 },
+                                    { val: "4", label: t.reservation.guests.adults4 }
+                                  ].map(opt => (
+                                    <SelectItem key={opt.val} value={opt.val}>
+                                      {opt.label}
+                                    </SelectItem>
+                                  ))}
+                                </SelectContent>
+                              </Select>
                             )}
                           </div>
                         </div>
