@@ -17,15 +17,15 @@ const WhatsAppButton = () => {
       className="fixed bottom-6 right-6 z-[9999] bg-[#25D366] text-white p-4 rounded-full shadow-2xl flex items-center justify-center hover:bg-[#20ba5a] transition-colors group"
       aria-label="Contato via WhatsApp"
     >
-      <MessageCircle size={32} fill="currentColor" className="text-white" />
+      <MessageCircle size={28} fill="currentColor" className="text-white" />
       
-      {/* Tooltip opcional que aparece no hover */}
-      <span className="absolute right-full mr-4 bg-white text-obsidian px-3 py-1 rounded-lg text-sm font-bold opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-xl border border-alpha-gold/20">
-        Fale Conosco
+      {/* Mensagem discreta */}
+      <span className="absolute right-full mr-4 bg-white/90 backdrop-blur-sm text-obsidian px-4 py-2 rounded-full text-xs font-bold opacity-0 group-hover:opacity-100 transition-all transform translate-x-4 group-hover:translate-x-0 whitespace-nowrap pointer-events-none shadow-xl border border-alpha-gold/20">
+        Faça sua reserva agora
       </span>
       
-      {/* Efeito de pulso discreto */}
-      <span className="absolute inset-0 rounded-full bg-[#25D366] animate-ping opacity-20 pointer-events-none"></span>
+      {/* Efeito de pulso mais suave */}
+      <span className="absolute inset-0 rounded-full bg-[#25D366] animate-[ping_3s_infinite] opacity-10 pointer-events-none"></span>
     </motion.a>
   );
 };
