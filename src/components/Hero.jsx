@@ -14,9 +14,9 @@ const Hero = ({ onOpenReservation }) => {
   };
 
   return (
-    <section className="relative h-screen w-full overflow-hidden bg-cover bg-center bg-fixed border-b border-alpha-gold/30" style={{ backgroundImage: "url('/backgroundalfa.webp')" }}>
+    <section className="relative min-h-screen w-full bg-cover bg-center bg-fixed border-b border-alpha-gold/30" style={{ backgroundImage: "url('/backgroundalfa.webp')" }}>
       {/* Background Video */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0 overflow-hidden">
         <video
           autoPlay
           loop
@@ -32,7 +32,7 @@ const Hero = ({ onOpenReservation }) => {
       <div className="absolute inset-0 bg-obsidian/70 backdrop-blur-md md:backdrop-blur-sm z-10"></div>
 
       {/* Content */}
-      <div className="relative z-20 h-full flex items-center justify-center pt-64 md:pt-80 pb-20 md:pb-32">
+      <div className="relative z-20 min-h-screen flex items-center justify-center pt-64 md:pt-80 pb-20 md:pb-32">
         <div className="max-w-6xl mx-auto px-6 text-center">
           {/* Main Headline */}
           <div className="space-y-4 md:space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-1000 p-6 md:p-12">
