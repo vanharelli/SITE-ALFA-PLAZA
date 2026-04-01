@@ -6,6 +6,7 @@ import Location from '../components/Location';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import ReservationModal from '../components/ReservationModal';
+import WhatsAppButton from '../components/WhatsAppButton';
 
 const Home = () => {
   const [isReservationOpen, setIsReservationOpen] = useState(false);
@@ -50,6 +51,8 @@ const Home = () => {
         onClose={() => setIsReservationOpen(false)} 
         initialSuite={initialSuite}
       />
+
+      <WhatsAppButton />
     </div>
   );
 };
