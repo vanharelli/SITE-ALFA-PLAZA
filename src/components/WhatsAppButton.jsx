@@ -4,7 +4,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const WhatsAppButton = () => {
   const [showMessage, setShowMessage] = useState(false);
-  const whatsappUrl = "https://wa.me/+556132639131?text=%22Ol%C3%A1%2C%20equipe%20Alfa%20Plaza.%20Gostaria%20de%20verificar%20a%20disponibilidade%20de%20su%C3%ADtes%20para%20uma%20estada%20em%20Bras%C3%ADlia.%20Poderiam%20me%20enviar%20os%20detalhes%20do%20tarif%C3%A1rio%20e%20os%20servi%C3%A7os%20inclusos.";
+  const message = "Olá, equipe Alfa Plaza. Gostaria de verificar a disponibilidade de suítes para uma estada em Brasília. Poderiam me enviar os detalhes do tarifário e os serviços inclusos para envio";
+  const whatsappUrl = `https://wa.me/556132639131?text=${encodeURIComponent(message)}`;
 
   useEffect(() => {
     const timer = setTimeout(() => {
