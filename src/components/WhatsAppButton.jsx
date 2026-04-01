@@ -15,21 +15,7 @@ const WhatsAppButton = () => {
   }, []);
 
   return (
-    <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-[9999] flex flex-col items-center">
-      <AnimatePresence>
-        {showMessage && (
-          <motion.span
-            initial={{ opacity: 0, y: 10, scale: 0.9 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 10, scale: 0.9 }}
-            className="mb-4 bg-white/90 backdrop-blur-sm text-obsidian px-6 py-2 rounded-full text-xs md:text-sm font-bold whitespace-nowrap shadow-2xl border border-alpha-gold/20 flex items-center relative"
-          >
-            Faça sua reserva agora
-            <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-white/90 rotate-45 border-r border-b border-alpha-gold/20"></div>
-          </motion.span>
-        )}
-      </AnimatePresence>
-
+    <div className="fixed right-6 top-1/2 -translate-y-1/2 z-[9999] flex flex-row-reverse items-center group">
       <motion.a
         href={whatsappUrl}
         target="_blank"
@@ -38,7 +24,7 @@ const WhatsAppButton = () => {
         animate={{ scale: 1, opacity: 1 }}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
-        className="bg-[#25D366] text-white p-4 rounded-full shadow-2xl flex items-center justify-center hover:bg-[#20ba5a] transition-colors group relative"
+        className="bg-[#25D366] text-white p-4 rounded-full shadow-2xl flex items-center justify-center hover:bg-[#20ba5a] transition-colors relative"
         aria-label="Contato via WhatsApp"
       >
         <MessageCircle size={28} fill="currentColor" className="text-white" />
@@ -46,6 +32,20 @@ const WhatsAppButton = () => {
         {/* Efeito de pulso mais suave */}
         <span className="absolute inset-0 rounded-full bg-[#25D366] animate-[ping_3s_infinite] opacity-10 pointer-events-none"></span>
       </motion.a>
+
+      <AnimatePresence>
+        {showMessage && (
+          <motion.span
+            initial={{ opacity: 0, x: 20, scale: 0.9 }}
+            animate={{ opacity: 1, x: 0, scale: 1 }}
+            exit={{ opacity: 0, x: 20, scale: 0.9 }}
+            className="mr-4 bg-white/90 backdrop-blur-sm text-obsidian px-5 py-2 rounded-full text-[10px] md:text-xs font-bold whitespace-nowrap shadow-2xl border border-alpha-gold/20 flex items-center relative"
+          >
+            Faça sua reserva agora
+            <div className="absolute -right-1 top-1/2 -translate-y-1/2 w-2 h-2 bg-white/90 rotate-45 border-r border-t border-alpha-gold/20"></div>
+          </motion.span>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
