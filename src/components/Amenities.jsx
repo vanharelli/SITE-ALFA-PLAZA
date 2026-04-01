@@ -1,5 +1,5 @@
 import React from 'react';
-import { Wifi, Coffee, Bell, Car, UserCheck, ArrowUpFromDot, ShieldCheck, Smartphone, Wind, Heater } from 'lucide-react';
+import { Wifi, Coffee, Bell, Car, UserCheck, ArrowUpFromDot, ShieldCheck, Smartphone, Wind, Shirt } from 'lucide-react';
 import { Button } from './ui/button';
 import { useLanguage } from '../context/LanguageContext';
 
@@ -50,9 +50,9 @@ const amenities = [
     description: 'Disponível em todas as suítes e também na recepção sob solicitação' 
   },
   { 
-    icon: Heater, 
-    name: 'Ferro de Passar', 
-    description: 'Equipamento disponível sob solicitação na recepção' 
+    icon: Shirt, 
+    name: 'Lavar e Passar', 
+    description: 'Serviço de lavanderia terceirizado disponível para sua comodidade' 
   }
 ];
 
