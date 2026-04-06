@@ -39,7 +39,7 @@ const Hero = ({ onOpenReservation }) => {
             {/* Mobile Logo Module */}
             <div className="md:hidden flex justify-center mb-4">
               <div className="logo-module w-20 h-20 rounded-full flex items-center justify-center bg-white/5 border border-alpha-gold/30 backdrop-blur-md relative overflow-hidden shadow-lg shadow-alpha-gold/10">
-                <img src="/logo.webp" alt="Alpha Plaza Hotel" className="w-full h-full object-cover p-1" />
+                <img src="/logo1.png" alt="Alpha Plaza Hotel" className="w-full h-full object-cover p-1" />
               </div>
             </div>
 
