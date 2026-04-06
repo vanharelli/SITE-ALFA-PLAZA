@@ -19,7 +19,7 @@ const Footer = () => {
             <div className="flex items-center space-x-3 mb-6">
               <div className="logo-module">
                 <img
-                  src="/logo.webp"
+                  src="/logo1.png"
                   alt="Alpha Plaza Hotel"
                   className="h-8 w-auto z-10"
                 />

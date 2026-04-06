@@ -62,7 +62,7 @@ const Header = ({ onOpenReservation }) => {
             {!logoError && (
               <div className="hidden md:flex logo-module w-10 h-10 md:w-12 md:h-12 mr-2">
                 <img
-                  src="/logo.webp"
+                  src="/logo1.png"
                   alt="Alpha Plaza Hotel"
                   className="w-full h-full object-cover p-0.5"
                   onError={() => setLogoError(true)}

@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { MessageCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useLanguage } from '../context/LanguageContext';
 
 const WhatsAppButton = () => {
+  const { t } = useLanguage();
   const [showMessage, setShowMessage] = useState(false);
-  const message = "Olá, equipe Alfa Plaza. Gostaria de verificar a disponibilidade de suítes para uma estada em Brasília. Poderiam me enviar os detalhes do tarifário e os serviços inclusos para envio";
+  const message = t.whatsappButton.message;
   const whatsappUrl = `https://wa.me/556132639131?text=${encodeURIComponent(message)}`;
 
   useEffect(() => {
@@ -42,7 +44,7 @@ const WhatsAppButton = () => {
             exit={{ opacity: 0, x: 20, scale: 0.9 }}
             className="mr-4 bg-white/90 backdrop-blur-sm text-obsidian px-5 py-2 rounded-full text-[10px] md:text-xs font-bold whitespace-nowrap shadow-2xl border border-alpha-gold/20 flex items-center relative pointer-events-auto"
           >
-            Faça sua reserva agora
+            {t.whatsappButton.label}
             <div className="absolute -right-1 top-1/2 -translate-y-1/2 w-2 h-2 bg-white/90 rotate-45 border-r border-t border-alpha-gold/20"></div>
           </motion.span>
         )}

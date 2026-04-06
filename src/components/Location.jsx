@@ -324,7 +324,7 @@ const Location = ({ onOpenReservation }) => {
         {/* Nearby Points of Interest */}
         <div className="mt-20 fade-in-section">
           <h3 className="font-serif text-3xl text-white text-center mb-12 tracking-widest uppercase">
-            PONTOS DE <span className="text-alpha-gold">INTERESSE</span>
+            {t.location.pointsOfInterestPart1}<span className="text-alpha-gold">{t.location.pointsOfInterestPart2}</span>
           </h3>
           <div className="max-w-6xl mx-auto px-6 relative py-12">
             <Carousel

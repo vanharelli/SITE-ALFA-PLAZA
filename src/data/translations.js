@@ -59,6 +59,8 @@ export const translations = {
       accessTitle: "Bem-vindo à sua melhor escolha.",
       accessDescription: "Localizado no Núcleo Bandeirante, conhecido como a cidade pioneira de Brasília por ter sido palco das primeiras estruturas que deram origem à capital, nosso hotel combina acesso estratégico às principais regiões do Distrito Federal com a serenidade de um bairro tradicional e acolhedor.",
       pointsOfInterestTitle: "PONTOS DE INTERESSE",
+      pointsOfInterestPart1: "PONTOS DE ",
+      pointsOfInterestPart2: "INTERESSE",
       contactLabels: {
         address: "Endereço",
         phone: "Recepção",
@@ -112,6 +114,62 @@ export const translations = {
           description: 'Ponto de chegada e partida terrestre da capital.'
         }
       ]
+    },
+    amenities: {
+      sectionTitle: "CONFORTO & LAZER",
+      mainTitlePart1: "NOSSAS ",
+      mainTitlePart2: "COMODIDADES",
+      description: "Oferecemos uma infraestrutura completa, pensada para garantir que sua estadia seja tão produtiva quanto relaxante.",
+      items: [
+        { 
+          name: 'Wi-Fi Ultra-Rápido', 
+          description: 'Conexão de alta velocidade em todos os ambientes' 
+        },
+        { 
+          name: 'Restaurante', 
+          description: 'Gastronomia refinada com pratos à la carte e opções executivas' 
+        },
+        { 
+          name: 'Café da Manhã', 
+          description: 'Segunda a Sexta-feira: das 6h às 10h | Domingos e Feriados: das 7h às 10h30' 
+        },
+        { 
+          name: 'Room Service 24h', 
+          description: 'Atendimento exclusivo a qualquer momento' 
+        },
+        { 
+          name: 'Estacionamento Privativo', 
+          description: 'Vagas cobertas com segurança 24 horas' 
+        },
+        { 
+          name: 'Mordomo Digital', 
+          description: 'Nosso mordomo prestará atendimento dedicado, auxiliando em todas as solicitações e indicando experiências gastronômicas e passeios selecionados, com serviço impecável.' 
+        },
+        { 
+          name: 'Elevador', 
+          description: 'Acesso moderno e confortável a todos os andares' 
+        },
+        { 
+          name: 'Segurança', 
+          description: 'Monitoramento 24h e acesso controlado' 
+        },
+        { 
+          name: 'Check-in Digital', 
+          description: 'Processo ágil e sem burocracia' 
+        },
+        { 
+          name: 'Secador de Cabelo', 
+          description: 'Disponível em todas as suítes e também na recepção sob solicitação' 
+        },
+        { 
+          name: 'Lavar e Passar', 
+          description: 'Serviço de lavanderia terceirizado disponível para sua comodidade' 
+        }
+      ]
+    },
+    whatsappButton: {
+      label: "Faça sua reserva agora",
+      message: "Olá, equipe Alfa Plaza. Gostaria de verificar a disponibilidade de suítes para uma estada em Brasília. Poderiam me enviar os detalhes do tarifário e os serviços inclusos para envio"
     },
     footer: {
       description: "Referência em hospitalidade no Distrito Federal, oferecendo conforto, localização estratégica e padrão elevado de atendimento para quem busca a escolha certa em Brasília.",
@@ -296,6 +354,8 @@ export const translations = {
       accessTitle: "Welcome to your best choice.",
       accessDescription: "Located in Núcleo Bandeirante, known as the pioneer city of Brasília for having hosted the first structures that gave rise to the capital, our hotel combines strategic access to the main regions of the Federal District with the serenity of a traditional and welcoming neighborhood.",
       pointsOfInterestTitle: "POINTS OF INTEREST",
+      pointsOfInterestPart1: "POINTS OF ",
+      pointsOfInterestPart2: "INTEREST",
       contactLabels: {
         address: "Address",
         phone: "Reception",
@@ -349,6 +409,62 @@ export const translations = {
           description: 'Main ground arrival and departure point of the capital.'
         }
       ]
+    },
+    amenities: {
+      sectionTitle: "COMFORT & LEISURE",
+      mainTitlePart1: "OUR ",
+      mainTitlePart2: "AMENITIES",
+      description: "We offer a complete infrastructure, designed to ensure your stay is as productive as it is relaxing.",
+      items: [
+        { 
+          name: 'Ultra-Fast Wi-Fi', 
+          description: 'High-speed connection in all environments' 
+        },
+        { 
+          name: 'Restaurant', 
+          description: 'Refined gastronomy with à la carte dishes and executive options' 
+        },
+        { 
+          name: 'Breakfast', 
+          description: 'Monday to Friday: 6am to 10am | Sundays and Holidays: 7am to 10:30am' 
+        },
+        { 
+          name: '24h Room Service', 
+          description: 'Exclusive service at any time' 
+        },
+        { 
+          name: 'Private Parking', 
+          description: 'Covered spaces with 24-hour security' 
+        },
+        { 
+          name: 'Digital Butler', 
+          description: 'Our butler will provide dedicated service, assisting with all requests and recommending selected gastronomic experiences and tours, with impeccable service.' 
+        },
+        { 
+          name: 'Elevator', 
+          description: 'Modern and comfortable access to all floors' 
+        },
+        { 
+          name: 'Security', 
+          description: '24h monitoring and controlled access' 
+        },
+        { 
+          name: 'Digital Check-in', 
+          description: 'Fast and bureaucracy-free process' 
+        },
+        { 
+          name: 'Hair Dryer', 
+          description: 'Available in all suites and also at the reception upon request' 
+        },
+        { 
+          name: 'Laundry & Ironing', 
+          description: 'Third-party laundry service available for your convenience' 
+        }
+      ]
+    },
+    whatsappButton: {
+      label: "Book your stay now",
+      message: "Hello, Alfa Plaza team. I would like to check the availability of suites for a stay in Brasília. Could you send me the price details and included services?"
     },
     footer: {
       description: "Reference in hospitality in the Federal District, offering comfort, strategic location and high standard of service for those seeking the right choice in Brasília.",
@@ -532,6 +648,8 @@ export const translations = {
       accessTitle: "Bienvenido a su mejor elección.",
       accessDescription: "Ubicado en Núcleo Bandeirante, conocido como la ciudad pionera de Brasilia por haber sido escenario de las primeras estructuras que dieron origen a la capital, nuestro hotel combina acceso estratégico a las principales regiones del Distrito Federal con la serenidad de un barrio tradicional y acogedor.",
       pointsOfInterestTitle: "PUNTOS DE INTERÉS",
+      pointsOfInterestPart1: "PUNTOS DE ",
+      pointsOfInterestPart2: "INTERÉS",
       contactLabels: {
         address: "Dirección",
         phone: "Recepción",
@@ -585,6 +703,62 @@ export const translations = {
           description: 'Punto de llegada y partida terrestre de la capital.'
         }
       ]
+    },
+    amenities: {
+      sectionTitle: "CONFORT & OCIO",
+      mainTitlePart1: "NUESTRAS ",
+      mainTitlePart2: "COMODIDADES",
+      description: "Ofrecemos una infraestructura completa, diseñada para garantizar que su estancia sea tanto productiva como relajante.",
+      items: [
+        { 
+          name: 'Wi-Fi Ultra-Rápido', 
+          description: 'Conexión de alta velocidad en todos los ambientes' 
+        },
+        { 
+          name: 'Restaurante', 
+          description: 'Gastronomía refinada con platos a la carta y opciones ejecutivas' 
+        },
+        { 
+          name: 'Desayuno', 
+          description: 'Lunes a Viernes: de 6:00 a 10:00 | Domingos y Festivos: de 7:00 a 10:30' 
+        },
+        { 
+          name: 'Servicio de Habitaciones 24h', 
+          description: 'Atención exclusiva en cualquier momento' 
+        },
+        { 
+          name: 'Aparcamiento Privado', 
+          description: 'Plazas cubiertas con seguridad 24 horas' 
+        },
+        { 
+          name: 'Mayordomo Digital', 
+          description: 'Nuestro mayordomo brindará una atención dedicada, ayudando con todas las solicitudes y recomendando experiencias gastronómicas y recorridos seleccionados, con un servicio impecable.' 
+        },
+        { 
+          name: 'Ascensor', 
+          description: 'Acceso moderno y cómodo a todas las plantas' 
+        },
+        { 
+          name: 'Seguridad', 
+          description: 'Monitoreo 24h e información controlada' 
+        },
+        { 
+          name: 'Check-in Digital', 
+          description: 'Proceso ágil y sin burocracia' 
+        },
+        { 
+          name: 'Secador de Pelo', 
+          description: 'Disponible en todas las suites y también en recepción bajo petición' 
+        },
+        { 
+          name: 'Lavado y Planchado', 
+          description: 'Servicio de lavandería externo disponible para su comodidad' 
+        }
+      ]
+    },
+    whatsappButton: {
+      label: "Haga su reserva ahora",
+      message: "Hola, equipo de Alfa Plaza. Me gustaría consultar la disponibilidad de suites para una estancia en Brasilia. ¿Podrían enviarme los detalles de las tarifas y los servicios incluidos?"
     },
     footer: {
       description: "Referencia en hospitalidad en el Distrito Federal, ofreciendo confort, ubicación estratégica y alto nivel de atención para quienes buscan la elección correcta en Brasilia.",

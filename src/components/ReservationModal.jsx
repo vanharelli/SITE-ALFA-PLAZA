@@ -776,17 +776,17 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                                 value={formData.adults} 
                                 onValueChange={(val) => setFormData(prev => ({ ...prev, adults: val }))}
                               >
-                                <SelectTrigger className="w-full bg-black/40 backdrop-blur-md border border-white/10 rounded-xl py-6 pl-12 pr-4 text-white focus:outline-none focus:ring-1 focus:ring-alpha-gold/50 transition-all relative z-10 h-auto">
+                                <SelectTrigger className="w-full bg-black/40 backdrop-blur-md border border-white/10 rounded-xl py-6 pl-12 pr-4 text-white focus:outline-none focus:ring-1 focus:ring-alpha-gold/50 transition-all relative z-[10] h-auto">
                                   <SelectValue placeholder={t.reservation.guests.adult1} />
                                 </SelectTrigger>
-                                <SelectContent>
+                                <SelectContent className="z-[10001]">
                                   {[
                                     { val: "1", label: t.reservation.guests.adult1 },
                                     { val: "2", label: t.reservation.guests.adults2 },
                                     { val: "3", label: t.reservation.guests.adults3 },
                                     { val: "4", label: t.reservation.guests.adults4 }
                                   ].map(opt => (
-                                    <SelectItem key={opt.val} value={opt.val}>
+                                    <SelectItem key={opt.val} value={opt.val} className="cursor-pointer">
                                       {opt.label}
                                     </SelectItem>
                                   ))}
