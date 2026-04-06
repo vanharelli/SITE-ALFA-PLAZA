@@ -58,9 +58,9 @@ const Header = ({ onOpenReservation }) => {
       <div className="max-w-7xl mx-auto px-6 h-full flex items-center pt-[env(safe-area-inset-top)] pointer-events-auto">
         <div className="flex items-center justify-between w-full">
           <div className="flex items-center space-x-3">
-            {/* Desktop Logo Only */}
+            {/* Logo em todos os dispositivos */}
             {!logoError && (
-              <div className="hidden md:flex logo-module w-10 h-10 md:w-12 md:h-12 mr-2">
+              <div className="flex logo-module w-10 h-10 md:w-12 md:h-12 mr-2">
                 <img
                   src="/logo1.png"
                   alt="Alpha Plaza Hotel"
