@@ -3,6 +3,7 @@ import Hero from '../components/Hero';
 import RoomsGallery from '../components/RoomsGallery';
 import Amenities from '../components/Amenities';
 import Location from '../components/Location';
+import MapSection from '../components/MapSection';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import ReservationModal from '../components/ReservationModal';
@@ -44,6 +45,7 @@ const Home = () => {
       <Location onOpenReservation={() => openReservation()} />
       <RoomsGallery onOpenReservation={(suite) => openReservation(suite)} />
       <Amenities onOpenReservation={() => openReservation()} />
+      <MapSection />
       <Footer />
       
       <ReservationModal 

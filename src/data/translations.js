@@ -171,6 +171,12 @@ export const translations = {
       label: "Faça sua reserva agora",
       message: "Olá, equipe Alfa Plaza. Gostaria de verificar a disponibilidade de suítes para uma estada em Brasília. Poderiam me enviar os detalhes do tarifário e os serviços inclusos para envio"
     },
+    map: {
+      titlePart1: "COMO ",
+      titlePart2: "CHEGAR",
+      subtitle: "Localização privilegiada com fácil acesso aos principais pontos de Brasília.",
+      button: "TRAÇAR ROTA ATÉ O HOTEL"
+    },
     footer: {
       description: "Referência em hospitalidade no Distrito Federal, oferecendo conforto, localização estratégica e padrão elevado de atendimento para quem busca a escolha certa em Brasília.",
       contactTitle: "CONTATO",
@@ -466,6 +472,12 @@ export const translations = {
       label: "Book your stay now",
       message: "Hello, Alfa Plaza team. I would like to check the availability of suites for a stay in Brasília. Could you send me the price details and included services?"
     },
+    map: {
+      titlePart1: "HOW TO ",
+      titlePart2: "GET HERE",
+      subtitle: "Privileged location with easy access to the main points of Brasília.",
+      button: "GET DIRECTIONS TO HOTEL"
+    },
     footer: {
       description: "Reference in hospitality in the Federal District, offering comfort, strategic location and high standard of service for those seeking the right choice in Brasília.",
       contactTitle: "CONTACT",
@@ -758,7 +770,13 @@ export const translations = {
     },
     whatsappButton: {
       label: "Haga su reserva ahora",
-      message: "Hola, equipo de Alfa Plaza. Me gustaría consultar la disponibilidad de suites para una estancia en Brasilia. ¿Podrían enviarme los detalles de las tarifas y los servicios incluidos?"
+      message: "Hola, equipo de Alfa Plaza. Me gustaría consultar la disponibilidad de suites para una estancia em Brasilia. ¿Podrían enviarme los detalles de las tarifas y los servicios incluidos?"
+    },
+    map: {
+      titlePart1: "CÓMO ",
+      titlePart2: "LLEGAR",
+      subtitle: "Ubicación privilegiada con fácil acceso a los principales puntos de Brasilia.",
+      button: "TRAZAR RUTA HASTA O HOTEL"
     },
     footer: {
       description: "Referencia en hospitalidad en el Distrito Federal, ofreciendo confort, ubicación estratégica y alto nivel de atención para quienes buscan la elección correcta en Brasilia.",
