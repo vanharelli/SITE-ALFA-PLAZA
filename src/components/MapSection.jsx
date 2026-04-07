@@ -6,12 +6,12 @@ import { useLanguage } from '../context/LanguageContext';
 const MapSection = () => {
   const { t } = useLanguage();
   
-  // Endereço e link de direções
+  // Endereço e link de direções exato
   const address = "Alfa Plaza Hotel, Avenida Central Lote 1040, Núcleo Bandeirante, Brasília - DF, 71710-025";
-  const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(address)}`;
+  const directionsUrl = "https://www.google.com/maps/dir/?api=1&destination=Alfa+Plaza+Hotel&destination_place_id=ChIJjRr0WFfuWpMRrkTVwiCvWR0";
   
-  // URL do Google Maps Embed
-  const mapEmbedUrl = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3837.760773636544!2d-47.9625!3d-15.8625!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x935a2f58e6584067%3A0xc64b73796d13265d!2sAlfa%20Plaza%20Hotel!5e0!3m2!1spt-BR!2sbr!4v1712456000000!5m2!1spt-BR!2sbr";
+  // URL do Google Maps Embed atualizada para a localização exata
+  const mapEmbedUrl = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d479.713834371593!2d-47.9708376!3d-15.8717872!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x935a2e5758f41a8d%3A0x1d59af20c2d524ae!2sAlfa%20Plaza%20Hotel!5e0!3m2!1spt-BR!2sbr!4v1712456000000!5m2!1spt-BR!2sbr";
 
   return (
     <section id="how-to-get" className="relative py-20 bg-obsidian border-b border-alpha-gold/30 overflow-hidden">
