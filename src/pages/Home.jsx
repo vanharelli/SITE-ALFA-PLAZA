@@ -42,8 +42,8 @@ const Home = () => {
       <Header onOpenReservation={() => openReservation()} />
       <Hero onOpenReservation={() => openReservation()} />
       <Location onOpenReservation={() => openReservation()} />
-      <Amenities onOpenReservation={() => openReservation()} />
       <RoomsGallery onOpenReservation={(suite) => openReservation(suite)} />
+      <Amenities onOpenReservation={() => openReservation()} />
       <Footer />
       
       <ReservationModal 
