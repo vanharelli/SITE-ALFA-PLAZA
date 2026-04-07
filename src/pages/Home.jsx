@@ -41,9 +41,9 @@ const Home = () => {
     <div className="bg-obsidian min-h-screen">
       <Header onOpenReservation={() => openReservation()} />
       <Hero onOpenReservation={() => openReservation()} />
+      <Location onOpenReservation={() => openReservation()} />
       <RoomsGallery onOpenReservation={(suite) => openReservation(suite)} />
       <Amenities onOpenReservation={() => openReservation()} />
-      <Location onOpenReservation={() => openReservation()} />
       <Footer />
       
       <ReservationModal 
