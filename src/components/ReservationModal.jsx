@@ -78,7 +78,6 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
     adults: '1',
     hasChildren: false,
     childCount: '1',
-    allChildrenOver5: false,
     childAge: '',
     childAges: [],
     arrivalTime: '',
@@ -112,7 +111,9 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
     if (!formData.hasChildren) return;
 
     const count = Math.max(1, parseInt(formData.childCount, 10) || 1);
-    if (count <= 2) {
+    const shouldCollectChildAges = formData.type !== 'Grupos e Eventos' && count > 2;
+
+    if (!shouldCollectChildAges) {
       if (formData.childAges.length) {
         setFormData(prev => ({ ...prev, childAges: [] }));
       }
@@ -126,7 +127,7 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
       return { ...prev, childAges: next };
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [formData.hasChildren, formData.childCount]);
+  }, [formData.hasChildren, formData.childCount, formData.type]);
 
   const [dateInput, setDateInput] = useState({
     checkIn: '',
@@ -306,9 +307,19 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
       ? formData.suites.map(s => s.title).join(', ')
       : (formData.suite?.title || w.unspecified);
 
-    const childrenText = formData.hasChildren 
-      ? `${formData.childCount} ${w.children} (${formData.allChildrenOver5 ? w.allOver5 : w.includesUnder5})`
-      : w.none;
+    const childrenText = (() => {
+      if (!formData.hasChildren) return w.none;
+
+      const count = Math.max(1, parseInt(formData.childCount, 10) || 1);
+      if (count <= 2) return `${count} ${w.children}`;
+
+      const ages = Array.isArray(formData.childAges) ? formData.childAges : [];
+      const hasAges = ages.length === count && ages.every(age => age !== '' && !Number.isNaN(parseInt(age, 10)));
+      if (!hasAges) return `${count} ${w.children}`;
+
+      const allOver5 = ages.every(age => parseInt(age, 10) > 5);
+      return `${count} ${w.children} (${allOver5 ? w.allOver5 : w.includesUnder5})`;
+    })();
 
     const reservationType = t.reservation.types[typeMapping[formData.type]] || formData.type;
 
@@ -909,30 +920,7 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                                   </div>
                                 </div>
 
-                                <div className="flex items-center justify-between p-4 rounded-xl bg-white/5 border border-white/10">
-                                  <div>
-                                    <p className="text-white font-semibold text-xs">
-                                      {formData.type === 'Grupos e Eventos' 
-                                        ? t.reservation.guests.allOver5 
-                                        : (parseInt(formData.childCount) > 2 ? t.reservation.guests.allOver5Many : (parseInt(formData.childCount) > 1 ? t.reservation.guests.allOver5 : t.reservation.guests.oneChildOver5))
-                                      }
-                                    </p>
-                                  </div>
-                                  <div className="flex items-center gap-2">
-                                    {formData.allChildrenOver5 && <span className="text-alpha-gold text-[10px] font-bold uppercase">{t.common.yes}</span>}
-                                    <button 
-                                      onClick={() => setFormData(prev => ({ ...prev, allChildrenOver5: !prev.allChildrenOver5 }))}
-                                      className={`w-12 h-6 rounded-full transition-all relative ${formData.allChildrenOver5 ? 'bg-alpha-gold' : 'bg-white/10'}`}
-                                    >
-                                      <motion.div 
-                                        animate={{ x: formData.allChildrenOver5 ? 26 : 4 }}
-                                        className="absolute top-1 w-4 h-4 rounded-full bg-white shadow-sm"
-                                      />
-                                    </button>
-                                  </div>
-                                </div>
-
-                                {parseInt(formData.childCount, 10) > 2 && (
+                                {formData.type !== 'Grupos e Eventos' && parseInt(formData.childCount, 10) > 2 && (
                                   <div className="space-y-4 p-4 rounded-xl bg-black/20 border border-white/10">
                                     <div className="grid sm:grid-cols-2 gap-4">
                                       {Array.from({ length: Math.max(0, parseInt(formData.childCount, 10) || 0) }).map((_, index) => (
