@@ -204,7 +204,7 @@ const Location = ({ onOpenReservation }) => {
                     {hotelImages.map((image, index) => (
                       <CarouselItem key={index} className="pl-0 h-full w-full flex items-center justify-center bg-black">
                         <div 
-                          className="relative w-full h-full flex items-center justify-center overflow-hidden cursor-zoom-in"
+                          className="group relative w-full h-full flex items-center justify-center overflow-hidden cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] hover:shadow-[0_20px_50px_rgba(0,0,0,0.3)] active:scale-[0.98]"
                           onClick={() => setSelectedImageIndex(index)}
                         >
                           <img 
@@ -213,9 +213,9 @@ const Location = ({ onOpenReservation }) => {
                             fetchPriority={index === 0 ? "high" : "low"}
                             loading={index === 0 ? "eager" : "lazy"}
                             decoding={index === 0 ? "sync" : "async"}
-                            className="w-full h-full object-contain md:object-cover object-center transition-transform duration-700 hover:scale-105"
+                            className="w-full h-full object-contain md:object-cover object-center transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] will-change-transform group-hover:scale-[1.03] group-hover:brightness-110"
                           />
-                          <div className="absolute inset-x-0 bottom-0 h-24 md:h-32 bg-gradient-to-t from-obsidian/90 via-obsidian/50 to-transparent pointer-events-none z-10"></div>
+                          <div className="absolute inset-x-0 bottom-0 h-24 md:h-32 bg-gradient-to-t from-obsidian/90 via-obsidian/50 to-transparent pointer-events-none z-10 opacity-20 transition-opacity duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:opacity-0"></div>
                         </div>
                       </CarouselItem>
                     ))}

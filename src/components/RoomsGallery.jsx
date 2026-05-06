@@ -40,7 +40,7 @@ const RoomImageCarousel = ({ images, title }) => {
       <img 
         src={images} 
         alt={title}
-        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+        className="w-full h-full object-cover transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] will-change-transform group-hover:scale-[1.03] group-hover:brightness-110"
         fetchPriority="low"
         loading="lazy"
         decoding="async"
@@ -49,7 +49,7 @@ const RoomImageCarousel = ({ images, title }) => {
   }
 
   return (
-    <div className="w-full h-full relative group-hover:scale-110 transition-transform duration-700">
+    <div className="w-full h-full relative">
       {images.map((img, idx) => (
         <img
           key={idx}
@@ -58,7 +58,7 @@ const RoomImageCarousel = ({ images, title }) => {
           fetchPriority={idx === 0 ? "high" : "low"}
           loading={idx === 0 ? "eager" : "lazy"}
           decoding={idx === 0 ? "sync" : "async"}
-          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+          className={`absolute inset-0 w-full h-full object-cover transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] will-change-transform group-hover:scale-[1.03] group-hover:brightness-110 ${
             idx === currentIndex ? 'opacity-100' : 'opacity-0'
           }`}
         />
@@ -121,9 +121,9 @@ const RoomsGallery = ({ onOpenReservation }) => {
                 >
                   <div className="p-0 flex flex-col h-full">
                     {/* Room Image */}
-                    <div className="relative h-64 overflow-hidden shrink-0">
+                    <div className="relative h-64 overflow-hidden shrink-0 cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] hover:shadow-[0_20px_50px_rgba(0,0,0,0.3)] active:scale-[0.98]">
                       <RoomImageCarousel images={room.image} title={room.title} />
-                      <div className="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-transparent opacity-60 pointer-events-none z-10"></div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-transparent opacity-20 pointer-events-none z-10 transition-opacity duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:opacity-0"></div>
                     </div>
 
                     {/* Content */}
