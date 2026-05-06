@@ -110,6 +110,17 @@
   }
 }
 
+input[type="number"].show-spinner::-webkit-inner-spin-button,
+input[type="number"].show-spinner::-webkit-outer-spin-button {
+  -webkit-appearance: auto;
+  margin: 0;
+}
+
+input[type="number"].show-spinner {
+  -moz-appearance: number-input;
+  appearance: auto;
+}
+
 /* Custom Colors for Obsidian & Gold Theme */
 :root {
   --obsidian: #0a0a0b;

@@ -849,7 +849,7 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                                     min="1"
                                     value={formData.childCount}
                                     onChange={(e) => setFormData(prev => ({ ...prev, childCount: e.target.value }))}
-                                    className="w-full bg-black/40 backdrop-blur-md border border-white/10 rounded-xl py-4 px-4 text-white focus:outline-none focus:border-alpha-gold/50 transition-all"
+                                    className="show-spinner w-full bg-black/40 backdrop-blur-md border border-white/10 rounded-xl py-4 px-4 text-white focus:outline-none focus:border-alpha-gold/50 transition-all"
                                   />
                                 </div>
 
@@ -858,7 +858,7 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                                     <p className="text-white font-semibold text-xs">
                                       {formData.type === 'Grupos e Eventos' 
                                         ? t.reservation.guests.allOver5 
-                                        : (parseInt(formData.childCount) > 1 ? t.reservation.guests.allOver5 : t.reservation.guests.oneChildOver5)
+                                        : (parseInt(formData.childCount) > 2 ? t.reservation.guests.allOver5Many : (parseInt(formData.childCount) > 1 ? t.reservation.guests.allOver5 : t.reservation.guests.oneChildOver5))
                                       }
                                     </p>
                                   </div>

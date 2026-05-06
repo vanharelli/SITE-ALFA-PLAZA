@@ -220,6 +220,7 @@ export const translations = {
         childrenCourtesy: "Cortesia de 1 criança de até 5 anos por quarto.",
         childrenCount: "Quantas crianças?",
         allOver5: "Todos acima de 5 anos?",
+        allOver5Many: "Todas tem +5 anos",
         oneChildOver5: "Tem mais que 5 anos?",
         childrenWarning: "*Crianças acima de 5 anos possuem tarifa diferenciada.",
         nextStep: "PRÓXIMO PASSO"
@@ -521,6 +522,7 @@ export const translations = {
         childrenCourtesy: "Courtesy for 1 child up to 5 years old per room.",
         childrenCount: "How many children?",
         allOver5: "All over 5 years old?",
+        allOver5Many: "All are 5+ years old",
         childrenWarning: "*Standard rates apply for children over 5.",
         nextStep: "NEXT STEP"
       },
@@ -821,6 +823,7 @@ export const translations = {
         childrenCourtesy: "Cortesía de 1 niño de hasta 5 años por habitación.",
         childrenCount: "¿Cuántos niños?",
         allOver5: "¿Todos mayores de 5 años?",
+        allOver5Many: "Todos tienen +5 años",
         childrenWarning: "*Se aplican tarifas estándar para niños mayores de 5 años.",
         nextStep: "PRÓXIMO PASO"
       },
