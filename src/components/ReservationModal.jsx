@@ -351,10 +351,16 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
       `_${w.waitMessage}_`;
 
     if (formData.hasChildren && parseInt(formData.childCount, 10) >= 2 && Array.isArray(formData.childAges)) {
-      const agesText = formData.childAges.length
-        ? formData.childAges.map((age, index) => `${index + 1}: ${age || '-'}`).join(', ')
-        : w.unspecified;
-      message = message.replace(`🧒 *${w.children}:* ${childrenText}\n`, `🧒 *${w.children}:* ${childrenText}\n🎂 *${w.ages}:* ${agesText}\n`);
+      const count = Math.max(1, parseInt(formData.childCount, 10) || 1);
+      const ages = formData.childAges.slice(0, count);
+      const childrenFormatting = ages
+        .map((age, index) => `👶 Criança ${index + 1}: ${age || '-'} anos`)
+        .join('\n');
+
+      message = message.replace(
+        `🧒 *${w.children}:* ${childrenText}\n`,
+        `🧒 *${w.children}:* ${childrenText}\n\n*DETALHES DAS CRIANÇAS:*\n${childrenFormatting}\n`
+      );
     }
 
     const encodedMessage = encodeURIComponent(message);
