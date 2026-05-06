@@ -16,6 +16,7 @@ import {
   ChevronRight,
   Info,
   ChevronDown,
+  ChevronUp,
   Heart,
   Star,
   Gem,
