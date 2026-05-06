@@ -29,7 +29,7 @@ const Hero = ({ onOpenReservation }) => {
         </video>
       </div>
       {/* Overlay */}
-      <div className="absolute inset-0 bg-obsidian/70 backdrop-blur-md md:backdrop-blur-sm z-10"></div>
+      <div className="absolute inset-0 bg-obsidian/85 backdrop-blur-xl md:backdrop-blur-md z-10"></div>
 
       {/* Content */}
       <div className="relative z-[30] min-h-screen flex items-center justify-center pt-24 md:pt-32 pb-20 md:pb-32">
