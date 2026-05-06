@@ -844,13 +844,40 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                               >
                                 <div className="space-y-1">
                                   <label className="text-alpha-gold text-[10px] tracking-[0.2em] uppercase font-bold">{t.reservation.guests.childrenCount}</label>
-                                  <input 
-                                    type="number"
-                                    min="1"
-                                    value={formData.childCount}
-                                    onChange={(e) => setFormData(prev => ({ ...prev, childCount: e.target.value }))}
-                                    className="show-spinner w-full bg-black/40 backdrop-blur-md border border-white/10 rounded-xl py-4 px-4 text-white focus:outline-none focus:border-alpha-gold/50 transition-all"
-                                  />
+                                  <div className="relative">
+                                    <input 
+                                      type="number"
+                                      min="1"
+                                      value={formData.childCount}
+                                      onChange={(e) => {
+                                        const nextValue = Math.max(1, parseInt(e.target.value, 10) || 1).toString();
+                                        setFormData(prev => ({ ...prev, childCount: nextValue }));
+                                      }}
+                                      className="w-full bg-black/40 backdrop-blur-md border border-white/10 rounded-xl py-4 pl-4 pr-12 text-white focus:outline-none focus:border-alpha-gold/50 transition-all"
+                                    />
+                                    <div className="absolute right-3 top-1/2 -translate-y-1/2 flex flex-col gap-1 pointer-events-auto">
+                                      <button
+                                        type="button"
+                                        onClick={() => {
+                                          const currentValue = Math.max(1, parseInt(formData.childCount, 10) || 1);
+                                          setFormData(prev => ({ ...prev, childCount: (currentValue + 1).toString() }));
+                                        }}
+                                        className="w-8 h-6 rounded-md bg-white/5 border border-white/10 hover:border-alpha-gold/40 hover:bg-alpha-gold/10 transition-colors flex items-center justify-center"
+                                      >
+                                        <ChevronUp className="text-alpha-gold/80" size={16} />
+                                      </button>
+                                      <button
+                                        type="button"
+                                        onClick={() => {
+                                          const currentValue = Math.max(1, parseInt(formData.childCount, 10) || 1);
+                                          setFormData(prev => ({ ...prev, childCount: Math.max(1, currentValue - 1).toString() }));
+                                        }}
+                                        className="w-8 h-6 rounded-md bg-white/5 border border-white/10 hover:border-alpha-gold/40 hover:bg-alpha-gold/10 transition-colors flex items-center justify-center"
+                                      >
+                                        <ChevronDown className="text-alpha-gold/80" size={16} />
+                                      </button>
+                                    </div>
+                                  </div>
                                 </div>
 
                                 <div className="flex items-center justify-between p-4 rounded-xl bg-white/5 border border-white/10">
