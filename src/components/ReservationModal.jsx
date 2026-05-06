@@ -87,19 +87,24 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
     experiencePackage: ''
   });
 
-  const isAdultsLimitSuite = formData.type === 'Reserva Individual' && (formData.suite?.id === 2 || formData.suite?.id === 6);
-  const maxAdults = isAdultsLimitSuite ? 2 : 4;
+  const isIndividualReservation = formData.type === 'Reserva Individual';
+  const suiteId = formData.suite?.id;
+
+  const maxAdults = (() => {
+    if (!isIndividualReservation) return 4;
+    if (suiteId === 2 || suiteId === 6) return 2;
+    if (suiteId === 3 || suiteId === 7) return 3;
+    return 4;
+  })();
 
   useEffect(() => {
-    if (!isAdultsLimitSuite) return;
-
     const adultsNumber = parseInt(formData.adults, 10);
     if (Number.isNaN(adultsNumber)) return;
-    if (adultsNumber <= 2) return;
+    if (adultsNumber <= maxAdults) return;
 
-    setFormData(prev => ({ ...prev, adults: '2' }));
+    setFormData(prev => ({ ...prev, adults: maxAdults.toString() }));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isAdultsLimitSuite, formData.adults]);
+  }, [maxAdults, formData.adults]);
 
   const [dateInput, setDateInput] = useState({
     checkIn: '',
