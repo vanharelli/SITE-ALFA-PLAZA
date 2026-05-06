@@ -87,6 +87,20 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
     experiencePackage: ''
   });
 
+  const isAdultsLimitSuite = formData.type === 'Reserva Individual' && (formData.suite?.id === 2 || formData.suite?.id === 6);
+  const maxAdults = isAdultsLimitSuite ? 2 : 4;
+
+  useEffect(() => {
+    if (!isAdultsLimitSuite) return;
+
+    const adultsNumber = parseInt(formData.adults, 10);
+    if (Number.isNaN(adultsNumber)) return;
+    if (adultsNumber <= 2) return;
+
+    setFormData(prev => ({ ...prev, adults: '2' }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isAdultsLimitSuite, formData.adults]);
+
   const [dateInput, setDateInput] = useState({
     checkIn: '',
     checkOut: ''
@@ -785,7 +799,7 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                                     { val: "2", label: t.reservation.guests.adults2 },
                                     { val: "3", label: t.reservation.guests.adults3 },
                                     { val: "4", label: t.reservation.guests.adults4 }
-                                  ].map(opt => (
+                                  ].filter(opt => parseInt(opt.val, 10) <= maxAdults).map(opt => (
                                     <SelectItem key={opt.val} value={opt.val} className="cursor-pointer">
                                       {opt.label}
                                     </SelectItem>
