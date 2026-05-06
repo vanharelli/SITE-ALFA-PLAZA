@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { MessageCircle } from 'lucide-react';
+import { Bell } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
 
@@ -32,7 +32,7 @@ const WhatsAppButton = () => {
         className="bg-[#25D366] text-white p-4 rounded-full shadow-2xl flex items-center justify-center hover:bg-[#20ba5a] transition-colors relative pointer-events-auto"
         aria-label="Contato via WhatsApp"
       >
-        <MessageCircle size={28} fill="currentColor" className="text-white" />
+        <Bell size={28} className="text-white" />
         
         {/* Efeito de pulso mais suave */}
         <span className="absolute inset-0 rounded-full bg-[#25D366] animate-[ping_3s_infinite] opacity-10 pointer-events-none"></span>
