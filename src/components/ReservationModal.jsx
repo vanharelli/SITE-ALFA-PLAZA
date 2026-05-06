@@ -928,27 +928,26 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                                           <label className="text-alpha-gold text-[10px] tracking-[0.2em] uppercase font-bold">
                                             {t.reservation.guests.childAgeLabel} {index + 1}
                                           </label>
-                                          <Select
+                                          <input
+                                            type="number"
+                                            min="0"
+                                            max="17"
                                             value={formData.childAges[index] || ''}
-                                            onValueChange={(val) => {
+                                            placeholder={t.reservation.guests.childAgePlaceholder}
+                                            onChange={(e) => {
+                                              const raw = e.target.value;
+                                              const nextValue = raw === ''
+                                                ? ''
+                                                : Math.max(0, Math.min(17, parseInt(raw, 10) || 0)).toString();
+
                                               setFormData(prev => {
                                                 const next = Array.isArray(prev.childAges) ? [...prev.childAges] : [];
-                                                next[index] = val;
+                                                next[index] = nextValue;
                                                 return { ...prev, childAges: next };
                                               });
                                             }}
-                                          >
-                                            <SelectTrigger className="w-full bg-black/40 backdrop-blur-md border border-white/10 rounded-xl py-4 px-4 text-white focus:outline-none focus:ring-1 focus:ring-alpha-gold/50 transition-all h-auto">
-                                              <SelectValue placeholder={t.common.select} />
-                                            </SelectTrigger>
-                                            <SelectContent className="z-[10001]">
-                                              {Array.from({ length: 18 }).map((__, age) => (
-                                                <SelectItem key={age} value={age.toString()} className="cursor-pointer">
-                                                  {age}
-                                                </SelectItem>
-                                              ))}
-                                            </SelectContent>
-                                          </Select>
+                                            className="w-full bg-black/40 backdrop-blur-md border border-white/10 rounded-xl py-4 px-4 text-white focus:outline-none focus:border-alpha-gold/50 transition-all placeholder:text-white/20"
+                                          />
                                         </div>
                                       ))}
                                     </div>
