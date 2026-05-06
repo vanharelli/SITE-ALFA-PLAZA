@@ -80,6 +80,7 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
     childCount: '1',
     allChildrenOver5: false,
     childAge: '',
+    childAges: [],
     arrivalTime: '',
     name: '',
     email: '',
@@ -106,6 +107,26 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
     setFormData(prev => ({ ...prev, adults: maxAdults.toString() }));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [maxAdults, formData.adults]);
+
+  useEffect(() => {
+    if (!formData.hasChildren) return;
+
+    const count = Math.max(1, parseInt(formData.childCount, 10) || 1);
+    if (count <= 2) {
+      if (formData.childAges.length) {
+        setFormData(prev => ({ ...prev, childAges: [] }));
+      }
+      return;
+    }
+
+    if (formData.childAges.length === count) return;
+
+    setFormData(prev => {
+      const next = Array.from({ length: count }, (_, i) => prev.childAges[i] ?? '');
+      return { ...prev, childAges: next };
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [formData.hasChildren, formData.childCount]);
 
   const [dateInput, setDateInput] = useState({
     checkIn: '',
@@ -317,6 +338,13 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
       `🕒 *${w.arrival}:* ${arrivalText}\n` +
       `__________________________________\n\n` +
       `_${w.waitMessage}_`;
+
+    if (formData.hasChildren && parseInt(formData.childCount, 10) > 2 && Array.isArray(formData.childAges)) {
+      const agesText = formData.childAges.length
+        ? formData.childAges.map((age, index) => `${index + 1}: ${age || '-'}`).join(', ')
+        : w.unspecified;
+      message = message.replace(`🧒 *${w.children}:* ${childrenText}\n`, `🧒 *${w.children}:* ${childrenText}\n🎂 *${w.ages}:* ${agesText}\n`);
+    }
 
     const encodedMessage = encodeURIComponent(message);
     window.open(`https://wa.me/556132639131?text=${encodedMessage}`, '_blank');
@@ -903,6 +931,41 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                                     </button>
                                   </div>
                                 </div>
+
+                                {parseInt(formData.childCount, 10) > 2 && (
+                                  <div className="space-y-4 p-4 rounded-xl bg-black/20 border border-white/10">
+                                    <div className="grid sm:grid-cols-2 gap-4">
+                                      {Array.from({ length: Math.max(0, parseInt(formData.childCount, 10) || 0) }).map((_, index) => (
+                                        <div key={index} className="space-y-1">
+                                          <label className="text-alpha-gold text-[10px] tracking-[0.2em] uppercase font-bold">
+                                            {t.reservation.guests.childAgeLabel} {index + 1}
+                                          </label>
+                                          <Select
+                                            value={formData.childAges[index] || ''}
+                                            onValueChange={(val) => {
+                                              setFormData(prev => {
+                                                const next = Array.isArray(prev.childAges) ? [...prev.childAges] : [];
+                                                next[index] = val;
+                                                return { ...prev, childAges: next };
+                                              });
+                                            }}
+                                          >
+                                            <SelectTrigger className="w-full bg-black/40 backdrop-blur-md border border-white/10 rounded-xl py-4 px-4 text-white focus:outline-none focus:ring-1 focus:ring-alpha-gold/50 transition-all h-auto">
+                                              <SelectValue placeholder={t.common.select} />
+                                            </SelectTrigger>
+                                            <SelectContent className="z-[10001]">
+                                              {Array.from({ length: 18 }).map((__, age) => (
+                                                <SelectItem key={age} value={age.toString()} className="cursor-pointer">
+                                                  {age}
+                                                </SelectItem>
+                                              ))}
+                                            </SelectContent>
+                                          </Select>
+                                        </div>
+                                      ))}
+                                    </div>
+                                  </div>
+                                )}
                                 <p className="text-gray-500 text-[10px] italic">{t.reservation.guests.childrenWarning}</p>
                               </motion.div>
                             )}

@@ -222,6 +222,7 @@ export const translations = {
         allOver5: "Todos acima de 5 anos?",
         allOver5Many: "Todas tem +5 anos",
         oneChildOver5: "Tem mais que 5 anos?",
+        childAgeLabel: "Idade da criança",
         childrenWarning: "*Crianças acima de 5 anos possuem tarifa diferenciada.",
         nextStep: "PRÓXIMO PASSO"
       },
@@ -291,6 +292,7 @@ export const translations = {
         vip: "Recepção VIP",
         people: "Pessoas",
         children: "Crianças",
+        ages: "Idades",
         dates: "Datas",
         arrival: "Chegada prevista",
         waitMessage: "Aguarde um momento. Nossa equipe de recepção iniciará o seu atendimento em instantes.",
@@ -523,6 +525,7 @@ export const translations = {
         childrenCount: "How many children?",
         allOver5: "All over 5 years old?",
         allOver5Many: "All are 5+ years old",
+        childAgeLabel: "Child age",
         childrenWarning: "*Standard rates apply for children over 5.",
         nextStep: "NEXT STEP"
       },
@@ -592,6 +595,7 @@ export const translations = {
         vip: "VIP Reception",
         people: "People",
         children: "Children",
+        ages: "Ages",
         dates: "Dates",
         arrival: "Estimated arrival",
         waitMessage: "Please wait a moment. Our reception team will start your service shortly.",
@@ -824,6 +828,7 @@ export const translations = {
         childrenCount: "¿Cuántos niños?",
         allOver5: "¿Todos mayores de 5 años?",
         allOver5Many: "Todos tienen +5 años",
+        childAgeLabel: "Edad del niño",
         childrenWarning: "*Se aplican tarifas estándar para niños mayores de 5 años.",
         nextStep: "PRÓXIMO PASO"
       },
@@ -893,6 +898,7 @@ export const translations = {
         vip: "Recepción VIP",
         people: "Personas",
         children: "Niños",
+        ages: "Edades",
         dates: "Fechas",
         arrival: "Llegada prevista",
         waitMessage: "Espere un momento. Nuestro equipo de recepción iniciará su atención en instantes.",
