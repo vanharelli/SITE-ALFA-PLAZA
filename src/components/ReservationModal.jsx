@@ -111,7 +111,7 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
     if (!formData.hasChildren) return;
 
     const count = Math.max(1, parseInt(formData.childCount, 10) || 1);
-    const shouldCollectChildAges = formData.type !== 'Grupos e Eventos' && count >= 2;
+    const shouldCollectChildAges = formData.type !== 'Grupos e Eventos' && count >= 1;
 
     if (!shouldCollectChildAges) {
       if (formData.childAges.length) {
@@ -350,7 +350,7 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
       `__________________________________\n\n` +
       `_${w.waitMessage}_`;
 
-    if (formData.hasChildren && parseInt(formData.childCount, 10) >= 2 && Array.isArray(formData.childAges)) {
+    if (formData.hasChildren && parseInt(formData.childCount, 10) >= 1 && Array.isArray(formData.childAges)) {
       const count = Math.max(1, parseInt(formData.childCount, 10) || 1);
       const ages = formData.childAges.slice(0, count);
       const childrenFormatting = ages
@@ -926,7 +926,7 @@ const ReservationModal = ({ isOpen, onClose, initialSuite = null }) => {
                                   </div>
                                 </div>
 
-                                {formData.type !== 'Grupos e Eventos' && parseInt(formData.childCount, 10) >= 2 && (
+                                {formData.type !== 'Grupos e Eventos' && parseInt(formData.childCount, 10) >= 1 && (
                                   <div className="space-y-4 p-4 rounded-xl bg-black/20 border border-white/10">
                                     <div className="grid sm:grid-cols-2 gap-4">
                                       {Array.from({ length: Math.max(0, parseInt(formData.childCount, 10) || 0) }).map((_, index) => (
