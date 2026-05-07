@@ -45,7 +45,7 @@ const Hero = ({ onOpenReservation }) => {
 
             <h1 className="font-serif text-4xl md:text-6xl lg:text-8xl tracking-widest leading-tight mb-4">
             <span className="text-white">ALFA </span>
-            <span className="text-alpha-gold text-magic">PLAZA</span>
+            <span className="text-magic">PLAZA</span>
             <span className="text-white"> HOTEL</span>
           </h1>
           
