@@ -216,6 +216,19 @@ html {
     @apply absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/40 to-transparent;
     animation: shimmer 2.5s infinite;
   }
+
+  .text-magic {
+    @apply relative inline-block overflow-hidden;
+  }
+
+  .text-magic::after {
+    content: '';
+    @apply absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/60 to-transparent;
+    animation: shimmer 2.5s infinite;
+    mix-blend-mode: screen;
+    opacity: 0.9;
+    pointer-events: none;
+  }
 }
 
 /* Selection Styling */
